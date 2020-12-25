@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CleanArchitecture.Core.Interfaces
 {
-    interface IBookService
+   public interface IBookService
     {
         BookViewModel GetBooks();
     }

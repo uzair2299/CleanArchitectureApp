@@ -1,4 +1,4 @@
-﻿using CleanArchitectureDomain.Models;
+﻿using CleanArchitecture.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

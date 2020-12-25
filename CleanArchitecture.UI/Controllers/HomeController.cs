@@ -6,21 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CleanArchitecture.UI.Models;
+using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.ViewModels;
 
 namespace CleanArchitecture.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IBookService bookService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBookService bookService)
         {
-            _logger = logger;
+            this.bookService = bookService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            BookViewModel model = bookService.GetBooks();
+            return View(model);
         }
 
         public IActionResult Privacy()
