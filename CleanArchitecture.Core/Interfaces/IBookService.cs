@@ -8,5 +8,6 @@ namespace CleanArchitecture.Core.Interfaces
    public interface IBookService
     {
         BookViewModel GetBooks();
+        void BookMapper(BookViewModelMapper bookViewModel);
     }
 }

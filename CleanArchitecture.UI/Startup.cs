@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using CleanArchitecture.Infrastructure.Context;
 using CleanArchitecture.Infrastructure.IoC;
+using CleanArchitecture.UI.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ namespace CleanArchitecture.UI
             services.AddDbContext<DemoContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("AutoSolution")));
+            services.RegisterAutoMapper();
             services.AddControllersWithViews();
             services.AddOptions();
         }
