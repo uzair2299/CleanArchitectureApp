@@ -6,9 +6,9 @@ using System.Text;
 
 namespace CleanArchitecture.Infrastructure.Context
 {
-   public class DemoContext:DbContext
+   public class AutoSolutionContext:DbContext
     {
-         public DemoContext(DbContextOptions options) : base(options) { }
+         public AutoSolutionContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Book> Books { get; set; }
     }

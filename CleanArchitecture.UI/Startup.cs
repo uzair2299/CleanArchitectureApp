@@ -27,7 +27,7 @@ namespace CleanArchitecture.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DemoContext>(options =>
+            services.AddDbContext<AutoSolutionContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("AutoSolution")));
             services.RegisterAutoMapper();

@@ -15,13 +15,10 @@ namespace CleanArchitecture.Infrastructure.IoC
     {
        protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
             builder.RegisterType<BookService>().As<IBookService>().InstancePerLifetimeScope();
             builder.RegisterType<BookRepository>().As<IBookRepository>().InstancePerLifetimeScope();
-
-            //builder.RegisterType<BookViewModelMapper>().AsSelf();
-            //builder.RegisterType<Book>().AsSelf();
-
-
         }
     }
 }
