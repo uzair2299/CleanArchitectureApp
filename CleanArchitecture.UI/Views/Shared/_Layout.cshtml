@@ -76,6 +76,7 @@
     <link href="~/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/CustomStyle.css" rel="stylesheet" />
 
     <!--end::Layout Skins -->
     <link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
@@ -373,13 +374,13 @@
                                                 <path d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z" id="Combined-Shape" fill="#000000" />
                                             </g>
                                         </svg>
-                                    </span><span class="kt-menu__link-text">Subheaders</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+                                    </span><span class="kt-menu__link-text">Auto Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
                                 </a>
                                 <div class="kt-menu__submenu ">
                                     <span class="kt-menu__arrow"></span>
                                     <ul class="kt-menu__subnav">
                                         <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Subheaders</span></span></li>
-                                        <li class="kt-menu__item " aria-haspopup="true"><a href="demo1/layout/subheader/toolbar.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Toolbar Nav</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoManufacturer" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Manufacturer</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a href="demo1/layout/subheader/actions.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Actions Buttons</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a href="demo1/layout/subheader/tabbed.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Tabbed Nav</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a href="demo1/layout/subheader/classic.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Classic</span></a></li>
@@ -2095,12 +2096,12 @@
                 <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
                     <div class="kt-container  kt-container--fluid ">
                         <div class="kt-footer__copyright">
-                            2019&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/metronic" target="_blank" class="kt-link">Keenthemes</a>
+                            @DateTime.Now.Year &nbsp;&copy;&nbsp;<a class="kt-link">Auto Solution</a>
                         </div>
                         <div class="kt-footer__menu">
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">About</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
+                            <a class="kt-footer__menu-link kt-link">About</a>
+                            <a class="kt-footer__menu-link kt-link">Team</a>
+                            <a class="kt-footer__menu-link kt-link">Contact</a>
                         </div>
                     </div>
                 </div>
