@@ -12,5 +12,9 @@ namespace CleanArchitecture.UI.Controllers
         {
             return View();
         }
+        public IActionResult AutoManufacturerSave()
+        {
+            return PartialView("_AutoManufacturerPanel");
+        }
     }
 }
