@@ -1,4 +1,44 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿/*
+ * -------------------------------------------------------
+ *                    Global Variables                   *
+ * -------------------------------------------------------
+ */
 
-// Write your JavaScript code.
+var baseURL = "/AutoManufacturer/";
+
+//Penal buttons section
+var _AutoManufacturerPanelbtn = "_AutoManufacturerPanelbtn"
+
+//Panel container section
+var _AutoManufacturerPanelContainer = "_AutoManufacturerPanelContainer";
+
+//panel section (modal id)
+var _AutoManufacturerPanel = "_AutoManufacturerPanel"
+
+
+/*
+ * -------------------------------------------------------
+ *                    Start Auto Manufacturer            *
+ * -------------------------------------------------------
+ */
+$(document).ready(function () {
+
+    $("#" + _AutoManufacturerPanelbtn).on("click", function () {
+        var params = autoSolutionService.ajaxParams('', baseURL + 'AutoManufacturerSave', 'get', true);
+        autoSolutionService.defaultService(params).done(function (response) {
+            AutoSolutionUtility.clearHTML(_AutoManufacturerPanelContainer);
+            console.log("Hello")
+            AutoSolutionUtility.appendHTML(_AutoManufacturerPanelContainer, response);
+            AutoSolutionUtility.showPanel(_AutoManufacturerPanel);
+        })
+    });
+});
+
+
+
+
+/*
+ * -------------------------------------------------------
+ *                    End Auto Manufacturer              *
+ * -------------------------------------------------------
+ */
