@@ -5,9 +5,8 @@ using System.Text;
 
 namespace CleanArchitecture.Core.Interfaces
 {
-   public interface IBookService
+    public interface IAutoManufacturerService
     {
-        BookViewModel GetBooks();
-        void BookMapper(BookViewModelMapper bookViewModel);
+        bool AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel);
     }
 }

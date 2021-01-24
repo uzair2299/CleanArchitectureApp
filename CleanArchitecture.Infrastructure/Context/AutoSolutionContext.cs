@@ -1,15 +1,13 @@
-﻿using CleanArchitecture.Domain.Models;
+﻿using CleanArchitecture.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitecture.Infrastructure.Context
 {
-   public class AutoSolutionContext:DbContext
+    public class AutoSolutionContext:DbContext
     {
-         public AutoSolutionContext(DbContextOptions options) : base(options) { }
+        public AutoSolutionContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Book> Books { get; set; }
+        
+        public DbSet<AutoManufacturer> VehicleManufacturers { get; set; }
     }
 }

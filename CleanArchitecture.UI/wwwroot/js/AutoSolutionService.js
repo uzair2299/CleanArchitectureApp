@@ -12,7 +12,7 @@
         return $.ajax({
             type: params.httpMethod,
             url: params.url,
-            data: params.data
+            data: params.data,
         });
     }
 }

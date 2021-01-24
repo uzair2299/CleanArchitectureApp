@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Core.ViewModels;
-using CleanArchitecture.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CleanArchitecture.Domain.Entities;
 
 namespace CleanArchitecture.Core.AutoMapper
 {
@@ -11,7 +8,7 @@ namespace CleanArchitecture.Core.AutoMapper
     {
         public DomainToViewModelProfile()
         {
-            CreateMap<Book, BookViewModelMapper>();
+            CreateMap<AutoManufacturer, AutoManufacturerViewModel>();
         }
     }
 }

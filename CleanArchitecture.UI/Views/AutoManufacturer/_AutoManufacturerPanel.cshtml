@@ -1,27 +1,62 @@
-﻿<div class="modal fade" id="_AutoManufacturerPanel" tabindex="-1" role="dialog" aria-labelledby="AutoManufacturerPanel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+﻿@model CleanArchitecture.Core.ViewModels.AutoManufacturerViewModel
+<div class="modal fade" id="_AutoManufacturerPanel" tabindex="-1" role="dialog" aria-labelledby="AutoManufacturerPanel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="AutoManufacturerPanel">New message</h5>
+                <h5 class="modal-title" id="AutoManufacturerPanel">Vehicle Manufacturer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="form-control-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+            <form class="kt-form kt-form--label-right" id="VehicleManufacturer" novalidate="novalidate">
+                <div class="modal-body">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoManufacturerName">* Manufacturer Name:</label>
+                                        <input type="text" name="AutoManufacturerName" class="form-control" placeholder="" value="" asp-for="AutoManufacturerName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="form-control-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    <button type="button" class="btn btn-dark btn-sm" onclick="autoManufacturer.validdateAutoManufacturer()" id="btnVehicleManufacturer">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    //$("#VehicleManufacturer").validate({
+    //    rules: {
+    //        Vehicle_Manufacturer: {
+    //            required: true
+    //        }
+    //    },
+    //    messages: {
+    //        Vehicle_Manufacturer: {
+    //            required: "Manufacturer Name is Required"
+    //        }
+    //    }
+
+    //});
+    //$("#btnVehicleManufacturer").click(function () {
+    //    if ($("#VehicleManufacturer").valid()) {
+    //        console.log("hello");
+    //    }
+    //    else {
+    //        console.log("fuck");
+    //    }
+    //})
+
+
+</script>

@@ -1,13 +1,9 @@
 ﻿using Autofac;
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Service;
-using CleanArchitecture.Core.ViewModels;
+using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Interfaces;
-using CleanArchitecture.Domain.Models;
 using CleanArchitecture.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitecture.Infrastructure.IoC
 {
@@ -15,10 +11,18 @@ namespace CleanArchitecture.Infrastructure.IoC
     {
        protected override void Load(ContainerBuilder builder)
         {
+            //unit of work
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
-            builder.RegisterType<BookService>().As<IBookService>().InstancePerLifetimeScope();
-            builder.RegisterType<BookRepository>().As<IBookRepository>().InstancePerLifetimeScope();
+            //generic repository
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            
+            //class specfic
+            builder.RegisterType<AutoManufacturer>();
+
+            //service & repositroy
+            builder.RegisterType<AutoManufacturerService>().As<IAutoManufacturerService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoManufacturerRepository>().As<IAutoManufacturerRepository>().InstancePerLifetimeScope();
         }
     }
 }

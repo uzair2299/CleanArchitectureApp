@@ -13,30 +13,18 @@ namespace CleanArchitecture.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBookService bookService;
-
-        public HomeController(IBookService bookService)
+        
+        public HomeController()
         { 
-            this.bookService = bookService;
         }
 
         public IActionResult Index()
         {
-            BookViewModel model = bookService.GetBooks();
-            return View(model);
+            return View();
         }
 
         public IActionResult Privacy()
         {
-            BookViewModelMapper bookViewModel = new BookViewModelMapper
-            {
-                Id = 1,
-                Name = "aaa",
-                AuthorName = "aaa",
-                ISBN = "11111"
-            };
-            bookService.BookMapper(bookViewModel);
-
             return View();
         }
 
