@@ -32,7 +32,8 @@
         //form Name
         autoManufacturerForm: "#VehicleManufacturer",
 
-        validdateAutoManufacturer: function () {
+        validdateAutoManufacturer: function (event) {
+            event.preventDefault();
             $(autoManufacturer.autoManufacturerForm).validate({
                 rules: {
                     AutoManufacturerName: {
@@ -54,6 +55,7 @@
             else {
                 console.log("fuck");
             }
+            return false;
         },
 
         loadAutoManufacturerPanel: function () {

@@ -1,5 +1,5 @@
 ﻿@model CleanArchitecture.Core.ViewModels.AutoManufacturerViewModel
-<div class="modal fade" id="_AutoManufacturerPanel" tabindex="-1" role="dialog" aria-labelledby="AutoManufacturerPanel" aria-hidden="true">
+<div class="modal fade" id="_AutoManufacturerPanel" tabindex="-1" role="dialog" aria-labelledby="AutoManufacturerPanel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <form class="kt-form kt-form--label-right" id="VehicleManufacturer" novalidate="novalidate">
+            <form class="kt-form kt-form--label-right" id="VehicleManufacturer">
                 <div class="modal-body">
                     <div class="kt-portlet__body">
                         <div class="kt-section">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
-                    <button type="button" class="btn btn-dark btn-sm" onclick="autoManufacturer.validdateAutoManufacturer()" id="btnVehicleManufacturer">
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="autoManufacturer.validdateAutoManufacturer(event)" id="btnVehicleManufacturer">
                         <i class="fa fa-plus"></i>
                         Add New
                     </button>
@@ -34,29 +34,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    //$("#VehicleManufacturer").validate({
-    //    rules: {
-    //        Vehicle_Manufacturer: {
-    //            required: true
-    //        }
-    //    },
-    //    messages: {
-    //        Vehicle_Manufacturer: {
-    //            required: "Manufacturer Name is Required"
-    //        }
-    //    }
-
-    //});
-    //$("#btnVehicleManufacturer").click(function () {
-    //    if ($("#VehicleManufacturer").valid()) {
-    //        console.log("hello");
-    //    }
-    //    else {
-    //        console.log("fuck");
-    //    }
-    //})
-
-
-</script>
