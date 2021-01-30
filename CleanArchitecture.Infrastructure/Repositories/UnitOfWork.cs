@@ -1,14 +1,14 @@
-﻿using CleanArchitecture.Domain.Interfaces;
-using CleanArchitecture.Infrastructure.Context;
+﻿using CleanArchitecture.Infrastructure.Context;
+using CleanArchitecture.Infrastructure.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
     public class UnitOfWork:IUnitOfWork
     {
         protected AutoSolutionContext AutoSolutionContext { get; }
+
+
         public UnitOfWork(AutoSolutionContext autoSolutionContext)
         {
             AutoSolutionContext = autoSolutionContext;
@@ -37,6 +37,11 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public void Dispose()
         {
             AutoSolutionContext.Dispose();
+        }
+
+        public AutoSolutionContext GetAutoSolutionContext()
+        {
+            return AutoSolutionContext;
         }
     }
 }

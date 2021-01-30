@@ -8,6 +8,6 @@ namespace CleanArchitecture.Infrastructure.Context
         public AutoSolutionContext(DbContextOptions options) : base(options) { }
 
         
-        public DbSet<AutoManufacturer> VehicleManufacturers { get; set; }
+        public DbSet<AutoManufacturer> AutoManufacturers { get; set; }
     }
 }

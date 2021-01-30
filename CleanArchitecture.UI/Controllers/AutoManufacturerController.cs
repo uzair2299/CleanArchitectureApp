@@ -17,8 +17,9 @@ namespace CleanArchitecture.UI.Controllers
             this.autoManufacturerService = autoManufacturerService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(AutoManufacturerViewModel autoManufacturerViewModel)
         {
+            autoManufacturerService.GetAutoManufacturer(autoManufacturerViewModel);
             return View();
         }
 

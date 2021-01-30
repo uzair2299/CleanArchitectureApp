@@ -2,7 +2,7 @@
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Service;
 using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Interfaces;
+using CleanArchitecture.Infrastructure.Interfaces;
 using CleanArchitecture.Infrastructure.Repositories;
 
 namespace CleanArchitecture.Infrastructure.IoC

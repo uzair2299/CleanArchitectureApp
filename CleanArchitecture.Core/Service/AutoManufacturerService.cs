@@ -2,10 +2,7 @@
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace CleanArchitecture.Core.Service
 {
@@ -25,7 +22,13 @@ namespace CleanArchitecture.Core.Service
         public bool AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
         {
             autoManufacturer = autoMapper.Map<AutoManufacturer>(autoManufacturerViewModel);
-            return autoManufacturerRepository.AutoManufacturerSave(autoManufacturer);
+            return autoManufacturerRepository.SaveAutoManufacturer(autoManufacturer);
+        }
+
+        public IQueryable<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
+        {
+            var obj = autoManufacturerRepository.GetAutoManufacturer(autoManufacturerViewModel);
+            return (IQueryable<AutoManufacturerViewModel>)autoMapper.Map<AutoManufacturerViewModel>(obj);
         }
     }
 }
