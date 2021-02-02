@@ -61,10 +61,12 @@
         loadAutoManufacturerPanel: function () {
             var params = autoSolutionService.ajaxParams('', autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'get', true);
             autoSolutionService.defaultService(params).done(function (response) {
+
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
                 console.log("Hello")
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
                 AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
+                $("#loaderdiv").hide();
             })
         },
 

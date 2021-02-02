@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using System.Linq;
@@ -25,10 +26,9 @@ namespace CleanArchitecture.Core.Service
             return autoManufacturerRepository.SaveAutoManufacturer(autoManufacturer);
         }
 
-        public IQueryable<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
+        public AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
-            var obj = autoManufacturerRepository.GetAutoManufacturer(autoManufacturerViewModel);
-            return (IQueryable<AutoManufacturerViewModel>)autoMapper.Map<AutoManufacturerViewModel>(obj);
+             return  autoManufacturerRepository.GetAutoManufacturer(autoManufacturerViewModel);
         }
     }
 }

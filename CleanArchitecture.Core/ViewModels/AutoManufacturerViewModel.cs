@@ -6,6 +6,10 @@ namespace CleanArchitecture.Core.ViewModels
 {
     public class AutoManufacturerViewModel
     {
+        public AutoManufacturerViewModel()
+        {
+            PageNo = 1;
+        }
         public int Id { get; set; }
 
         public string AutoManufacturerName { get; set; }
@@ -17,5 +21,7 @@ namespace CleanArchitecture.Core.ViewModels
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
+
+        public int PageNo { get; set; }
     }
 }

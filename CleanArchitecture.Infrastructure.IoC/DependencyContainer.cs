@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.Service;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
@@ -16,9 +17,13 @@ namespace CleanArchitecture.Infrastructure.IoC
 
             //generic repository
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-            
+            builder.RegisterGeneric(typeof(AutoSolutionPageSet<>)).AsSelf();
+
             //class specfic
+            builder.RegisterType<Pager>();
             builder.RegisterType<AutoManufacturer>();
+            builder.RegisterType<ViewDataSet>();
+
 
             //service & repositroy
             builder.RegisterType<AutoManufacturerService>().As<IAutoManufacturerService>().InstancePerLifetimeScope();

@@ -1,4 +1,6 @@
-﻿using CleanArchitecture.Core.Interfaces;
+﻿using AutoMapper;
+using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
@@ -11,16 +13,25 @@ namespace CleanArchitecture.Infrastructure.Repositories
     {
         private readonly IRepository<AutoManufacturer> repository;
         private IUnitOfWork unitOfWork;
-
-        public AutoManufacturerRepository(IRepository<AutoManufacturer> repository, IUnitOfWork unitOfWork)
+        private readonly IMapper autoMapper;
+        public AutoManufacturerRepository(IRepository<AutoManufacturer> repository, IUnitOfWork unitOfWork, IMapper autoMapper)
         {
             this.repository = repository;
             this.unitOfWork = unitOfWork;
+            this.autoMapper = autoMapper;
         }
 
-        public IEnumerable<AutoManufacturer> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
+        public AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
-            return unitOfWork.GetAutoSolutionContext().AutoManufacturers.ToList();
+            var result =  unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable().ToList();
+            Pager pager = new Pager(result.Count(), autoManufacturerViewModel.PageNo,15);
+            result =  result.OrderBy(x => x.AutoManufacturerName).Skip((pager.StartPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
+            AutoSolutionPageSet<AutoManufacturerViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoManufacturerViewModel>()
+            {
+                pager = pager,
+                Data = autoMapper.Map<List<AutoManufacturerViewModel>>(result)
+            };
+            return autoSolutionPageSet;
         }
 
         public bool SaveAutoManufacturer(AutoManufacturer autoManufacturer)

@@ -9,7 +9,16 @@
     },
 
     defaultService: function (params) {
+        if (params.isBackgroundLoader) {
+
+        }
         return $.ajax({
+
+            beforeSend: function () {
+
+                $("#loaderdiv").show();
+                
+            },
             type: params.httpMethod,
             url: params.url,
             data: params.data,

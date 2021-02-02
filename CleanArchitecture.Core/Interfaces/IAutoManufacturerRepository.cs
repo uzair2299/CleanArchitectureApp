@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Core.ViewModels;
+﻿using CleanArchitecture.Core.PageSet;
+using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IAutoManufacturerRepository
     {
         bool SaveAutoManufacturer(AutoManufacturer autoManufacturer);
-        IEnumerable<AutoManufacturer> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel);
+        AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel);
 
     }
 }
