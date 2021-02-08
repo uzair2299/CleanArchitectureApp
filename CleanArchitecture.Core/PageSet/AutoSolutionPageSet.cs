@@ -7,7 +7,7 @@ namespace CleanArchitecture.Core.PageSet
 {
     public class AutoSolutionPageSet<TEntity> where TEntity : class
     {
-        public Pager pager { get; set; }
+        public Pager Pager { get; set; }
         public List<TEntity> Data { get; set; }
     }
 }

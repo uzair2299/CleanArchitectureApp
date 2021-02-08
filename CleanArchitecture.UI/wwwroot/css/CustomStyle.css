@@ -12,11 +12,18 @@
 }
 
 
+.table td.fit, .table th.fit {
+    white-space: nowrap;
+    width: 10%;
+}
 
+.kt-scrolltop{
+    background-color:black;
+}
 
 
 #loaderdiv {
-    display:none;
+    display: none;
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     left: 0;

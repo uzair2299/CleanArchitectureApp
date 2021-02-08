@@ -16,11 +16,16 @@ namespace CleanArchitecture.UI.Controllers
             this.viewDataSet = viewDataSet;
         }
 
-        public IActionResult Index(AutoManufacturerViewModel autoManufacturerViewModel)
+        public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
             AutoSolutionPageSet<AutoManufacturerViewModel> result = autoManufacturerService.GetAutoManufacturer(autoManufacturerViewModel);
             viewDataSet.AutoSolutionPageSet = result;
-            return View(viewDataSet);
+            return PartialView("_GetAutoManufacturer",viewDataSet);
         }
 
         [HttpGet]
@@ -32,7 +37,7 @@ namespace CleanArchitecture.UI.Controllers
         [HttpPost]
         public IActionResult AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
         {
-            autoManufacturerService.AutoManufacturerSave(autoManufacturerViewModel);
+            //autoManufacturerService.AutoManufacturerSave(autoManufacturerViewModel);
             return PartialView("_AutoManufacturerPanel");
         }
     }

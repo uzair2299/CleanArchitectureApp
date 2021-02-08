@@ -12,7 +12,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
     public class AutoManufacturerRepository :IAutoManufacturerRepository
     {
         private readonly IRepository<AutoManufacturer> repository;
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper autoMapper;
         public AutoManufacturerRepository(IRepository<AutoManufacturer> repository, IUnitOfWork unitOfWork, IMapper autoMapper)
         {
@@ -28,7 +28,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             result =  result.OrderBy(x => x.AutoManufacturerName).Skip((pager.StartPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
             AutoSolutionPageSet<AutoManufacturerViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoManufacturerViewModel>()
             {
-                pager = pager,
+                Pager = pager,
                 Data = autoMapper.Map<List<AutoManufacturerViewModel>>(result)
             };
             return autoSolutionPageSet;

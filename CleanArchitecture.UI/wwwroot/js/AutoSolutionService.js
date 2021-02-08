@@ -9,15 +9,11 @@
     },
 
     defaultService: function (params) {
-        if (params.isBackgroundLoader) {
-
-        }
         return $.ajax({
-
             beforeSend: function () {
-
-                $("#loaderdiv").show();
-                
+                if (params.isBackgroundLoader) {
+                    AutoSolutionUtility.showLoader();
+                }
             },
             type: params.httpMethod,
             url: params.url,

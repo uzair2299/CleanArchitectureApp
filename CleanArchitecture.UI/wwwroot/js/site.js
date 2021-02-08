@@ -1,4 +1,7 @@
-﻿/*
+﻿$(document).ready(function () {
+    autoManufacturer.getAutoManufacturer();
+});
+/*
  * -------------------------------------------------------
  *                    Global Variables                   *
  * -------------------------------------------------------
@@ -32,6 +35,8 @@
         //form Name
         autoManufacturerForm: "#VehicleManufacturer",
 
+        autoManufacturerGetPanel: "_GetAutoManufacturer",
+
         validdateAutoManufacturer: function (event) {
             event.preventDefault();
             $(autoManufacturer.autoManufacturerForm).validate({
@@ -45,12 +50,10 @@
                         required: "Manufacturer Name is Required"
                     }
                 }
-
             });
 
             if ($(autoManufacturer.autoManufacturerForm).valid()) {
                 autoManufacturer.saveAutoManufacturer();
-                console.log("hello");
             }
             else {
                 console.log("fuck");
@@ -61,23 +64,32 @@
         loadAutoManufacturerPanel: function () {
             var params = autoSolutionService.ajaxParams('', autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'get', true);
             autoSolutionService.defaultService(params).done(function (response) {
-
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
-                console.log("Hello")
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
                 AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
-                $("#loaderdiv").hide();
+                AutoSolutionUtility.hideLoader();
             })
         },
 
         saveAutoManufacturer: function () {
-            var params = autoSolutionService.ajaxParams($(autoManufacturer.autoManufacturerForm).serialize(), autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'post', true);
+            var params = autoSolutionService.ajaxParams($(autoManufacturer.autoManufacturerForm).serialize(), autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'post', false);
             autoSolutionService.defaultService(params).done(function (response) {
+                AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
+                AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
-                console.log("OKK")
-                AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
-                AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
+                AutoSolutionUtility.hideLoader();
+                //AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
+                //AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
             });
+        },
+
+        getAutoManufacturer: function () {
+            var params = autoSolutionService.ajaxParams('', autoManufacturer.autoManufacturerBaseURL + 'GetAutoManufacturer', 'get', true);
+            autoSolutionService.defaultService(params).done(function (response) {
+                AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerGetPanel);
+                AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerGetPanel, response);
+                AutoSolutionUtility.hideLoader();
+            })
         }
     }
 
