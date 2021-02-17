@@ -5,9 +5,16 @@
     SUCCESS: 'success',
 };
 
+const statusCode = {
+    UPDATE : 'Update',
+    FAIL: 'fail',
+    SAVE:'save'
+}
 
 const toastMessage = {
-    SAVE:'Saved Successfully'
+    SAVE: 'Save Successfully',
+    ERROR: 'Opps...Some Thing Went Wrong',
+    UPDATE:'Update Successfully'
 };
 
 var AutoSolutionUtility = {

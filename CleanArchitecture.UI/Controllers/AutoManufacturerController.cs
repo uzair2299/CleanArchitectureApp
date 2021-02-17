@@ -2,6 +2,8 @@
 using CleanArchitecture.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using CleanArchitecture.Core.PageSet;
+using System.Net;
+using System.Net.Http;
 
 namespace CleanArchitecture.UI.Controllers
 {
@@ -35,10 +37,25 @@ namespace CleanArchitecture.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
+        public JsonResult AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
         {
-            //autoManufacturerService.AutoManufacturerSave(autoManufacturerViewModel);
-            return PartialView("_AutoManufacturerPanel");
+            
+            if (autoManufacturerViewModel.Id > 0) {
+              var result = autoManufacturerService.UpdateAutoManufacturer(autoManufacturerViewModel);
+                return Json(new { status = result == true ? "Update" : "fail" ,data = autoManufacturerViewModel.Id});
+            }
+            else
+            {
+                var result = autoManufacturerService.AutoManufacturerSave(autoManufacturerViewModel);
+                return Json(new { status = result!=null? "save":"fail", data = result });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult EditAutoManufacturer(int Id)
+        {
+            var result  = autoManufacturerService.GetAutoManufacturerById(Id);
+            return PartialView("_AutoManufacturerPanel",result);
         }
     }
 }

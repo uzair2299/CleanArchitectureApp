@@ -31,6 +31,7 @@
 
         //panel section (modal id)
         autoManufacturerPanel: "_AutoManufacturerPanel",
+        autoManufacturerPanelUpdateTitle:"Update Vehicle Manufacturer",
 
         //form Name
         autoManufacturerForm: "#VehicleManufacturer",
@@ -71,15 +72,39 @@
             })
         },
 
+        editAutoManufactuer: function (id) {
+            data = { Id: id }
+            var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'EditAutoManufacturer', 'get', true);
+            autoSolutionService.defaultService(params).done(function (response) {
+                AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
+                $("#" + autoManufacturer.autoManufacturerPanel + " .modal-title").text(autoManufacturer.autoManufacturerPanelUpdateTitle);
+                $("#" + autoManufacturer.autoManufacturerPanel + " #btnAutoManufacturer").text("Update");
+                AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
+                AutoSolutionUtility.hideLoader()
+            });
+        },
+
         saveAutoManufacturer: function () {
             var params = autoSolutionService.ajaxParams($(autoManufacturer.autoManufacturerForm).serialize(), autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'post', false);
             autoSolutionService.defaultService(params).done(function (response) {
-                AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
-                AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
-                AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                switch (response.status) {
+                    case statusCode.UPDATE:
+                        AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.UPDATE);
+                        autoManufacturer.getAutoManufacturer();
+                        AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
+                        AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                        break;
+                    case statusCode.SAVE:
+                        AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
+                        autoManufacturer.getAutoManufacturer();
+                        AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
+                        AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                        break;
+                    default:
+                        AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ERROR);
+                }
                 AutoSolutionUtility.hideLoader();
-                //AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
-                //AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
             });
         },
 
@@ -92,9 +117,6 @@
             })
         }
     }
-
-
-
 
 /*
  * -------------------------------------------------------

@@ -46,6 +46,8 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public void Update(TEntity entity)
         {
+
+           // _dbContext.Entry(entity).State = EntityState.Detached;
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
     }

@@ -10,8 +10,9 @@ namespace CleanArchitecture.Core.Interfaces
 {
     public interface IAutoManufacturerRepository
     {
-        bool SaveAutoManufacturer(AutoManufacturer autoManufacturer);
+        AutoManufacturerViewModel SaveAutoManufacturer(AutoManufacturer autoManufacturer);
         AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel);
-
+        AutoManufacturerViewModel GetAutoManufacturerById(int Id);
+        bool UpdateAutoManufacturer(AutoManufacturer autoManufacturer);
     }
 }

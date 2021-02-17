@@ -20,7 +20,7 @@ namespace CleanArchitecture.Core.Service
             this.autoManufacturer = autoManufacturer;
         }
 
-        public bool AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
+        public AutoManufacturerViewModel AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
         {
             autoManufacturer = autoMapper.Map<AutoManufacturer>(autoManufacturerViewModel);
             return autoManufacturerRepository.SaveAutoManufacturer(autoManufacturer);
@@ -29,6 +29,17 @@ namespace CleanArchitecture.Core.Service
         public AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
              return  autoManufacturerRepository.GetAutoManufacturer(autoManufacturerViewModel);
+        }
+
+        public AutoManufacturerViewModel GetAutoManufacturerById(int Id)
+        {
+            return autoManufacturerRepository.GetAutoManufacturerById(Id);
+        }
+
+        public bool UpdateAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
+        {
+            autoManufacturer = autoMapper.Map<AutoManufacturer>(autoManufacturerViewModel);
+            return autoManufacturerRepository.UpdateAutoManufacturer(autoManufacturer);
         }
     }
 }
