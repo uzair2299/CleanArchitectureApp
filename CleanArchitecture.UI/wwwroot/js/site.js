@@ -79,7 +79,7 @@
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
                 $("#" + autoManufacturer.autoManufacturerPanel + " .modal-title").text(autoManufacturer.autoManufacturerPanelUpdateTitle);
-                $("#" + autoManufacturer.autoManufacturerPanel + " #btnAutoManufacturer").text("Update");
+                $("#" + autoManufacturer.autoManufacturerPanel + " #btnAutoManufacturer").html(htmlTemplate.UPDATE_BTN);
                 AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
                 AutoSolutionUtility.hideLoader()
             });
@@ -115,6 +115,18 @@
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerGetPanel, response);
                 AutoSolutionUtility.hideLoader();
             })
+        },
+        deleteAutoManufactuer: function (id) {
+            console.log(id);
+            AutoSolutionUtility.deleteConfirmationBox().then(function (result) {
+                if (result.value) {
+                    swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            });
         }
     }
 

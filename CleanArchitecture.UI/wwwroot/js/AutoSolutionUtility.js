@@ -17,6 +17,10 @@ const toastMessage = {
     UPDATE:'Update Successfully'
 };
 
+const htmlTemplate = {
+    UPDATE_BTN: '<i class="fa fa-pencil-alt"></i> Update'
+}
+
 var AutoSolutionUtility = {
     clearHTML: function (containerId) {
         $("#" + containerId).html("");
@@ -66,6 +70,21 @@ var AutoSolutionUtility = {
             "hideMethod": "fadeOut"
         };
         toastr[type](message);
-    }
+    },
 
+    deleteConfirmationBox: function () {
+        return  swal.fire({
+            title: 'Are you sure?',
+            width: 600,
+            heightAuto: false,
+            confirmButtonColor: '#282a3c',
+            cancelButtonColor: '#fd397a',
+            showCancelButton: true,
+            showCloseButton: true,
+            allowOutsideClick: false,
+            scrollbarPadding: false,
+            confirmButtonText: '<i class="mr-2 fa fa-times"></i>Yes, delete it!',
+            cancelButtonText:'<i class="mr-2 fa fa-trash-alt"></i>Cancel'
+        })
+    }
 }

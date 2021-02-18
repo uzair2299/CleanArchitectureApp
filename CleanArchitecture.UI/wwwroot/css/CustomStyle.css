@@ -1,14 +1,23 @@
-﻿.kt-subheader .kt-subheader__search {
+﻿/*.kt-subheader .kt-subheader__search {
     width: 375px;
     display: inline-block;
-}
+}*/
 
 .modal .modal-content .modal-header .close {
     color: #fc0758;
 }
 
 .modal .modal-content .modal-header .close:hover {
-    color: #fc0758;
+        color: #fc0758;
+}
+
+
+.swal2-close {
+    color: #f27474 !important;
+}
+
+.swal2-close:hover{
+    color: #fc0758 !important;
 }
 
 
