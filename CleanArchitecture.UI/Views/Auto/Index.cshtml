@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/js/site.js"></script>
+
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+    <!-- begin:: Content Head -->
+    <div class="kt-subheader  kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">Auto Manufacturer</h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Content Head -->
+    <!-- begin:: Content -->
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                    @*<span class="kt-portlet__head-icon">
+                        <i class="kt-font-brand flaticon2-line-chart"></i>
+                    </span>*@
+                    <h3 class="kt-portlet__head-title">
+                        Search Auto Manufacturer
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+                            <button href="#" class="btn btn-dark btn-elevate btn-icon-sm" onclick="autoManufacturer.loadAutoManufacturerPanel()" id="_AutoManufacturerPanelbtn">
+                                <i class="la la-plus"></i>
+                                Add New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <form class="kt-form kt-form--fit kt-margin-b-20" id="_AutoManufacturerSearchForm">
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
+                            <label>Auto Manufacturer:</label>
+                            <input type="text" class="form-control kt-input" placeholder="" data-col-index="0">
+                        </div>
+                    </div>
+                    <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button class="btn btn-dark btn-brand--icon" id="kt_search">
+                                <span>
+                                    <i class="la la-search"></i>
+                                    <span>Search</span>
+                                </span>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                <span>
+                                    <i class="la la-close"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                    <span class="kt-portlet__head-icon">
+                        <i class="fab fa-whmcs"></i>
+                    </span>
+                    <h3 class="kt-portlet__head-title">
+                        Auto Manufacturer
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
+                                <thead class="kt-bg-fill-dark text-white">
+                                    <tr>
+                                        <th>AutoManufacturer Name</th>
+                                        <th class="fit text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="kt-portlet kt-portlet--mobile">
+            
+        </div>
+
+
+    </div>
+    <div id="_AutoManufacturerPanelContainer">
+
+    </div>
+</div>
+
+
+
+
+<!--<div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="kt-font-brand flaticon2-line-chart"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                Advanced Search Form
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm">
+                        <i class="la la-plus"></i>
+                        New Record
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body">-->
+<!--begin: Search Form -->
+<!--<form class="kt-form kt-form--fit kt-margin-b-20">
+    <div class="row kt-margin-b-20">
+        <div class="col-lg-4 kt-margin-b-10-tablet-and-mobile">
+            <label>RecordID:</label>
+            <input type="text" class="form-control kt-input" placeholder="E.g: 4590" data-col-index="0">
+        </div>
+        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+            <label>OrderID:</label>
+            <input type="text" class="form-control kt-input" placeholder="E.g: 37000-300" data-col-index="1">
+        </div>
+        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+            <label>Country:</label>
+            <select class="form-control kt-input" data-col-index="2">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+            <label>Agent:</label>
+            <input type="text" class="form-control kt-input" placeholder="Agent ID or name" data-col-index="4">
+        </div>
+    </div>
+
+    <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-brand--icon" id="kt_search">
+                <span>
+                    <i class="la la-search"></i>
+                    <span>Search</span>
+                </span>
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                <span>
+                    <i class="la la-close"></i>
+                    <span>Reset</span>
+                </span>
+            </button>
+        </div>
+    </div>
+</form>-->
+<!--begin: Datatable -->
+<!--<div class="kt-separator kt-separator--border-dashed kt-separator--space-md"></div>-->
+<!--end: Datatable -->
+<!--</div>
+</div>-->

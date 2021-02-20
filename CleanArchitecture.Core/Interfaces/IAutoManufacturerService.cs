@@ -13,5 +13,7 @@ namespace CleanArchitecture.Core.Interfaces
         AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel);
         AutoManufacturerViewModel GetAutoManufacturerById(int Id);
         bool UpdateAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel);
+
+        PageSet<AutoManufacturerViewModel> GetAutoManufacturerDT(DTParameters dTParameters);
     }
 }

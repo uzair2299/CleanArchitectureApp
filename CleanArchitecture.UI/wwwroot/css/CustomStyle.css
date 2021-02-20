@@ -11,6 +11,22 @@
         color: #fc0758;
 }
 
+.dataTables_wrapper .dataTable th{
+    color:white !important;
+}
+
+.dataTables_wrapper .pagination .page-item.active > .page-link {
+    background: #282a3c;
+    color: #ffffff;
+}
+
+.dataTables_wrapper .pagination .page-item:hover > .page-link,
+.dataTables_wrapper .pagination .page-item.next > .page-link:hover,
+.dataTables_wrapper .pagination .page-item.previous > .page-link:hover{
+    background: #282a3c;
+    color: #ffffff;
+}
+
 
 .swal2-close {
     color: #f27474 !important;

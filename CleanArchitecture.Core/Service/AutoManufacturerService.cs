@@ -3,6 +3,7 @@ using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CleanArchitecture.Core.Service
@@ -34,6 +35,11 @@ namespace CleanArchitecture.Core.Service
         public AutoManufacturerViewModel GetAutoManufacturerById(int Id)
         {
             return autoManufacturerRepository.GetAutoManufacturerById(Id);
+        }
+
+        public PageSet<AutoManufacturerViewModel> GetAutoManufacturerDT(DTParameters dTParameters)
+        {
+            return autoManufacturerRepository.GetAutoManufacturerDT(dTParameters);
         }
 
         public bool UpdateAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)

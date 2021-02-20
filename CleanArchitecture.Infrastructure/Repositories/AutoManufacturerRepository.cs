@@ -42,6 +42,27 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return autoMapper.Map<AutoManufacturerViewModel>(result);
         }
 
+        public PageSet<AutoManufacturerViewModel> GetAutoManufacturerDT(DTParameters dTParameters)
+        {
+            var sortColumnName = dTParameters.Columns[dTParameters.Order[0].Column].Data;
+            var sortDirection = dTParameters.Order[0].Dir;
+
+            IQueryable<AutoManufacturer> result = unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
+            var TotalCount = result.Count();
+            //result=  result.OrderBy()
+            var FinalResult = result.Skip(dTParameters.Start).Take(dTParameters.Length);
+
+            var Data = autoMapper.Map<List<AutoManufacturerViewModel>>(FinalResult);
+            PageSet<AutoManufacturerViewModel> pageSet = new PageSet<AutoManufacturerViewModel>
+            {
+                draw = dTParameters.Draw,
+                recordsFiltered = TotalCount,
+                recordsTotal = TotalCount,
+                result = Data
+            };
+            return pageSet;
+        }
+
         public AutoManufacturerViewModel SaveAutoManufacturer(AutoManufacturer autoManufacturer)
         {
             var alreadyExist = AutoManufacturerAlreadyExist(autoManufacturer);
