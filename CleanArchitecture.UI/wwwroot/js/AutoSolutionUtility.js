@@ -8,13 +8,17 @@
 const statusCode = {
     UPDATE : 'Update',
     FAIL: 'fail',
-    SAVE:'save'
+    SAVE: 'save',
+    DELETE: 'delete',
+    ALREADY:'exist'
 }
 
 const toastMessage = {
     SAVE: 'Save Successfully',
     ERROR: 'Opps...Some Thing Went Wrong',
-    UPDATE:'Update Successfully'
+    UPDATE: 'Update Successfully',
+    DELETE: 'Delete Successfully',
+    ALREADYEXIST:'Record Already Exist'
 };
 
 const htmlTemplate = {

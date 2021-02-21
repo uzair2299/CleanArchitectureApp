@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     autoManufacturer.getAutoManufacturer();
+    autoManufacturer.loadGird();
 });
 /*
  * -------------------------------------------------------
@@ -101,6 +102,9 @@
                         AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
                         AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
                         break;
+                    case statusCode.ALREADY:
+                        AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ALREADYEXIST);
+                        break;
                     default:
                         AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ERROR);
                 }
@@ -118,15 +122,82 @@
         },
         deleteAutoManufactuer: function (id) {
             console.log(id);
+            data = { Id: id }
             AutoSolutionUtility.deleteConfirmationBox().then(function (result) {
                 if (result.value) {
-                    swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
+                    var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'DeleteAutoManufacturer', 'delete', false);
+                    autoSolutionService.defaultService(params).done(function(response){
+                        if (response.status) {
+                            AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.DELETE);
+                            var table = autoManufacturer.loadGird();
+                            table.ajax.reload();
+                        }
+                    });
+                    
+                    //console.log(table);
+
                 }
             });
+        },
+
+
+        loadGird :function () {
+				// begin first table
+            return $('#kt_table_1').DataTable({
+                    retrieve: true,
+					responsive: true,
+					// Pagination settings
+					dom: `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+					// read more: https://datatables.net/examples/basic_init/dom.html
+
+					lengthMenu: [5, 10, 25, 50],
+
+					pageLength: 10,
+
+					language: {
+						'lengthMenu': 'Display _MENU_',
+					},
+
+					searchDelay: 500,
+					processing: true,
+					serverSide: true,
+					ajax: {
+						url: '/Auto/GetAutoManufacturerU',
+						type: 'POST',
+
+						data: {
+							// parameters for custom backend script demo
+							columnsDef: [
+								'autoManufacturerName', 'Actions'],
+						},
+						dataSrc: function (response) {
+							return response.result;
+						}
+					},
+					columns: [
+						{ data: 'autoManufacturerName' },
+						{ data: 'id', responsivePriority: -1, width: 120 },
+					],
+
+					initComplete: function () {
+						this.api().columns().every(function () {
+							var column = this;
+						});
+					},
+
+					columnDefs: [
+						{
+							targets: -1,
+							title: 'Actions',
+							orderable: false,
+							render: function (data, type, full, meta) {
+								var id = data;
+								return '<button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon"  data-id="@item.Id"><i class="la la-eye"></i></button><button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick=autoManufacturer.editAutoManufactuer(' + data + ')><i class="la la-edit"></i></button><button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick= autoManufacturer.deleteAutoManufactuer(' + data + ')><i class="la la-trash"></i></button>';
+							},
+						},
+					],
+				});			
         }
     }
 

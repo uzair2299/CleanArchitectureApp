@@ -27,6 +27,11 @@ namespace CleanArchitecture.Core.Service
             return autoManufacturerRepository.SaveAutoManufacturer(autoManufacturer);
         }
 
+        public bool DeleteAutoManufacturer(int Id)
+        {
+            return autoManufacturerRepository.DeleteAutoManufacturer(Id);
+        }
+
         public AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
              return  autoManufacturerRepository.GetAutoManufacturer(autoManufacturerViewModel);

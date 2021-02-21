@@ -22,6 +22,18 @@ namespace CleanArchitecture.Infrastructure.Repositories
             this.autoMapper = autoMapper;
         }
 
+        public bool DeleteAutoManufacturer(int Id)
+        {
+            var result = repository.Remove(Id);
+            if (result)
+            {
+                unitOfWork.SaveChanges();
+                return result;
+            }
+            return result;
+
+        }
+
         public AutoSolutionPageSet<AutoManufacturerViewModel> GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
             List<AutoManufacturer> finalResult = new List<AutoManufacturer>();

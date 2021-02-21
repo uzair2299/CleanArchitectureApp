@@ -47,7 +47,7 @@ namespace CleanArchitecture.UI.Controllers
             else
             {
                 var result = autoManufacturerService.AutoManufacturerSave(autoManufacturerViewModel);
-                return Json(new { status = result!=null? "save":"fail", data = result });
+                return Json(new { status = result!=null? "save":"exist", data = result });
             }
         }
 
@@ -56,6 +56,13 @@ namespace CleanArchitecture.UI.Controllers
         {
             var result  = autoManufacturerService.GetAutoManufacturerById(Id);
             return PartialView("_AutoManufacturerPanel",result);
+        }
+
+        [HttpDelete]
+        public JsonResult DeleteAutoManufacturer(int Id)
+        {
+            var result = autoManufacturerService.DeleteAutoManufacturer(Id);
+            return Json(new { status = result == true ? true : false});
         }
     }
 }
