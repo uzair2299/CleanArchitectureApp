@@ -1,0 +1,15 @@
+﻿@using CleanArchitecture.Core.ViewModels
+@model CleanArchitecture.Core.PageSet.PageSet<AutoManufacturerViewModel>;
+@{
+    ViewData["Title"] = "GetAutoManufacturerU1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetAutoManufacturerU1</h1>
+
+<ul>
+    @foreach(var i in Model.result)
+    {
+        <li>@i.AutoManufacturerName</li>
+    }
+</ul>

@@ -2,6 +2,9 @@
     autoManufacturer.getAutoManufacturer();
     autoManufacturer.loadGird();
 });
+
+
+
 /*
  * -------------------------------------------------------
  *                    Global Variables                   *
@@ -112,11 +115,18 @@
             });
         },
 
-        getAutoManufacturer: function () {
-            var params = autoSolutionService.ajaxParams('', autoManufacturer.autoManufacturerBaseURL + 'GetAutoManufacturer', 'get', true);
+        getAutoManufacturer: function (data) {
+            var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'GetAutoManufacturer', 'get', true);
             autoSolutionService.defaultService(params).done(function (response) {
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerGetPanel);
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerGetPanel, response);
+                $('#' + autoManufacturer.autoManufacturerGetPanel + ' Table').DataTable({
+                    "searching": false,
+                    "autoWidth": false,
+                    "info": false,
+                    "lengthChange": false,
+                    "paging": false,
+                });
                 AutoSolutionUtility.hideLoader();
             })
         },

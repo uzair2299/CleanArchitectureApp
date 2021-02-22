@@ -25,11 +25,22 @@ namespace CleanArchitecture.UI.Controllers
 
 
         [HttpPost]
+        public IActionResult GetAutoManufacturerU1(DTParameters dTParameters)
+        {
+            PageSet<AutoManufacturerViewModel> data = autoManufacturerService.GetAutoManufacturerDT(dTParameters);
+
+            return View(data);
+        }
+
+        [HttpPost]
         public IActionResult GetAutoManufacturerU(DTParameters dTParameters)
         {
             PageSet<AutoManufacturerViewModel> data = autoManufacturerService.GetAutoManufacturerDT(dTParameters);
             
             return Json(data);
         }
+    
+    
+    
     }
 }

@@ -1,4 +1,7 @@
-﻿@model CleanArchitecture.Core.PageSet.ViewDataSet
+﻿@using CleanArchitecture.Core.ViewModels
+@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoManufacturerViewModel>;
+
+
 
 <div class="kt-portlet kt-portlet--mobile">
     <div class="kt-portlet__head kt-portlet__head--lg">
@@ -23,16 +26,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.AutoSolutionPageSet.Data)
+                            @foreach (var item in Model.Data)
                             {
-                            <tr>
-                                <td class="pl-3">@item.AutoManufacturerName</td>
-                                <td class="fit text-center">
-                                    <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon"  data-id="@item.Id"><i class="la la-eye"></i></button>
-                                    <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoManufacturer.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
-                                    <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon"onclick="autoManufacturer.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="pl-3">@item.AutoManufacturerName</td>
+                                    <td class="fit text-center">
+                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoManufacturer.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
+                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoManufacturer.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -43,7 +46,7 @@
         <div class="kt-section">
             <div class="kt-pagination  kt-pagination--dark kt-pagination--circle">
                 <div class="kt-pagination__toolbar">
-                    <select class="form-control kt-font-dark" style="width: 60px;">
+                    <select class="form-control kt-font-dark" style="width: 60px;" id="pageSize">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
@@ -51,44 +54,64 @@
                         <option value="100">100</option>
                     </select>
                     <span class="pagination__desc">
-                        Displaying @(Model.AutoSolutionPageSet.Pager.CurrentPage == 1 ? 1: ((((Model.AutoSolutionPageSet.Pager.CurrentPage-1)  * Model.AutoSolutionPageSet.Pager.PageSize))+1)) to @(Model.AutoSolutionPageSet.Pager.CurrentPage* Model.AutoSolutionPageSet.Pager.PageSize) of @Model.AutoSolutionPageSet.Pager.TotalItems total
+                        Displaying @(Model.Pager.CurrentPage == 1 ? 1: ((((Model.Pager.CurrentPage-1)  * Model.Pager.PageSize))+1)) to @(Model.Pager.CurrentPage* Model.Pager.PageSize) of @Model.Pager.TotalItems total
                     </span>
                 </div>
                 <ul class="kt-pagination__links">
-                    @if (Model.AutoSolutionPageSet.Pager.EndPage > 1)
+                    @if (Model.Pager.EndPage > 1)
                     {
 
-                        if (Model.AutoSolutionPageSet.Pager.CurrentPage > 1)
+                        if (Model.Pager.CurrentPage > 1)
                         {
 
-                            <li class="kt-pagination__link--first">
-                                <a href="#" data-pageNo="@Model.AutoSolutionPageSet.Pager.StartPage"><i class="fa fa-angle-double-left kt-font-dark"></i></a>
+                            <li class="kt-pagination__link--first pageButtons">
+                                <a  data-pageNo="@Model.Pager.StartPage"><i class="fa fa-angle-double-left kt-font-dark"></i></a>
                             </li>
-                            <li class="kt-pagination__link--next">
-                                <a href="#" data-pageNo="@(Model.AutoSolutionPageSet.Pager.CurrentPage-1)"><i class="fa fa-angle-left kt-font-dark"></i></a>
+                            <li class="kt-pagination__link--next pageButtons">
+                                <a data-pageNo="@(Model.Pager.CurrentPage-1)"><i class="fa fa-angle-left kt-font-dark"></i></a>
                             </li>
                         }
-                        for (var page = Model.AutoSolutionPageSet.Pager.StartPage; page <= Model.AutoSolutionPageSet.Pager.EndPage; page++)
+                        for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
                         {
-                            <li class="@(page == Model.AutoSolutionPageSet.Pager.CurrentPage ? "kt-pagination__link--active" : "")">
-                                <a href="#" data-pageNo="@(page)">@(page)</a>
+                            <li class="pageButtons @(page == Model.Pager.CurrentPage ? "kt-pagination__link--active" : "")">
+                                <a data-pageNo="@(page)">@(page)</a>
                             </li>
                         }
 
-                        @if (Model.AutoSolutionPageSet.Pager.CurrentPage < Model.AutoSolutionPageSet.Pager.TotalPages)
+                        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
                         {
 
-                            <li class="kt-pagination__link--prev">
-                                <a href="#" data-pageNo="@(Model.AutoSolutionPageSet.Pager.CurrentPage+1)"><i class="fa fa-angle-right kt-font-dark"></i></a>
+                            <li class="kt-pagination__link--prev pageButtons">
+                                <a data-pageNo="@(Model.Pager.CurrentPage+1)"><i class="fa fa-angle-right kt-font-dark"></i></a>
                             </li>
-                            <li class="kt-pagination__link--last">
-                                <a href="#" data-pageNo="@Model.AutoSolutionPageSet.Pager.TotalPages"><i class="fa fa-angle-double-right kt-font-dark"></i></a>
+                            <li class="kt-pagination__link--last pageButtons">
+                                <a  data-pageNo="@Model.Pager.TotalPages"><i class="fa fa-angle-double-right kt-font-dark"></i></a>
                             </li>
                         }
                     }
                 </ul>
-                </div>
-            <p></p>
-        </div>
+            </div>
+            </div>
     </div>
 </div>
+
+<script>
+    $('.pageButtons').click(function () {
+        var pageNo = $(this).find('a').attr('data-pageNo');
+        var pageSize = $('#pageSize').val();
+        data = {
+            PageNo: pageNo,
+            PageSize: pageSize
+        }
+        autoManufacturer.getAutoManufacturer(data);
+    });
+
+    $('#pageSize').on('change', function (e) {
+        var pageSize = $(this).val();
+        data = {
+            PageNo: 1,
+            PageSize: pageSize
+        }
+        autoManufacturer.getAutoManufacturer(data);
+});
+</script>

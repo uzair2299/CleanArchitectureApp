@@ -38,7 +38,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         {
             List<AutoManufacturer> finalResult = new List<AutoManufacturer>();
             IQueryable<AutoManufacturer> result =  unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
-            Pager pager = new Pager(result.Count(), autoManufacturerViewModel.PageNo,15);
+            Pager pager = new Pager(result.Count(), autoManufacturerViewModel.PageNo,autoManufacturerViewModel.PageSize);
             finalResult =  result.OrderBy(x => x.AutoManufacturerName).Skip((pager.StartPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
             AutoSolutionPageSet<AutoManufacturerViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoManufacturerViewModel>()
             {
@@ -59,9 +59,18 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var sortColumnName = dTParameters.Columns[dTParameters.Order[0].Column].Data;
             var sortDirection = dTParameters.Order[0].Dir;
 
-            IQueryable<AutoManufacturer> result = unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
+            IQueryable<AutoManufacturer> result = unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable().OrderBy(x=>x.AutoManufacturerName);
             var TotalCount = result.Count();
-            //result=  result.OrderBy()
+
+            //if(sortColumnName == "autoManufacturerName" && sortDirection == DTOrderDir.ASC)
+            //{
+            //    result = result.OrderBy(x => x.AutoManufacturerName);
+            //}
+            //else if(sortColumnName== "autoManufacturerName" && sortDirection== DTOrderDir.DESC)
+            //{
+            //    result = result.OrderByDescending(x => x.AutoManufacturerName);
+            //}
+
             var FinalResult = result.Skip(dTParameters.Start).Take(dTParameters.Length);
 
             var Data = autoMapper.Map<List<AutoManufacturerViewModel>>(FinalResult);
@@ -105,8 +114,18 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 return false;
         }
 
+
         private bool AutoManufacturerAlreadyExist(AutoManufacturer autoManufacturer)
         {
+
+           //var c =  unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
+           //var command =  c.CreateCommand();
+           // c.Open();
+           // command.CommandText = "[spName] @P3, @P2, @P1";
+            //add parameter values
+            //execute reader
+            
+
             var result = (from item in unitOfWork.GetAutoSolutionContext().AutoManufacturers
                          where (item.AutoManufacturerName == autoManufacturer.AutoManufacturerName)
                          select item).FirstOrDefault();

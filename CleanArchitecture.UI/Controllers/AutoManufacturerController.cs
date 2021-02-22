@@ -26,8 +26,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)
         {
             AutoSolutionPageSet<AutoManufacturerViewModel> result = autoManufacturerService.GetAutoManufacturer(autoManufacturerViewModel);
-            viewDataSet.AutoSolutionPageSet = result;
-            return PartialView("_GetAutoManufacturer",viewDataSet);
+            return PartialView("_GetAutoManufacturer", result);
         }
 
         [HttpGet]
