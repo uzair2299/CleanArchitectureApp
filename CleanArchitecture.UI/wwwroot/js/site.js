@@ -120,6 +120,9 @@
             autoSolutionService.defaultService(params).done(function (response) {
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerGetPanel);
                 AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerGetPanel, response);
+                if (data) {
+                    $('#pageSize').val(data.PageSize);
+                }
                 $('#' + autoManufacturer.autoManufacturerGetPanel + ' Table').DataTable({
                     "searching": false,
                     "autoWidth": false,
@@ -139,15 +142,21 @@
                     autoSolutionService.defaultService(params).done(function(response){
                         if (response.status) {
                             AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.DELETE);
-                            var table = autoManufacturer.loadGird();
-                            table.ajax.reload();
+                            var pageNo = $('.kt-pagination__link--active').find('a').attr('data-pageNo');
+                            var pageSize = $('#pageSize').val();
+                            data = {
+                                PageNo: pageNo,
+                                PageSize: pageSize
+                            }
+                            autoManufacturer.getAutoManufacturer(data);
                         }
                     });
-                    
-                    //console.log(table);
-
                 }
             });
+        },
+
+        searchAutoManufacture: function (searchTerm) {
+            console.log(searchTerm);
         },
 
 

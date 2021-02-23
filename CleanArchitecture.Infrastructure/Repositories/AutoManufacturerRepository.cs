@@ -39,7 +39,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             List<AutoManufacturer> finalResult = new List<AutoManufacturer>();
             IQueryable<AutoManufacturer> result =  unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
             Pager pager = new Pager(result.Count(), autoManufacturerViewModel.PageNo,autoManufacturerViewModel.PageSize);
-            finalResult =  result.OrderBy(x => x.AutoManufacturerName).Skip((pager.StartPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
+            finalResult =  result.OrderBy(x => x.AutoManufacturerName).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
             AutoSolutionPageSet<AutoManufacturerViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoManufacturerViewModel>()
             {
                 Pager = pager,
