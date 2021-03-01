@@ -95,14 +95,14 @@
     </div>
 </div>
 
+@*@section Scripts{ 
+
+}*@
 <script>
     $('.pageButtons').click(function () {
-        var pageNo = $(this).find('a').attr('data-pageNo');
-        var pageSize = $('#pageSize').val();
-        data = {
-            PageNo: pageNo,
-            PageSize: pageSize
-        }
+       var data =  AutoSolutionUtility.getFormDate(autoManufacturer.autoManufactuereSearchForm);
+        data['PageNo'] = $(this).find('a').attr('data-pageNo');
+        data['PageSize'] = $('#pageSize').val();
         autoManufacturer.getAutoManufacturer(data);
     });
 

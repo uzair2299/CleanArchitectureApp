@@ -39,6 +39,7 @@
 
         //form Name
         autoManufacturerForm: "#VehicleManufacturer",
+        autoManufactuereSearchForm:"#AutoManufacturerSearchForm",
 
         autoManufacturerGetPanel: "_GetAutoManufacturer",
 
@@ -155,8 +156,10 @@
             });
         },
 
-        searchAutoManufacture: function (searchTerm) {
-            console.log(searchTerm);
+        searchAutoManufacture: function (event) {
+            event.preventDefault();
+            var data = AutoSolutionUtility.getFormDate(autoManufacturer.autoManufactuereSearchForm);
+            autoManufacturer.getAutoManufacturer(data);
         },
 
 

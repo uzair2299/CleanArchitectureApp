@@ -90,5 +90,15 @@ var AutoSolutionUtility = {
             confirmButtonText: '<i class="mr-2 fa fa-times"></i>Yes, delete it!',
             cancelButtonText:'<i class="mr-2 fa fa-trash-alt"></i>Cancel'
         })
+    },
+
+    getFormDate: function (formId) {
+        var data = {};
+        $(formId).find('input[type=text]').each(function () {
+            if (this.id) {
+                data[this.id] = this.value.trim();
+            }
+        });
+        return data;
     }
 }

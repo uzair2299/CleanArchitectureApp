@@ -41,17 +41,17 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <form class="kt-form kt-form--fit kt-margin-b-20" id="_AutoManufacturerSearchForm">
+                <form class="kt-form kt-form--fit kt-margin-b-20" id="AutoManufacturerSearchForm">
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
                             <label>Auto Manufacturer:</label>
-                            <input type="text" class="form-control kt-input" placeholder="" data-col-index="0" onkeyup="autoManufacturer.searchAutoManufacture(this.value)">
+                            <input type="text" id="SearchTerm" class="form-control kt-input">
                         </div>
                     </div>
                     <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
-                    @*<div class="row">
+                    <div class="row">
                         <div class="col-lg-12">
-                            <button class="btn btn-dark btn-brand--icon" id="kt_search">
+                            <button type="button" class="btn btn-dark btn-brand--icon" id="kt_search" onclick="autoManufacturer.searchAutoManufacture(event);">
                                 <span>
                                     <i class="la la-search"></i>
                                     <span>Search</span>
@@ -65,7 +65,7 @@
                                 </span>
                             </button>
                         </div>
-                    </div>*@
+                    </div>
                 </form>
             </div>
         </div>
