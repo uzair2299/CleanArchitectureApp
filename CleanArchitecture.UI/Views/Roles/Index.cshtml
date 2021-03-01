@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<CleanArchitecture.Core.ViewModels.AutoManufacturerViewModel>*@
-
+﻿
 @{
     ViewData["Title"] = "Index";
 }
@@ -10,7 +9,7 @@
     <div class="kt-subheader  kt-grid__item" id="kt_subheader">
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
-                <h3 class="kt-subheader__title">Auto Manufacturer</h3>
+                <h3 class="kt-subheader__title">Roles</h3>
                 <span class="kt-subheader__separator kt-subheader__separator--v"></span>
             </div>
         </div>
@@ -22,17 +21,17 @@
         <div class="kt-portlet kt-portlet--mobile">
             <div class="kt-portlet__head kt-portlet__head--lg">
                 <div class="kt-portlet__head-label">
-                    @*<span class="kt-portlet__head-icon">
+                    <span class="kt-portlet__head-icon">
                         <i class="kt-font-brand flaticon2-line-chart"></i>
-                    </span>*@
+                    </span>
                     <h3 class="kt-portlet__head-title">
-                        Search Auto Manufacturer
+                        Search Roles
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="kt-portlet__head-actions">
-                            <button class="btn btn-dark btn-icon-sm" onclick="autoManufacturer.loadAutoManufacturerPanel()" id="_AutoManufacturerPanelbtn">
+                            <button href="#" class="btn btn-dark btn-elevate btn-icon-sm" onclick="roles.loadRolesPanel()" id="_RolesPanelbtn">
                                 <i class="la la-plus"></i>
                                 Add New
                             </button>
@@ -41,17 +40,17 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <form class="kt-form kt-form--fit kt-margin-b-20" id="AutoManufacturerSearchForm">
+                <form class="kt-form kt-form--fit kt-margin-b-20" id="RolesSearchForm">
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
-                            <label>Auto Manufacturer:</label>
+                            <label>Role</label>
                             <input type="text" id="SearchTerm" class="form-control kt-input">
                         </div>
                     </div>
                     <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
                     <div class="row">
-                        <div class="col-lg-12 text-right">
-                            <button type="button" class="btn btn-dark btn-brand--icon" id="kt_search" onclick="autoManufacturer.searchAutoManufacture(event);">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-dark btn-brand--icon" id="kt_search" onclick="roles.searchRoles(event);">
                                 <span>
                                     <i class="la la-search"></i>
                                     <span>Search</span>
@@ -69,12 +68,13 @@
                 </form>
             </div>
         </div>
-        <div id="_GetAutoManufacturer">
+        <div id="_GetRoles">
 
         </div>
-        <div id="_AutoManufacturerPanelContainer">
+        <div id="_RolesPanelContainer">
 
         </div>
     </div>
 </div>
+
 

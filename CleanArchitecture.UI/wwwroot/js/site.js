@@ -117,6 +117,9 @@
         },
 
         getAutoManufacturer: function (data) {
+            if (data) {
+                data['PageSize'] = $('#pageSize').val();
+            }
             var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'GetAutoManufacturer', 'get', true);
             autoSolutionService.defaultService(params).done(function (response) {
                 AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerGetPanel);
@@ -130,6 +133,10 @@
                     "info": false,
                     "lengthChange": false,
                     "paging": false,
+                    "columnDefs": [{
+                        "targets": -1,
+                        "orderable": false
+                    }]
                 });
                 AutoSolutionUtility.hideLoader();
             })

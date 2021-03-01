@@ -31,7 +31,7 @@ namespace CleanArchitecture.UI
             options.UseSqlServer(
                 Configuration.GetConnectionString("AutoSolution")));
             services.RegisterAutoMapper();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddOptions();
         }
 
