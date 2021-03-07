@@ -25,6 +25,8 @@ const htmlTemplate = {
     UPDATE_BTN: '<i class="fa fa-pencil-alt"></i> Update'
 }
 
+
+
 var AutoSolutionUtility = {
     clearHTML: function (containerId) {
         $("#" + containerId).html("");
@@ -92,13 +94,25 @@ var AutoSolutionUtility = {
         })
     },
 
-    getFormDate: function (formId) {
+    getFormData: function (formId) {
         var data = {};
-        $(formId).find('input[type=text]').each(function () {
+        $(formId).find('input[type=text],input[type=password]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
             }
         });
         return data;
+    },
+
+    getFormDataByName: function (formId) {
+        var data = {};
+        $(formId).find('input[type=text],input[type=password]').each(function () {
+            if (this.name) {
+                data[this.name] = this.value.trim();
+            }
+        });
+        return data;
     }
+
+
 }

@@ -165,7 +165,7 @@
 
         searchAutoManufacture: function (event) {
             event.preventDefault();
-            var data = AutoSolutionUtility.getFormDate(autoManufacturer.autoManufactuereSearchForm);
+            var data = AutoSolutionUtility.getFormDat(autoManufacturer.autoManufactuereSearchForm);
             autoManufacturer.getAutoManufacturer(data);
         },
 

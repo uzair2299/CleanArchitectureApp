@@ -3,7 +3,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
-
 <div class="kt-grid kt-grid--ver kt-grid--root">
     <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v4 kt-login--signin" id="kt_login">
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(./assets/media/bg/bg-9.jpg);">
@@ -18,12 +17,12 @@
                         <div class="kt-login__head">
                             <h3 class="kt-login__title">Sign In To Admin</h3>
                         </div>
-                        <form class="kt-form" action="">
+                        <form class="kt-form" id="Login">
                             <div class="input-group">
-                                <input class="form-control loginBorder" type="text" placeholder="Email" name="email" autocomplete="off">
+                                <input class="form-control loginBorder" type="text" placeholder="Email" name="UserName" autocomplete="off">
                             </div>
                             <div class="input-group">
-                                <input class="form-control loginBorder" type="password" placeholder="Password" name="password">
+                                <input class="form-control loginBorder" type="password" placeholder="Password" name="Password">
                             </div>
                             <div class="row kt-login__extra">
                                 <div class="col">
@@ -37,11 +36,11 @@
                                 </div>
                             </div>
                             <div class="kt-login__actions">
-                                <button id="kt_login_signin_submit" class="btn btn-brand btn-pill btn-dark btn-block">Sign In</button>
+                                <button type="button" id="LoginSubmit" class="btn btn-brand btn-pill btn-dark btn-block" onclick="account.validateAccount(event)">Sign In</button>
                             </div>
                         </form>
                     </div>
-                    <div class="kt-login__signup">
+                    @*<div class="kt-login__signup">
                         <div class="kt-login__head">
                             <h3 class="kt-login__title">Sign Up</h3>
                             <div class="kt-login__desc">Enter your details to create your account:</div>
@@ -73,7 +72,7 @@
                                 <button id="kt_login_signup_cancel" class="btn btn-secondary btn-pill kt-login__btn-secondary">Cancel</button>
                             </div>
                         </form>
-                    </div>
+                    </div>*@
                     <div class="kt-login__forgot">
                         <div class="kt-login__head">
                             <h3 class="kt-login__title">Forgotten Password ?</h3>
@@ -89,13 +88,13 @@
                             </div>
                         </form>
                     </div>
-                    <div class="kt-login__account">
+                    @*<div class="kt-login__account">
                         <span class="kt-login__account-msg">
                             Don't have an account yet ?
                         </span>
                         &nbsp;&nbsp;
                         <a href="javascript:;" id="kt_login_signup" class="kt-login__account-link">Sign Up!</a>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
