@@ -9,6 +9,7 @@ namespace CleanArchitecture.Core.AutoMapper
         public DomainToViewModelProfile()
         {
             CreateMap<AutoManufacturer, AutoManufacturerViewModel>();
+            CreateMap<Role, RolesViewModel>();
         }
     }
 }

@@ -10,12 +10,10 @@ namespace CleanArchitecture.UI.Controllers
     public class AutoManufacturerController : Controller
     {
         private IAutoManufacturerService autoManufacturerService;
-        ViewDataSet viewDataSet;
 
         public AutoManufacturerController(IAutoManufacturerService autoManufacturerService, ViewDataSet viewDataSet)
         {
             this.autoManufacturerService = autoManufacturerService;
-            this.viewDataSet = viewDataSet;
         }
 
         public IActionResult Index()
