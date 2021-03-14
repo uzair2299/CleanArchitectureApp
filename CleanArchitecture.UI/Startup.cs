@@ -6,6 +6,7 @@ using Autofac;
 using CleanArchitecture.Infrastructure.Context;
 using CleanArchitecture.Infrastructure.IoC;
 using CleanArchitecture.UI.Configurations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,12 @@ namespace CleanArchitecture.UI
             services.RegisterAutoMapper();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddOptions();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Index";
+                options.Cookie.Name = "AutoSolution";
+
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -54,8 +61,10 @@ namespace CleanArchitecture.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCookiePolicy();
+             
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

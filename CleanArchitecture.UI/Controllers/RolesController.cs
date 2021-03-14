@@ -1,10 +1,12 @@
 ﻿using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.UI.Controllers
 {
+    [Authorize]
     public class RolesController : Controller
     {
         private IRolesService rolesService;
@@ -14,7 +16,8 @@ namespace CleanArchitecture.UI.Controllers
             this.rolesService = rolesService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() 
+       
         {
             return View();
         }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CleanArchitecture.Core.ViewModels;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.UI.Controllers
@@ -17,7 +20,18 @@ namespace CleanArchitecture.UI.Controllers
         [HttpPost]
         public IActionResult Index(AccountViewModel accountViewModel)
         {
-            return View();
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, accountViewModel.UserName)
+            };
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                //IsPersistent = true,
+                //ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
+            };
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProperties);
+            return RedirectToAction("Index", "Roles");
         }
     }
 }

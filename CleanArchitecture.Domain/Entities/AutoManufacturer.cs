@@ -18,5 +18,7 @@ namespace CleanArchitecture.Domain.Entities
         public string ModifiedBy { get; set; }
 
         public bool IsActive { get; set; }
+
+        public ICollection<AutoModel> AutoModels { get; set; }
     }
 }

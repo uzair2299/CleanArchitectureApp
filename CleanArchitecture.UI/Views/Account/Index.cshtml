@@ -17,7 +17,7 @@
                         <div class="kt-login__head">
                             <h3 class="kt-login__title">Sign In To Admin</h3>
                         </div>
-                        <form class="kt-form" id="Login">
+                        <form class="kt-form" id="Login" asp-controller="Account" asp-action="Index" method="post">
                             <div class="input-group">
                                 <input class="form-control loginBorder" type="text" placeholder="Email" name="UserName" autocomplete="off">
                             </div>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="kt-login__actions">
-                                <button type="button" id="LoginSubmit" class="btn btn-brand btn-pill btn-dark btn-block" onclick="account.validateAccount(event)">Sign In</button>
+                                <button type="submit" id="LoginSubmit" class="btn btn-brand btn-pill btn-dark btn-block" onclick="account.validateAccount(event)">Sign In</button>
                             </div>
                         </form>
                     </div>

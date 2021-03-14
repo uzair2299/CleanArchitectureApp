@@ -9,6 +9,7 @@ namespace CleanArchitecture.Infrastructure.Context
 
         
         public DbSet<AutoManufacturer> AutoManufacturers { get; set; }
+        public DbSet<AutoModel> AutoModels { get; set; }
         public DbSet<Role> Roles { get; set; }
     }
 }

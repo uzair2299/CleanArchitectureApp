@@ -2,7 +2,7 @@
     accountBaseURL: "/Account/",
     loginForm: "#Login",
     validateAccount: function (event) {
-        event.preventDefault();
+        //event.preventDefault();
         $(account.loginForm).validate({
             rules: {
                 UserName: {
@@ -24,7 +24,8 @@
 
         if ($(account.loginForm).valid()) {
             console.log("ok");
-            account.login();
+            
+            //account.login();
         }
         else {
             console.log("fuck");

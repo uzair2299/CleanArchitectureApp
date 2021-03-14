@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    [Migration("20210301200139_roles")]
-    partial class roles
+    [Migration("20210313195715_Auto")]
+    partial class Auto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,44 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("AutoManufacturers");
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AutoManufacturerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndYear")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartYear")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutoManufacturerId");
+
+                    b.ToTable("AutoModels");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -64,6 +102,22 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoModel", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.AutoManufacturer", "AutoManufacturer")
+                        .WithMany("AutoModels")
+                        .HasForeignKey("AutoManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AutoManufacturer");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>
+                {
+                    b.Navigation("AutoModels");
                 });
 #pragma warning restore 612, 618
         }
