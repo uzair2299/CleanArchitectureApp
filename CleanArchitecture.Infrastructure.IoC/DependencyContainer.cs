@@ -22,6 +22,7 @@ namespace CleanArchitecture.Infrastructure.IoC
             //class specfic
             builder.RegisterType<Pager>();
             builder.RegisterType<AutoManufacturer>();
+            builder.RegisterType<AutoModel>();
             builder.RegisterType<Role>();
             builder.RegisterType<ViewDataSet>();
 
@@ -29,6 +30,9 @@ namespace CleanArchitecture.Infrastructure.IoC
             //service & repositroy
             builder.RegisterType<AutoManufacturerService>().As<IAutoManufacturerService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoManufacturerRepository>().As<IAutoManufacturerRepository>().InstancePerLifetimeScope();
+
+            builder.RegisterType<AutoModelService>().As<IAutoModelService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoModelRepository>().As<IAutoModelRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<RolesService>().As<IRolesService>().InstancePerLifetimeScope();
             builder.RegisterType<RolesRepository>().As<IRolesRepository>().InstancePerLifetimeScope();
