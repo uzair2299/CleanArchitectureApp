@@ -31,7 +31,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             command.CommandText ="EXEC " + AutoSolutionUtility.InsertAutoModel + " @ModelName,@AutoManufacturerId";
             command.Parameters.Add(new SqlParameter("ModelName", "XYZ"));
             command.Parameters.Add(new SqlParameter("AutoManufacturerId", "1"));
-            command.ExecuteNonQuery();
+            //command.ExecuteNonQuery();
             return null;
         }
     }

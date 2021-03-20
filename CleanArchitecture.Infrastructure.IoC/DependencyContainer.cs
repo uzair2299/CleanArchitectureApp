@@ -2,6 +2,7 @@
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.Service;
+using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
 using CleanArchitecture.Infrastructure.Repositories;
@@ -25,6 +26,7 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoModel>();
             builder.RegisterType<Role>();
             builder.RegisterType<ViewDataSet>();
+            builder.RegisterType<AutoModelViewModel>();
 
 
             //service & repositroy
@@ -36,6 +38,9 @@ namespace CleanArchitecture.Infrastructure.IoC
 
             builder.RegisterType<RolesService>().As<IRolesService>().InstancePerLifetimeScope();
             builder.RegisterType<RolesRepository>().As<IRolesRepository>().InstancePerLifetimeScope();
+
+            builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
         }
     }
 }

@@ -57,7 +57,6 @@ var AutoSolutionUtility = {
 
 
     //toast notification
-
     toastNotifiy: function (type,message) {
         toastr.options = {
             "closeButton": true,
@@ -94,6 +93,8 @@ var AutoSolutionUtility = {
         })
     },
 
+
+    //get form data
     getFormData: function (formId) {
         var data = {};
         $(formId).find('input[type=text],input[type=password]').each(function () {
@@ -112,7 +113,26 @@ var AutoSolutionUtility = {
             }
         });
         return data;
+    },
+
+
+    //select2 dropdown
+    select2DropDown: function (controlId, modelId) {
+        $('#' + controlId).select2({
+            placeholder: "Select a Auto Manufacturer",
+            dropdownParent: $('#_AutoModelPanel')
+        });
+
+        /*
+          
+         Note : if Placeholder not working in select2 Just put <option></option> in select on first place:
+          
+         Note : There can be two ways to make select2 search input work inside pop - up
+         1.By removing the "tabindex" attribute from the modal.This will allow moving around in the Select2 box, but you lose the ability to close the modal using "Esc" button. (Tested and worked)
+         2.use the below jQuery code
+
+         */
+
+        //$('#' + controlId).selectpicker();
     }
-
-
 }
