@@ -36,12 +36,23 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return null;
         }
 
-        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel()
+        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel)
         {
             var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
             c.Open();
             var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionUtility.SelectAutoModel;
+            command.CommandText = "EXEC " + AutoSolutionUtility.SelectAutoModel + " @SearchTerm, @PageNo, @PageSize";
+            if (autoModelViewModel.SearchTerm == null)
+            {
+                command.Parameters.Add(new SqlParameter("SearchTerm",DBNull.Value));
+            }
+            else
+            {
+                command.Parameters.Add(new SqlParameter("SearchTerm",autoModelViewModel.SearchTerm));
+            }
+            
+            command.Parameters.Add(new SqlParameter("PageNo", autoModelViewModel.PageNo));
+            command.Parameters.Add(new SqlParameter("PageSize", autoModelViewModel.PageSize));
             List<AutoModelViewModel> finalResult = new List<AutoModelViewModel>();
             using (var reader = command.ExecuteReader())
             {
@@ -52,7 +63,8 @@ namespace CleanArchitecture.Infrastructure.Repositories
                         finalResult.Add(new AutoModelViewModel
                         {
                             Id = Convert.ToInt32(reader["Id"]),
-                            ModelName = reader["ModelName"].ToString()
+                            ModelName = reader["ModelName"].ToString(),
+                            AutoManufacturerName = reader["AutoManufacturerName"].ToString()
                         });
                     }
                 }

@@ -21,21 +21,23 @@
                     <table class="table table-bordered table-hover">
                         <thead class="kt-bg-fill-dark">
                             <tr>
-                                <th class="pl-3">Name</th>
+                                <th class="pl-3">Model Name</th>
+                                <th class="pl-3">Manufacturer Name</th>
                                 <th class="fit text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.Data)
                             {
-                                <tr>
-                                    <td class="pl-3">@item.ModelName</td>
-                                    <td class="fit text-center">
-                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoModel.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
-                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoModel.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="pl-3">@item.ModelName</td>
+                                <td class="pl-3">@item.AutoManufacturerName</td>
+                                <td class="fit text-center">
+                                    <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                    <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoModel.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
+                                    <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoModel.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -43,7 +45,7 @@
             </div>
 
         </div>
-        @*<div class="kt-section">
+        <div class="kt-section">
             <div class="kt-pagination  kt-pagination--dark kt-pagination--circle">
                 <div class="kt-pagination__toolbar">
                     <select class="form-control kt-font-dark" style="width: 60px;" id="pageSize">
@@ -91,14 +93,14 @@
                     }
                 </ul>
             </div>
-        </div>*@
+        </div>
     </div>
 </div>
 
-@*@section Scripts{
+@section Scripts{
 
-    }*@
-@*<script>
+    }
+<script>
     $('.pageButtons').click(function () {
        var data =  AutoSolutionUtility.getFormDate(autoModel.autoManufactuereSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');
@@ -114,4 +116,4 @@
         }
         autoModel.getAutoModel(data);
 });
-</script>*@
+</script>

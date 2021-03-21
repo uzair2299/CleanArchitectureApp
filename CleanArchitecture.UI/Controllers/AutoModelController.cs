@@ -20,7 +20,7 @@ namespace CleanArchitecture.UI.Controllers
         }
         public IActionResult Index()
         {
-            autoModelService.AutoModelSave(new AutoModelViewModel() { ModelName = "axc", AutoManufacturerId = 2 });
+            //autoModelService.AutoModelSave(new AutoModelViewModel() { ModelName = "axc", AutoManufacturerId = 2 });
             return View();
         }
 
@@ -29,7 +29,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult GetAutoModel(AutoModelViewModel autoModelViewModel)
         {
             AutoSolutionPageSet<AutoModelViewModel> result = new AutoSolutionPageSet<AutoModelViewModel>();
-            result = autoModelService.GetAutoModel(); 
+            result = autoModelService.GetAutoModel(autoModelViewModel); 
             return PartialView("_GetAutoModel", result);
         }
 

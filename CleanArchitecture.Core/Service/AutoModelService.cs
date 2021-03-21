@@ -28,9 +28,9 @@ namespace CleanArchitecture.Core.Service
             return autoModelRepository.AutoModelSave(autoModel);
         }
 
-        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel()
+        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel)
         {
-            return autoModelRepository.GetAutoModel();
+            return autoModelRepository.GetAutoModel(autoModelViewModel);
         }
     }
 }

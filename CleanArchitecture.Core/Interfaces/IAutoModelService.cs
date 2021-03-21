@@ -9,6 +9,6 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IAutoModelService
     {
         AutoModelViewModel AutoModelSave(AutoModelViewModel autoModelViewModel);
-        AutoSolutionPageSet<AutoModelViewModel> GetAutoModel();
+        AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel);
     }
 }

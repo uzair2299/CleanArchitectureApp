@@ -7,11 +7,16 @@ namespace CleanArchitecture.Core.ViewModels
 {
     public class AutoModelViewModel
     {
-        
+        public AutoModelViewModel()
+        {
+            PageNo = 1;
+            PageSize = 10;
+        }
 
         public int Id { get; set; }
         public string ModelName { get; set; }
         public string SelectedManufacturer { get; set; }
+        public string AutoManufacturerName { get; set; }
         public List<SelectListItem> AutoManufacturerLookup { get; set; }
 
         //public DateTime CreatedOn { get; set; }
@@ -26,6 +31,9 @@ namespace CleanArchitecture.Core.ViewModels
 
         //public DateTime EndYear { get; set; }
 
+        public string SearchTerm { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
         public int AutoManufacturerId { get; set; }
 
     }
