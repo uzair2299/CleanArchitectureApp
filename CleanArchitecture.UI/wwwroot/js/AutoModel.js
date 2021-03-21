@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    //autoModel.getAutoModel();
+    autoModel.getAutoModel();
     //autoModel.loadGird();
 });
 

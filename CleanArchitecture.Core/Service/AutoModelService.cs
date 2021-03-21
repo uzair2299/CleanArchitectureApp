@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using System;
@@ -25,6 +26,11 @@ namespace CleanArchitecture.Core.Service
 
             autoModel = autoMapper.Map<AutoModel>(autoModelViewModel);
             return autoModelRepository.AutoModelSave(autoModel);
+        }
+
+        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel()
+        {
+            return autoModelRepository.GetAutoModel();
         }
     }
 }

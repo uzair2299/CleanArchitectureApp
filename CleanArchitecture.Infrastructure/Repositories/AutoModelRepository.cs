@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
@@ -31,8 +32,37 @@ namespace CleanArchitecture.Infrastructure.Repositories
             command.CommandText ="EXEC " + AutoSolutionUtility.InsertAutoModel + " @ModelName,@AutoManufacturerId";
             command.Parameters.Add(new SqlParameter("ModelName", "XYZ"));
             command.Parameters.Add(new SqlParameter("AutoManufacturerId", "1"));
-            //command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
             return null;
+        }
+
+        public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel()
+        {
+            var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
+            c.Open();
+            var command = c.CreateCommand();
+            command.CommandText = "EXEC " + AutoSolutionUtility.SelectAutoModel;
+            List<AutoModelViewModel> finalResult = new List<AutoModelViewModel>();
+            using (var reader = command.ExecuteReader())
+            {
+                if (reader.HasRows){
+
+                    while (reader.Read())
+                    {
+                        finalResult.Add(new AutoModelViewModel
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            ModelName = reader["ModelName"].ToString()
+                        });
+                    }
+                }
+            }
+            AutoSolutionPageSet<AutoModelViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoModelViewModel>()
+            {
+                Pager = new Pager(100,10),
+                Data = finalResult
+            };
+            return autoSolutionPageSet;
         }
     }
 }

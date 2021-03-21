@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,8 +28,9 @@ namespace CleanArchitecture.UI.Controllers
         [HttpGet]
         public IActionResult GetAutoModel(AutoModelViewModel autoModelViewModel)
         {
-            //AutoSolutionPageSet<AutoModelViewModel> result = autoModelService.GetAutoManufacturer(autoManufacturerViewModel);
-            return PartialView("_GetAutoModel");
+            AutoSolutionPageSet<AutoModelViewModel> result = new AutoSolutionPageSet<AutoModelViewModel>();
+            result = autoModelService.GetAutoModel(); 
+            return PartialView("_GetAutoModel", result);
         }
 
         [HttpGet]

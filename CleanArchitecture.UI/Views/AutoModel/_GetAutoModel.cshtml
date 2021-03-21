@@ -43,7 +43,7 @@
             </div>
 
         </div>
-        <div class="kt-section">
+        @*<div class="kt-section">
             <div class="kt-pagination  kt-pagination--dark kt-pagination--circle">
                 <div class="kt-pagination__toolbar">
                     <select class="form-control kt-font-dark" style="width: 60px;" id="pageSize">
@@ -91,14 +91,14 @@
                     }
                 </ul>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 
 @*@section Scripts{
 
     }*@
-<script>
+@*<script>
     $('.pageButtons').click(function () {
        var data =  AutoSolutionUtility.getFormDate(autoModel.autoManufactuereSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');
@@ -114,4 +114,4 @@
         }
         autoModel.getAutoModel(data);
 });
-</script>
+</script>*@
