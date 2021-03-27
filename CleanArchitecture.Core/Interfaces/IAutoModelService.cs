@@ -10,5 +10,6 @@ namespace CleanArchitecture.Core.Interfaces
     {
         AutoModelViewModel AutoModelSave(AutoModelViewModel autoModelViewModel);
         AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel);
+        AutoModelViewModel GetAutoModelById(int Id);
     }
 }

@@ -8,6 +8,6 @@ namespace CleanArchitecture.Core.Interfaces
 {
     public interface IAutoSolutionLookupService
     {
-        public AutoModelViewModel GetAutoManufacturerLookup();
+        public List<SelectListItem> GetAutoManufacturerLookup();
     }
 }

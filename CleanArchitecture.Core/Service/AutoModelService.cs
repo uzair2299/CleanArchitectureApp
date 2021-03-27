@@ -24,13 +24,18 @@ namespace CleanArchitecture.Core.Service
         public AutoModelViewModel AutoModelSave(AutoModelViewModel autoModelViewModel)
         {
 
-            autoModel = autoMapper.Map<AutoModel>(autoModelViewModel);
-            return autoModelRepository.AutoModelSave(autoModel);
+            //autoModel = autoMapper.Map<AutoModel>(autoModelViewModel);
+            return autoModelRepository.AutoModelSave(autoModelViewModel);
         }
 
         public AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel)
         {
             return autoModelRepository.GetAutoModel(autoModelViewModel);
+        }
+
+        public AutoModelViewModel GetAutoModelById(int Id)
+        {
+            return autoModelRepository.GetAutoModelById(Id);
         }
     }
 }

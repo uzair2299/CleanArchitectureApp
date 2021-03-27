@@ -9,7 +9,8 @@ namespace CleanArchitecture.Core.Interfaces
 {
     public interface IAutoModelRepository
     {
-        AutoModelViewModel AutoModelSave(AutoModel autoModel);
+        AutoModelViewModel AutoModelSave(AutoModelViewModel autoModelViewModel);
         AutoSolutionPageSet<AutoModelViewModel> GetAutoModel(AutoModelViewModel autoModelViewModel);
+        AutoModelViewModel GetAutoModelById(int Id);
     }
 }

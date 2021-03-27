@@ -48,7 +48,7 @@ var autoModel = {
         $(autoModel.autoModelForm).validate({
             ignore: [],
             rules: {
-                AutoModelName: {
+                ModelName: {
                     required: true
                 },
                 SelectedManufacturer: {
@@ -62,7 +62,7 @@ var autoModel = {
             //        error.insertAfter(element);
             //},
             messages: {
-                AutoModelName: {
+                ModelName: {
                     required: "Model Name is Required"
                 },
                 SelectedManufacturer: {

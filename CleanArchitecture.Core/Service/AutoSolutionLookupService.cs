@@ -16,10 +16,9 @@ namespace CleanArchitecture.Core.Service
             this.autoSolutionLookupRepository = autoSolutionLookupRepository;
             this.autoModelViewModel = autoModelViewModel;
         }
-        public AutoModelViewModel GetAutoManufacturerLookup()
+        public List<SelectListItem> GetAutoManufacturerLookup()
         {
-            autoModelViewModel.AutoManufacturerLookup = autoSolutionLookupRepository.GetAutoManufacturerLookup();
-            return autoModelViewModel;
-        }
+            return autoSolutionLookupRepository.GetAutoManufacturerLookup();
+                    }
     }
 }

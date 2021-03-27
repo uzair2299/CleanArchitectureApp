@@ -19,6 +19,6 @@ namespace CleanArchitecture.Domain.Entities
 
         public bool IsActive { get; set; }
 
-        public ICollection<AutoModel> AutoModels { get; set; }
+        public virtual ICollection<AutoModel> AutoModels { get; set; }
     }
 }

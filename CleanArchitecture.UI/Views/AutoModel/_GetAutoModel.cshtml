@@ -102,7 +102,7 @@
     }
 <script>
     $('.pageButtons').click(function () {
-       var data =  AutoSolutionUtility.getFormDate(autoModel.autoManufactuereSearchForm);
+       var data =  AutoSolutionUtility.getFormData(autoModel.autoManufactuereSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');
         data['PageSize'] = $('#pageSize').val();
         autoModel.getAutoModel(data);
