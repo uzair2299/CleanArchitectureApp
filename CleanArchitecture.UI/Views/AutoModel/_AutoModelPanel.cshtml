@@ -1,4 +1,7 @@
 ﻿@model CleanArchitecture.Core.ViewModels.AutoModelViewModel
+@{ 
+    var c = Model.SelectedManufacturer;
+}
 <div class="modal fade" id="_AutoModelPanel" tabindex="-1" role="dialog" aria-labelledby="AutoModelPanel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -22,9 +25,11 @@
                                 <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label class="form-control-label" for="SelectedManufacturer">* Auto Manufactuer:</label>
+
+                                        @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
                                         <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%">
-                                            <option value="">select</option>
-                                        </select>
+            <option value="">select</option>
+        </select>
 
                                     </div>
                                 </div>

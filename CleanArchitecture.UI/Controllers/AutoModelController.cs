@@ -57,7 +57,7 @@ namespace CleanArchitecture.UI.Controllers
          public IActionResult EditAutoModel(int Id)
         {
             AutoModelViewModel autoModelViewModel = new AutoModelViewModel();
-            autoModelService.GetAutoModelById(Id);
+            autoModelViewModel= autoModelService.GetAutoModelById(Id);
             autoModelViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
             return PartialView("_AutoModelPanel", autoModelViewModel);
         }

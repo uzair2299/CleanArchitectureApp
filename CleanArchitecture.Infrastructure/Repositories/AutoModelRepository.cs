@@ -88,8 +88,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public AutoModelViewModel GetAutoModelById(int Id)
         {
             AutoModel auto = repository.GetById(Id);
-            string ne = auto.AutoManufacturer.AutoManufacturerName;
-            return null;
+           return  autoMapper.Map<AutoModelViewModel>(auto);
+
+            //string ne = auto.AutoManufacturer.AutoManufacturerName;
+            //return null;
         }
     }
 }
