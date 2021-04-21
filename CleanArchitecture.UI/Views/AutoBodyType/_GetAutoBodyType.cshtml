@@ -1,5 +1,5 @@
 ﻿@using CleanArchitecture.Core.ViewModels
-@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoManufacturerViewModel>;
+@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoBodyTypeViewModel>;
 
 
 
@@ -20,11 +20,11 @@
                             @foreach (var item in Model.Data)
                             {
                                 <tr>
-                                    <td class="pl-3">@item.AutoManufacturerName</td>
+                                    <td class="pl-3">@item.BodyType</td>
                                     <td class="fit text-center">
                                         <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoManufacturer.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
-                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoManufacturer.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
+                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoBodyType.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
+                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoBodyType.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
                                     </td>
                                 </tr>
                             }
@@ -99,10 +99,10 @@ else
     }*@
 <script>
     $('.pageButtons').click(function () {
-        var data = AutoSolutionUtility.getFormData(autoManufacturer.autoManufactuereSearchForm);
+        var data = AutoSolutionUtility.getFormData(autoBodyType.autoBodyTypeSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');
         data['PageSize'] = $('#pageSize').val();
-        autoManufacturer.getAutoManufacturer(data);
+        autoBodyType.getAutoBodyType(data);
     });
 
     $('#pageSize').on('change', function (e) {
@@ -111,7 +111,7 @@ else
             PageNo: 1,
             PageSize: pageSize
         }
-        autoManufacturer.getAutoManufacturer(data);
+        autoBodyType.getAutoBodyType(data);
     });
     $('#SearchTerm').on('keyup', function (e) {
         console.log($(this).val());

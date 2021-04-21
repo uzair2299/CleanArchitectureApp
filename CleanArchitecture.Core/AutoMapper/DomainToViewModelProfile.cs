@@ -9,6 +9,7 @@ namespace CleanArchitecture.Core.AutoMapper
         public DomainToViewModelProfile()
         {
             CreateMap<AutoManufacturer, AutoManufacturerViewModel>();
+            CreateMap<AutoBodyType, AutoBodyTypeViewModel>();
             CreateMap<AutoModel, AutoModelViewModel>().ForMember(dest => dest.SelectedManufacturer, opt => opt.MapFrom(src => src.AutoManufacturerId));
             CreateMap<Role, RolesViewModel>();
 

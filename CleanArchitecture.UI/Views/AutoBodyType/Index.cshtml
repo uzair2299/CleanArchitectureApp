@@ -1,21 +1,21 @@
-﻿@*@model IEnumerable<CleanArchitecture.Core.ViewModels.AutoManufacturerViewModel>*@
+﻿@*@model IEnumerable<CleanArchitecture.Core.ViewModels.AutoBodyTypeViewModel>*@
 
 @{
     ViewData["Title"] = "Index";
 }
-<script src="~/js/site.js"></script>
+<script src="~/js/AutoBodyType.js"></script>
 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
     <!-- begin:: Content Head -->
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
-                <h3 class="kt-subheader__title">Auto Manufacturer</h3>
+                <h3 class="kt-subheader__title">Auto BodyType</h3>
                 <span class="kt-subheader__separator kt-subheader__separator--v"></span>
             </div>
             <div class="kt-subheader__toolbar">
                 <div class="kt-subheader__wrapper">
-                    <button class="btn btn-dark btn-icon-sm" onclick="autoManufacturer.loadAutoManufacturerPanel()" id="_AutoManufacturerPanelbtn">
+                    <button class="btn btn-dark btn-icon-sm" onclick="autoBodyType.loadAutoBodyTypePanel()" id="_AutoBodyTypePanelbtn">
                         <i class="la la-plus"></i>
                         Add New
                     </button>
@@ -92,21 +92,21 @@
                         <i class="fab fa-whmcs"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        Auto Manufacturer
+                        Auto BodyType
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <form class="kt-form kt-form--fit kt-margin-b-20" id="AutoManufacturerSearchForm">
+                <form class="kt-form kt-form--fit kt-margin-b-20" id="AutoBodyTypeSearchForm">
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
-                            <label>Auto Manufacturer:</label>
+                            <label>Auto BodyType:</label>
                             <input type="text" id="SearchTerm" class="form-control kt-input">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-right">
-                            <button type="button" class="btn btn-dark btn-brand--icon btn-sm" id="kt_search" onclick="autoManufacturer.searchAutoManufacture(event);">
+                            <button type="button" class="btn btn-dark btn-brand--icon btn-sm" id="kt_search" onclick="autoBodyType.searchAutoManufacture(event);">
                                 <span>
                                     <i class="la la-search"></i>
                                     <span>Search</span>
@@ -126,12 +126,12 @@
 
 
             <div class="kt-separator kt-separator--md kt-separator--dashed m-0"></div>
-            <div id="_GetAutoManufacturer">
+            <div id="_GetAutoBodyType">
 
 
             </div>
         </div>
-        <div id="_AutoManufacturerPanelContainer">
+        <div id="_AutoBodyTypePanelContainer">
 
 
         </div>

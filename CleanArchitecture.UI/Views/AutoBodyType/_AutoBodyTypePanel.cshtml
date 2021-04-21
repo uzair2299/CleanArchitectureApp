@@ -1,0 +1,37 @@
+﻿@model CleanArchitecture.Core.ViewModels.AutoBodyTypeViewModel
+<div class="modal fade" id="_AutoBodyTypePanel" tabindex="-1" role="dialog" aria-labelledby="AutoBodyTypePanel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Auto BodyType</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form class="kt-form kt-form--label-right" id="BodyTypeBodyType">
+                <div class="modal-body">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoBodyTypeName">* BodyType Name:</label>
+                                        <input type="text" name="BodyType" class="form-control" placeholder=""  asp-for="BodyType">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="autoBodyType.validdateAutoBodyType(event)" id="btnAutoBodyType">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+                <input type="hidden" asp-for="Id">
+            </form>
+        </div>
+    </div>
+</div>
