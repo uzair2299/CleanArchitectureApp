@@ -63,6 +63,7 @@ namespace CleanArchitecture.UI
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
             app.UseCookiePolicy();
              
             app.UseEndpoints(endpoints =>

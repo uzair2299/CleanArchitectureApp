@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.Interfaces.SessionManager;
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.Service;
+using CleanArchitecture.Core.Service.SessionManager;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
@@ -15,6 +17,9 @@ namespace CleanArchitecture.Infrastructure.IoC
         {
             //unit of work
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
+            //sessiom
+            builder.RegisterType<SessionManager>().As<ISessionManager>().InstancePerLifetimeScope();
 
             //generic repository
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();

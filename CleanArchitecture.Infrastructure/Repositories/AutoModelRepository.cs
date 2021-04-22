@@ -32,7 +32,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             c.Open();
             var command = c.CreateCommand();
             //command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.CommandText ="EXEC " + AutoSolutionUtility.InsertAutoModel + " @ModelName,@AutoManufacturerId";
+            command.CommandText ="EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoModel + " @ModelName,@AutoManufacturerId";
             command.Parameters.Add(new SqlParameter("ModelName", autoModelViewModel.ModelName));
             command.Parameters.Add(new SqlParameter("AutoManufacturerId", autoModelViewModel.SelectedManufacturer));
             int rowAffected =  command.ExecuteNonQuery();
@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
             c.Open();
             var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionUtility.SelectAutoModel + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
+            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.SelectAutoModel + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
             if (autoModelViewModel.SearchTerm == null)
             {
                 command.Parameters.Add(new SqlParameter("SearchTerm",DBNull.Value));
