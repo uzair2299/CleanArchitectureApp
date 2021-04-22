@@ -5,8 +5,8 @@ using System.Text;
 
 namespace CleanArchitecture.Core.ViewModels
 {
-    public class AutoManufacturerViewModel : AutoSolutionBaseViewModel
+    public class UserViewModel: AutoSolutionBaseViewModel
     {
-        public string AutoManufacturerName { get; set; }
+
     }
 }

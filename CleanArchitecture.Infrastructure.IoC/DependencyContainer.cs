@@ -31,6 +31,7 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoBodyType>();
             builder.RegisterType<AutoModel>();
             builder.RegisterType<Role>();
+            builder.RegisterType<User>();
             builder.RegisterType<ViewDataSet>();
 
             builder.RegisterType<AutoModelViewModel>();
@@ -48,11 +49,20 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoModelService>().As<IAutoModelService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoModelRepository>().As<IAutoModelRepository>().InstancePerLifetimeScope();
 
-            builder.RegisterType<RolesService>().As<IRolesService>().InstancePerLifetimeScope();
-            builder.RegisterType<RolesRepository>().As<IRolesRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
+
+            #region lookUp 
+            builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
+            #endregion
+
+
+
+
         }
     }
 }

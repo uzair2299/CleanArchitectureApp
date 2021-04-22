@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.UI.Controllers
 {
-    [Authorize]
+//    [Authorize]
     public class RolesController : Controller
     {
         private IRolesService rolesService;

@@ -34,12 +34,13 @@ namespace CleanArchitecture.UI
             services.RegisterAutoMapper();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddOptions();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = "/Account/Index";
-                options.Cookie.Name = "AutoSolution";
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            //{
+            //    options.LoginPath = "/Account/Index";
+            //    options.Cookie.Name = "AutoSolution";
 
-            });
+            //});
+            services.AddSession();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -64,7 +65,7 @@ namespace CleanArchitecture.UI
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
              
             app.UseEndpoints(endpoints =>
             {
