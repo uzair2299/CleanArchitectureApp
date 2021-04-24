@@ -104,6 +104,27 @@ var AutoSolutionUtility = {
         });
         return data;
     },
+    getFormDataWithFile: function (formId) {
+        var data = {};
+        var dataWithFile = new FormData();
+
+        $(formId).find('input[type=text],input[type=password]').each(function () {
+            if (this.id) {
+                data[this.id] = this.value.trim();
+                dataWithFile.append(this.id,this.value.trim());
+            }
+        });
+
+        //var files = $('#fileUpload').get(0);
+        var file = document.getElementById("fileUpload").files[0];
+        if (file) {
+            dataWithFile.append('ImageFile', file);
+            return dataWithFile;
+        }
+        else {
+            return data;
+        }
+    },
 
     getFormDataByName: function (formId) {
         var data = {};
@@ -115,6 +136,18 @@ var AutoSolutionUtility = {
         return data;
     },
 
+    fileReader: function (element, imageHolder) {
+
+        if (element && element.files && element.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                AutoSolutionUtility.css(imageHolder, 'background-image', 'url(' + e.target.result + ')');
+            }
+            reader.readAsDataURL(element.files[0]);
+
+           // KTUtil.addClass(the.element, 'kt-avatar--changed');
+        }
+    },
 
     //select2 dropdown
     select2DropDown: function (controlId, modelId) {
@@ -134,5 +167,10 @@ var AutoSolutionUtility = {
          */
 
         //$('#' + controlId).selectpicker();
+    },
+
+    //css Utility
+    css: function (element, styleProp, value) {
+        element.css(styleProp, value);
     }
 }

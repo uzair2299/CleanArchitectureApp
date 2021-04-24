@@ -59,10 +59,6 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
             #endregion
-
-
-
-
         }
     }
 }

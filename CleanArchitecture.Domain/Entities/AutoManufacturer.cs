@@ -19,6 +19,8 @@ namespace CleanArchitecture.Domain.Entities
 
         public bool IsActive { get; set; }
 
+        public string ImagePath { get; set; }
+
         public virtual ICollection<AutoModel> AutoModels { get; set; }
     }
 }

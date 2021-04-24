@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 using CleanArchitecture.Core.PageSet;
 using System.Net;
 using System.Net.Http;
+using Microsoft.AspNetCore.Http;
+using CleanArchitecture.UI.Utility;
 
 namespace CleanArchitecture.UI.Controllers
 {
     public class AutoManufacturerController : Controller
     {
         private IAutoManufacturerService autoManufacturerService;
-
-        public AutoManufacturerController(IAutoManufacturerService autoManufacturerService, ViewDataSet viewDataSet)
+        private IFileUploadUtility fileUploadUtility;
+        public AutoManufacturerController(IAutoManufacturerService autoManufacturerService, ViewDataSet viewDataSet, IFileUploadUtility fileUploadUtility)
         {
             this.autoManufacturerService = autoManufacturerService;
+            this.fileUploadUtility = fileUploadUtility;
         }
 
         public IActionResult Index()
@@ -34,9 +37,18 @@ namespace CleanArchitecture.UI.Controllers
         }
 
         [HttpPost]
-        public JsonResult AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel)
+        public JsonResult AutoManufacturerSave(AutoManufacturerViewModel autoManufacturerViewModel, IFormFile ImageFile)
         {
-            
+            if (ImageFile == null || ImageFile.Length == 0)
+            {
+                autoManufacturerViewModel.ImagePath = null;
+            }
+            else
+            {
+                string ImagePath = fileUploadUtility.UplaodFile(ImageFile);
+                autoManufacturerViewModel.ImagePath = ImagePath;
+            }
+
             if (autoManufacturerViewModel.Id > 0) {
               var result = autoManufacturerService.UpdateAutoManufacturer(autoManufacturerViewModel);
                 return Json(new { status = result == true ? "Update" : "fail" ,data = autoManufacturerViewModel.Id});

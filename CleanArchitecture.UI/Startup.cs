@@ -6,6 +6,7 @@ using Autofac;
 using CleanArchitecture.Infrastructure.Context;
 using CleanArchitecture.Infrastructure.IoC;
 using CleanArchitecture.UI.Configurations;
+using CleanArchitecture.UI.Utility;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,7 @@ namespace CleanArchitecture.UI
 
             //});
             services.AddSession();
+            services.Add(new ServiceDescriptor(typeof(IFileUploadUtility), typeof(FileUploadUtility), ServiceLifetime.Transient));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

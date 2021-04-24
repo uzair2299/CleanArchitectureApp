@@ -8,5 +8,6 @@ namespace CleanArchitecture.Core.ViewModels
     public class AutoManufacturerViewModel : AutoSolutionBaseViewModel
     {
         public string AutoManufacturerName { get; set; }
+        public string ImagePath { get; set; }
     }
 }
