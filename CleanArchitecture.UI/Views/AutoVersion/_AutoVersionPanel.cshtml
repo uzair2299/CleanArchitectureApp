@@ -1,0 +1,48 @@
+﻿@model CleanArchitecture.Core.ViewModels.AutoVersionViewModel
+
+<div class="modal fade" id="_AutoVersionPanel" tabindex="-1" role="dialog" aria-labelledby="AutoModelPanel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Auto Version</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form class="kt-form kt-form--label-right" id="AutoVersion">
+                <div class="modal-body">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoVersionName">* Version Name:</label>
+                                        <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="SelectedManufacturer">* Auto Manufactuer:</label>
+                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%">
+                                            <option value="">select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="autoVersion.validdateAutoVersion(event)" id="btnAutoVersion">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+                <input type="hidden" asp-for="Id">
+            </form>
+        </div>
+    </div>
+</div>

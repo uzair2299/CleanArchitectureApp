@@ -31,5 +31,17 @@ namespace CleanArchitecture.Infrastructure.Repositories
             //selectListItems.Insert(0, new SelectListItem() { Text = "Select", Value = null });
             return selectListItems;
         }
+
+        public List<SelectListItem> GetAutoModelLookup()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            IQueryable<AutoModel> result = unitOfWork.GetAutoSolutionContext().AutoModels.AsQueryable();
+            selectListItems = result.Select(x => new SelectListItem()
+            {
+                Text = x.ModelName,
+                Value = x.Id.ToString()
+            }).OrderBy(x => x.Text).ToList();
+            return selectListItems;
+;        }
     }
 }

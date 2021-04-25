@@ -8,5 +8,7 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IAutoSolutionLookupRepository
     {
         List<SelectListItem> GetAutoManufacturerLookup();
+        List<SelectListItem> GetAutoModelLookup();
+
     }
 }

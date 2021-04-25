@@ -11,6 +11,7 @@ namespace CleanArchitecture.Core.AutoMapper
             CreateMap<AutoManufacturer, AutoManufacturerViewModel>();
             CreateMap<AutoBodyType, AutoBodyTypeViewModel>();
             CreateMap<AutoModel, AutoModelViewModel>().ForMember(dest => dest.SelectedManufacturer, opt => opt.MapFrom(src => src.AutoManufacturerId));
+            CreateMap<AutoVersion, AutoVersionViewModel>().ForMember(dest => dest.SelectedAutoModel, opt => opt.MapFrom(src => src.AutoModelId));
             CreateMap<Role, RolesViewModel>();
 
         }

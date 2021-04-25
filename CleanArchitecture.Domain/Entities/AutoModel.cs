@@ -26,5 +26,7 @@ namespace CleanArchitecture.Domain.Entities
         public int AutoManufacturerId { get; set; }
         
         public virtual AutoManufacturer AutoManufacturer { get; set; }
+
+        public virtual ICollection<AutoVersion> AutoVersions { get; set; }
     }
 }

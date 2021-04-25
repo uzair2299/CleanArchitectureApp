@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="~/js/AutoVersion.js"></script>
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+    <!-- begin:: Content Head -->
+    <div class="kt-subheader  kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">Auto Version</h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Content Head -->
+    <!-- begin:: Content -->
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                    @*<span class="kt-portlet__head-icon">
+                            <i class="kt-font-brand flaticon2-line-chart"></i>
+                        </span>*@
+                    <h3 class="kt-portlet__head-title">
+                        Search Auto Version
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+                            <button class="btn btn-dark btn-icon-sm" onclick="autoVersion.loadAutoVersionPanel()" id="_AutoVersionPanelbtn">
+                                <i class="la la-plus"></i>
+                                Add New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <form class="kt-form kt-form--fit kt-margin-b-20" id="AutoVersionSearchForm">
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-6 kt-margin-b-10-tablet-and-mobile">
+                            <label>Auto Version:</label>
+                            <input type="text" id="SearchTerm" class="form-control kt-input">
+                        </div>
+                    </div>
+                    <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <button type="button" class="btn btn-dark btn-brand--icon" id="kt_search" onclick="autoManufacturer.searchAutoVersion(event);">
+                                <span>
+                                    <i class="la la-search"></i>
+                                    <span>Search</span>
+                                </span>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                <span>
+                                    <i class="la la-close"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="_GetAutoVersion">
+
+        </div>
+        <div id="_AutoVersionPanelContainer">
+
+        </div>
+    </div>
+</div>
+
+

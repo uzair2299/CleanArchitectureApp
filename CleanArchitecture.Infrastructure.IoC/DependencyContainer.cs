@@ -30,6 +30,7 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoManufacturer>();
             builder.RegisterType<AutoBodyType>();
             builder.RegisterType<AutoModel>();
+            builder.RegisterType<AutoVersion>();
             builder.RegisterType<Role>();
             builder.RegisterType<User>();
             builder.RegisterType<ViewDataSet>();
@@ -49,11 +50,17 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoModelService>().As<IAutoModelService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoModelRepository>().As<IAutoModelRepository>().InstancePerLifetimeScope();
 
+            builder.RegisterType<AutoVersionService>().As<IAutoVersionService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoVersionRepository>().As<IAutoVersionRepository>().InstancePerLifetimeScope();
+
+
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
 
-            builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
-            builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
+            //builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
+            //builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
+
+
 
             #region lookUp 
             builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
