@@ -162,7 +162,8 @@ var autoManufacturer = {
         })
     },
 
-    deleteAutoManufactuer: function (id) {
+    deleteAutoManufactuer: function (id, element) {
+        
         console.log(id);
         data = { Id: id }
         AutoSolutionUtility.deleteConfirmationBox().then(function (result) {
@@ -170,6 +171,8 @@ var autoManufacturer = {
                 var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'DeleteAutoManufacturer', 'delete', false);
                 autoSolutionService.defaultService(params).done(function (response) {
                     if (response.status) {
+                        //for future use tested
+                        //$(element).closest('tr').remove();
                         AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.DELETE);
                         var pageNo = $('.kt-pagination__link--active').find('a').attr('data-pageNo');
                         var pageSize = $('#pageSize').val();

@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
             c.Open();
             var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.SelectAutoModel + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
+            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.SelectAutoVersion + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
             if (autoVersionViewModel.SearchTerm == null)
             {
                 command.Parameters.Add(new SqlParameter("SearchTerm",DBNull.Value));
@@ -59,30 +59,39 @@ namespace CleanArchitecture.Infrastructure.Repositories
             command.Parameters["@TotalCount"].Direction = ParameterDirection.Output;
             List<AutoVersionViewModel> finalResult = new List<AutoVersionViewModel>();
             int TotalCount = 0;
-            using (var reader = command.ExecuteReader())
-            {
-                if (reader.HasRows){
+            try {
 
-                    while (reader.Read())
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
                     {
-                        finalResult.Add(new AutoVersionViewModel
-                        {
-                            Id = Convert.ToInt32(reader["Id"]),
-                            ModelName = reader["ModelName"].ToString(),
-                            AutoManufacturerName = reader["AutoManufacturerName"].ToString()
-                        });
-                    }
 
+                        while (reader.Read())
+                        {
+                            finalResult.Add(new AutoVersionViewModel
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                ModelName = reader["ModelName"].ToString(),
+                                AutoManufacturerName = reader["AutoManufacturerName"].ToString(),
+                                AutoVersionName = reader["AutoVersionName"].ToString(),
+                            });
+                        }
+
+                    }
                 }
+
+                TotalCount = Convert.ToInt32(command.Parameters["@TotalCount"].Value);
+                AutoSolutionPageSet<AutoVersionViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoVersionViewModel>()
+                {
+                    Pager = new Pager(TotalCount, autoVersionViewModel.PageNo, autoVersionViewModel.PageSize),
+                    Data = finalResult
+                };
+                return autoSolutionPageSet;
+            }
+            catch(Exception ex) {
+                throw ex;
             }
 
-            TotalCount = Convert.ToInt32(command.Parameters["@TotalCount"].Value);
-            AutoSolutionPageSet<AutoVersionViewModel> autoSolutionPageSet = new AutoSolutionPageSet<AutoVersionViewModel>()
-            {
-                Pager = new Pager(TotalCount, autoVersionViewModel.PageNo, autoVersionViewModel.PageSize),
-                Data = finalResult
-            };
-            return autoSolutionPageSet;
         }
 
         public AutoVersionViewModel GetAutoVersionById(int Id)

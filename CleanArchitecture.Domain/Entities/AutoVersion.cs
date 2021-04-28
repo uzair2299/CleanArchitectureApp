@@ -17,5 +17,13 @@ namespace CleanArchitecture.Domain.Entities
         [ForeignKey("AutoBodyType")]
         public int AutoBodyTypeId { get; set; }
         public virtual AutoBodyType AutoBodyType { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime ModifiedOn { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public string ModifiedBy { get; set; }
+
     }
 }
