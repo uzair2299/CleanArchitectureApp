@@ -142,16 +142,21 @@ var autoVersion = {
                 $('#pageSize').val(data.PageSize);
             }
             $('#' + autoVersion.autoVersionGetPanel + ' Table').DataTable({
+                responsive: false,
                 "searching": false,
                 "autoWidth": false,
                 "info": false,
                 "lengthChange": false,
                 "paging": false,
                 "columnDefs": [{
-                    "targets": -1,
+                    "targets": [0,-1],
                     "orderable": false
-                }]
+                }],
+                "order": []
             });
+            /*Note
+             * By default order is [0, 'asc'].use order: [] if you not want any default order at all
+             */
             AutoSolutionUtility.hideLoader();
         })
     },

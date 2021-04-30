@@ -9,6 +9,9 @@ namespace CleanArchitecture.Domain.Entities
     public class AutoVersion:BaseEntity
     {
         public string AutoVersionName { get; set; }
+        public DateTime? StartProductionYear { get; set; }
+        public DateTime? EndProductionYear { get; set; }
+        public string ImagePath { get; set; }
 
         [ForeignKey("AutoModel")]
         public int AutoModelId { get; set; }

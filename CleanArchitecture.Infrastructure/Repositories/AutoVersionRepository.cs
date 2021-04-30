@@ -74,6 +74,9 @@ namespace CleanArchitecture.Infrastructure.Repositories
                                 ModelName = reader["ModelName"].ToString(),
                                 AutoManufacturerName = reader["AutoManufacturerName"].ToString(),
                                 AutoVersionName = reader["AutoVersionName"].ToString(),
+                                StartProductionYear = (DateTime)reader["StartProductionYear"],
+                                EndProductionYear = (DateTime)reader["EndProductionYear"],
+                                ImagePath = reader["ImagePath"].ToString(),
                             });
                         }
 
@@ -89,7 +92,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 return autoSolutionPageSet;
             }
             catch(Exception ex) {
-                throw ex;
+                    throw ex;
             }
 
         }

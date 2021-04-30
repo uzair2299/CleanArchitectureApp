@@ -11,7 +11,10 @@ namespace CleanArchitecture.Core.ViewModels
         public string AutoVersionName { get; set; }
         public string ModelName { get; set; }
         public string AutoManufacturerName { get; set; }
-        
+        public DateTime? StartProductionYear { get; set; }
+        public DateTime? EndProductionYear { get; set; }
+        public string ImagePath { get; set; }
+
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         
