@@ -14,6 +14,8 @@ namespace CleanArchitecture.Core.ViewModels
         public DateTime? StartProductionYear { get; set; }
         public DateTime? EndProductionYear { get; set; }
         public string ImagePath { get; set; }
+        public decimal CurrentPrice { get; set; }
+        public decimal PreviousPrice { get; set; }
 
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }

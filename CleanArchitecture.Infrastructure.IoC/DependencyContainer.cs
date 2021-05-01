@@ -31,12 +31,14 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<AutoBodyType>();
             builder.RegisterType<AutoModel>();
             builder.RegisterType<AutoVersion>();
+            builder.RegisterType<AutoEngineType>();
             builder.RegisterType<Role>();
             builder.RegisterType<User>();
             builder.RegisterType<ViewDataSet>();
 
             builder.RegisterType<AutoModelViewModel>();
             builder.RegisterType<AutoBodyTypeViewModel>();
+            builder.RegisterType<AutoEngineTypeViewModel>();
 
 
             //service & repositroy
@@ -45,7 +47,11 @@ namespace CleanArchitecture.Infrastructure.IoC
 
             builder.RegisterType<AutoBodyTypeService>().As<IAutoBodyTypeService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoBodyTypeRepository>().As<IAutoBodyTypeRepository>().InstancePerLifetimeScope();
-            
+
+
+            builder.RegisterType<AutoEngineTypeService>().As<IAutoEngineTypeService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoEngineTypeRepository>().As<IAutoEngineTypeRepository>().InstancePerLifetimeScope();
+
 
             builder.RegisterType<AutoModelService>().As<IAutoModelService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoModelRepository>().As<IAutoModelRepository>().InstancePerLifetimeScope();

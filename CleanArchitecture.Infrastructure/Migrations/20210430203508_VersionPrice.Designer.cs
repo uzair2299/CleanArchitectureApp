@@ -4,14 +4,16 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210430203508_VersionPrice")]
+    partial class VersionPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,36 +46,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AutoBodyType");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EngineTypeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AutoEngineType");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>
@@ -151,9 +123,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("AutoBodyTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AutoEngineTypeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("AutoModelId")
                         .HasColumnType("int");
 
@@ -190,8 +159,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AutoBodyTypeId");
-
-                    b.HasIndex("AutoEngineTypeId");
 
                     b.HasIndex("AutoModelId");
 
@@ -288,10 +255,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CleanArchitecture.Domain.Entities.AutoEngineType", "AutoEngineType")
-                        .WithMany("AutoVersions")
-                        .HasForeignKey("AutoEngineTypeId");
-
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoModel", "AutoModel")
                         .WithMany("AutoVersions")
                         .HasForeignKey("AutoModelId")
@@ -299,8 +262,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("AutoBodyType");
-
-                    b.Navigation("AutoEngineType");
 
                     b.Navigation("AutoModel");
                 });
@@ -314,11 +275,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("AutoVersion");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
-                {
-                    b.Navigation("AutoVersions");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>

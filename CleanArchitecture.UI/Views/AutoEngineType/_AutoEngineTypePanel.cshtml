@@ -1,0 +1,70 @@
+﻿@model CleanArchitecture.Core.ViewModels.AutoEngineTypeViewModel
+<div class="modal fade" id="_AutoEngineTypePanel" tabindex="-1" role="dialog" aria-labelledby="AutoEngineTypePanel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">EngineType</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form class="kt-form kt-form--label-right" id="VehicleEngineType" enctype="multipart/form-data" >
+                <div class="modal-body">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoEngineTypeName">* EngineType Name:</label>
+                                        <input type="text" name="EngineTypeName" class="form-control" placeholder="" asp-for="EngineTypeName">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="kt-section__body">
+                                            <div class="form-group row text-center">
+                                                @*<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>*@
+                                                <div class="col-lg-12">
+                                                    <div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
+                                                        <div class="kt-avatar__holder imageHolder" style="background-image: url(./assets/media/users/300_10.jpg)"></div>
+                                                        <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Upload Logo">
+                                                            <i class="fa fa-pen"></i>
+                                                            <input type="file" id="fileUpload" name="fileUpload">
+                                                        </label>
+                                                        <div class="CustomDiv">
+                                                        </div>
+                                                        @*<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                                            <i class="fa fa-times"></i>
+                                                        </span>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="autoEngineType.validdateAutoEngineType(event)" id="btnAutoEngineType">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+                <input type="hidden" asp-for="Id">
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#fileUpload').on('change', function () {
+        debugger;
+        console.log("hello");
+        console.log(this.id);
+        var holder = $('.kt-avatar__holder');
+        console.log(holder);
+        autoEngineType.previewImage(this, holder);
+    })
+</script>

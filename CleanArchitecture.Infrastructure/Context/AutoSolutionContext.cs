@@ -14,6 +14,9 @@ namespace CleanArchitecture.Infrastructure.Context
         public DbSet<AutoManufacturer> AutoManufacturers { get; set; }
         public DbSet<AutoModel> AutoModels { get; set; }
         public DbSet<AutoBodyType> AutoBodyType { get; set; }
+        public DbSet<AutoVersion> AutoVersion { get; set; }
+        public DbSet<AutoEngineType> AutoEngineType { get; set; }
+        public DbSet<AutoVersionPrice> AutoVersionPrice { get; set; }
 
         #endregion
 

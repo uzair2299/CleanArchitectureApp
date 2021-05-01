@@ -1,61 +1,32 @@
 ﻿@using CleanArchitecture.Core.ViewModels
-@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoVersionViewModel>;
+@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoEngineTypeViewModel>;
 
 
 
-<div class="kt-portlet kt-portlet--mobile">
-    <div class="kt-portlet__head kt-portlet__head--lg">
-        <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon">
-                <i class="fab fa-whmcs"></i>
-            </span>
-            <h3 class="kt-portlet__head-title">
-                Auto Version
-            </h3>
-        </div>
-    </div>
+@if (Model.Pager.TotalItems > 0)
+{
     <div class="kt-portlet__body">
         <div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <div class="row">
-                <div class="col-sm-12" style="overflow-x:auto;">
-                    <table class="table table-bordered table-hover" style="overflow-x:auto;width: 100%;">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-hover">
                         <thead class="kt-bg-fill-dark">
                             <tr>
-                                <th class="pl-3">Image</th>
-                                <th class="pl-3">Version</th>
-                                <th class="pl-3">Model</th>
-                                <th class="pl-3">Manufacturer</th>
-                                <th class="pl-3">Start&nbsp;Production</th>
-                                <th class="pl-3">End&nbsp;Production</th>
-                                <th class="pl-3">Current&nbsp;Price</th>
-                                <th class="pl-3">Previous&nbsp;Price</th>
+                                <th class="pl-3">Name</th>
                                 <th class="fit text-center">Action</th>
                             </tr>
-                        </thead>    
+                        </thead>
                         <tbody>
                             @foreach (var item in Model.Data)
                             {
-                            <tr>
-                                <td class="pl-3">
-                                    <div class="kt-user-card-v2 justify-content-center">
-                                        <div class="kt-user-card-v2__pic">
-                                            <img src="~/assets/media/users/100_7.jpg" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="pl-3">@item.AutoVersionName</td>
-                                <td class="pl-3">@item.ModelName</td>
-                                <td class="pl-3">@item.AutoManufacturerName</td>
-                                <td class="pl-3 text-center">@item.StartProductionYear.Value.Year</td>
-                                <td class="pl-3 text-center">@item.EndProductionYear.Value.Year</td>
-                                <td class="pl-3 text-center">1000</td>
-                                <td class="pl-3 text-center">1000</td>
-                                <td class="fit text-center">
-                                    <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-                                    <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoModel.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
-                                    <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoModel.deleteAutoManufactuer(@item.Id)"><i class="la la-trash"></i></button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="pl-3">@item.EngineTypeName</td>
+                                    <td class="fit text-center">
+                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoEngineType.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
+                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoEngineType.deleteAutoManufactuer(@item.Id,this)"><i class="la la-trash"></i></button>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -109,21 +80,29 @@
                             </li>
                         }
                     }
+
+
                 </ul>
             </div>
         </div>
     </div>
-</div>
-
-@section Scripts{
-
 }
+else
+{
+    <div class="alert alert-solid-dark alert-bold kt-m10" role="alert">
+        <div class="alert-text text-center"> <h3>No Data to Show</h3></div>
+    </div>
+}
+
+@*@section Scripts{
+
+    }*@
 <script>
     $('.pageButtons').click(function () {
-        var data = AutoSolutionUtility.getFormData(autoModel.autoVersionSearchForm);
+        var data = AutoSolutionUtility.getFormData(autoEngineType.autoManufactuereSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');
         data['PageSize'] = $('#pageSize').val();
-        autoModel.getAutoModel(data);
+        autoEngineType.getAutoEngineType(data);
     });
 
     $('#pageSize').on('change', function (e) {
@@ -132,6 +111,9 @@
             PageNo: 1,
             PageSize: pageSize
         }
-        autoVersion.getAutoVersion(data);
+        autoEngineType.getAutoEngineType(data);
+    });
+    $('#SearchTerm').on('keyup', function (e) {
+        console.log($(this).val());
     });
 </script>
