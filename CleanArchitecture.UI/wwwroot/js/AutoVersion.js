@@ -86,6 +86,12 @@ var autoVersion = {
             AutoSolutionUtility.clearHTML(autoVersion.autoVersionPanelContainer);
             AutoSolutionUtility.appendHTML(autoVersion.autoVersionPanelContainer, response);
             //AutoSolutionUtility.select2DropDown("SelectedVersionr");
+            $('body .kt_datepicker_1_modal').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayHighlight: true,
+                orientation: "bottom left",
+                
+            });
             AutoSolutionUtility.showPanel(autoVersion.autoVersionPanel);
             AutoSolutionUtility.hideLoader();
         })

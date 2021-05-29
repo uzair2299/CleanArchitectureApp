@@ -3,6 +3,7 @@ using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
 using CleanArchitecture.Infrastructure.Utility;
+using Dapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,46 +32,50 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Value = x.Id.ToString()
             }).OrderBy(x=>x.Text).ToList();
 
-            var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
-            c.Open();
-            var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.LookupForAutoVersion;
-            try
-            {
+            //using (var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            //{
+            //    var result = c.Query()
+            //};
+            //var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
+            //c.Open();
+            //var command = c.CreateCommand();
+            //command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.LookupForAutoVersion;
+            //try
+            //{
 
-                List<SelectListItem> selectListItems1 = new List<SelectListItem>();
-                List<SelectListItem> selectListItems2 = new List<SelectListItem>();
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.HasRows)
-                    {
+            //    List<SelectListItem> selectListItems1 = new List<SelectListItem>();
+            //    List<SelectListItem> selectListItems2 = new List<SelectListItem>();
+            //    using (var reader = command.ExecuteReader())
+            //    {
+            //        if (reader.HasRows)
+            //        {
 
-                        while (reader.Read())
-                        {
-                            selectListItems1.Add(new SelectListItem
-                            {
-                                Text = reader["BodyType"].ToString(),
-                                Value = Convert.ToInt32(reader["Id"]).ToString()
-                            });
-                        }
+            //            while (reader.Read())
+            //            {
+            //                selectListItems1.Add(new SelectListItem
+            //                {
+            //                    Text = reader["BodyType"].ToString(),
+            //                    Value = Convert.ToInt32(reader["Id"]).ToString()
+            //                });
+            //            }
 
-                        reader.NextResult();
-                        while (reader.Read())
-                        {
-                            selectListItems2.Add(new SelectListItem
-                            {
-                                Text = reader["EngineTypeName"].ToString(),
-                                Value = Convert.ToInt32(reader["Id"]).ToString()
-                            });
-                        }
-                    }
-                    }
+            //            reader.NextResult();
+            //            while (reader.Read())
+            //            {
+            //                selectListItems2.Add(new SelectListItem
+            //                {
+            //                    Text = reader["EngineTypeName"].ToString(),
+            //                    Value = Convert.ToInt32(reader["Id"]).ToString()
+            //                });
+            //            }
+            //        }
+            //        }
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             //selectListItems.Insert(0, new SelectListItem() { Text = "Select", Value = null });
 
             return selectListItems;
