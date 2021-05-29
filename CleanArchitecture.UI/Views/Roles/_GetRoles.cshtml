@@ -35,9 +35,30 @@
                                     <tr>
                                         <td class="pl-3">@item.RoleName</td>
                                         <td class="fit text-center">
-                                            <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-                                            <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="roles.editRole(@item.Id)"><i class="la la-edit"></i></button>
-                                            <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="roles.deleteRole(@item.Id)"><i class="la la-trash"></i></button>
+                                            <!--<button class="btn btn-primary dropdown-toggle table_btn" type="button" data-toggle="dropdown">
+                                                Options-->
+                                                @*<span class="caret"></span>*@
+                                            <!--</button>
+                                            <ul class="dropdown-menu Table_Drop ul_Caim">-->
+                                                
+                                                    @*<li><a href="javascript:void(0);" class="option-a">Print</a></li>*@
+                                                    <!--<li><a href="javascript:void(0);" class="option-a">Edit</a></li>
+                                                    <li><a href="javascript:void(0);" class="option-a">Delete</a></li>
+                                                
+                                            </ul>-->
+                                            <div class="dropdown dropdown-inline">
+                                                <button type="button" class="btn btn-hover-brand btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  data-reference="parent">
+                                                    <i class="flaticon-more-1"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="la la-plus"></i> New Report</a>
+                                                    <a class="dropdown-item" href="#"><i class="la la-user"></i> Add Customer</a>
+                                                    <a class="dropdown-item" href="#"><i class="la la-cloud-download"></i> New Download</a>
+                                                </div>
+                                            </div>
+                                            @*<button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="roles.editRole(@item.Id)"><i class="la la-edit"></i></button>
+        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="roles.deleteRole(@item.Id)"><i class="la la-trash"></i></button>*@
                                         </td>
                                     </tr>
                                 }
@@ -118,6 +139,17 @@
 
     }*@
 <script>
+    $('.dropdown-toggle').click(function () {
+        console.log("Hello");
+        console.log(this);
+        var ele = this;
+        debugger;
+
+        //$('.dropdown-toggle').dropdown();
+        $(this).parent().find('.dropdown-menuU').toggle();
+        console.log("remove");
+    })
+
     $('.pageButtons').click(function () {
         var data = AutoSolutionUtility.getFormDate(roles.rolesSearchForm);
         data['PageNo'] = $(this).find('a').attr('data-pageNo');

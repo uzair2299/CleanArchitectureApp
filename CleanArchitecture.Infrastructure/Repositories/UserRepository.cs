@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             //    result = result.Where(x => x.UserName.Contains(UserViewModel.SearchTerm));
             //}
             Pager pager = new Pager(result.Count(), UserViewModel.PageNo,UserViewModel.PageSize);
-            //finalResult =  result.OrderBy(x => x.UserName).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
+            finalResult =  result.OrderBy(x => x.UserName).Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize).ToList();
             AutoSolutionPageSet<UserViewModel> autoSolutionPageSet = new AutoSolutionPageSet<UserViewModel>()
             {
                 Pager = pager,

@@ -14,6 +14,7 @@ namespace CleanArchitecture.Core.AutoMapper
             CreateMap<AutoVersionViewModel, AutoVersion>();
             CreateMap<AutoEngineTypeViewModel, AutoEngineType>();
             CreateMap<RolesViewModel, Role>();
+            CreateMap<UserViewModel, User>();
         }
     }
 }

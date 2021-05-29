@@ -7,6 +7,6 @@ namespace CleanArchitecture.Core.ViewModels
 {
     public class UserViewModel: AutoSolutionBaseViewModel
     {
-
+        public string UserName { get; set; }
     }
 }

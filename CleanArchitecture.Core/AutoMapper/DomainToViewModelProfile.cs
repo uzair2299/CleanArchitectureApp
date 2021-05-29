@@ -14,7 +14,7 @@ namespace CleanArchitecture.Core.AutoMapper
             CreateMap<AutoVersion, AutoVersionViewModel>().ForMember(dest => dest.SelectedAutoModel, opt => opt.MapFrom(src => src.AutoModelId));
             CreateMap<AutoEngineType, AutoEngineTypeViewModel>();
             CreateMap<Role, RolesViewModel>();
-
+            CreateMap<User, UserViewModel>();
         }
     }
 }

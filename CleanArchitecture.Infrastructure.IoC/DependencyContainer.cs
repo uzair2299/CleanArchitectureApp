@@ -63,6 +63,10 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
 
+
+            builder.RegisterType<RolesService>().As<IRolesService>().InstancePerLifetimeScope();
+            builder.RegisterType<RolesRepository>().As<IRolesRepository>().InstancePerLifetimeScope();
+
             //builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
             //builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
 
