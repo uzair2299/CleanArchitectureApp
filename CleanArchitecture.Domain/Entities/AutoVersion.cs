@@ -12,8 +12,8 @@ namespace CleanArchitecture.Domain.Entities
         public DateTime? StartProductionYear { get; set; }
         public DateTime? EndProductionYear { get; set; }
         public string ImagePath { get; set; }
-        public  decimal CurrentPrice { get; set; }
-        public decimal PreviousPrice { get; set; }
+        public  decimal? CurrentPrice { get; set; }
+        public decimal? PreviousPrice { get; set; }
 
         [ForeignKey("AutoModel")]
         public int AutoModelId { get; set; }

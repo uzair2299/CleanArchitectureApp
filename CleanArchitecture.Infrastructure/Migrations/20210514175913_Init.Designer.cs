@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    [Migration("20210425165012_AutoVersion")]
-    partial class AutoVersion
+    [Migration("20210514175913_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,36 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AutoBodyType");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EngineTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AutoEngineType");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>
@@ -123,19 +153,92 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("AutoBodyTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("AutoEngineTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("AutoModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("AutoVersionName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("CurrentPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("EndProductionYear")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PreviousPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("StartProductionYear")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AutoBodyTypeId");
 
+                    b.HasIndex("AutoEngineTypeId");
+
                     b.HasIndex("AutoModelId");
 
                     b.ToTable("AutoVersion");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersionPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AutoVersionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("EndPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AutoVersionId");
+
+                    b.ToTable("AutoVersionPrice");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Role", b =>
@@ -187,6 +290,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CleanArchitecture.Domain.Entities.AutoEngineType", "AutoEngineType")
+                        .WithMany("AutoVersions")
+                        .HasForeignKey("AutoEngineTypeId");
+
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoModel", "AutoModel")
                         .WithMany("AutoVersions")
                         .HasForeignKey("AutoModelId")
@@ -195,7 +302,25 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Navigation("AutoBodyType");
 
+                    b.Navigation("AutoEngineType");
+
                     b.Navigation("AutoModel");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersionPrice", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.AutoVersion", "AutoVersion")
+                        .WithMany()
+                        .HasForeignKey("AutoVersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AutoVersion");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
+                {
+                    b.Navigation("AutoVersions");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>
