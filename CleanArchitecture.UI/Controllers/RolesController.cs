@@ -10,10 +10,13 @@ namespace CleanArchitecture.UI.Controllers
     public class RolesController : Controller
     {
         private IRolesService rolesService;
+        private IAutoSolutionLookupService autoSolutionLookupService;
 
-        public RolesController(IRolesService rolesService)
+        public RolesController(IRolesService rolesService,
+            IAutoSolutionLookupService autoSolutionLookupService )
         {
             this.rolesService = rolesService;
+            this.autoSolutionLookupService = autoSolutionLookupService;
         }
 
         public IActionResult Index() 
@@ -32,7 +35,10 @@ namespace CleanArchitecture.UI.Controllers
         [HttpGet]
         public IActionResult SaveRole()
         {
-            return PartialView("_RolesPanel");
+
+            RolesViewModel rolesViewModel = new RolesViewModel();
+            rolesViewModel.PermissionLookup = autoSolutionLookupService.GetPermissionLookup();
+            return PartialView("_RolesPanel", rolesViewModel);
         }
 
         [HttpPost]
@@ -55,6 +61,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult EditRole(int Id)
         {
             var result = rolesService.GetRoleById(Id);
+           result.PermissionLookup = autoSolutionLookupService.GetPermissionLookup(result.Id);
             return PartialView("_RolesPanel", result);
         }
 

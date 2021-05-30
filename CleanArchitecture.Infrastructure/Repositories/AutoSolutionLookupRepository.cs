@@ -90,10 +90,65 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Text = x.ModelName,
                 Value = x.Id.ToString()
             }).OrderBy(x => x.Text).ToList();
-
-
-
             return selectListItems;
-;        }
+        }
+
+        public List<SelectListItem> GetPermissionLookup()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            var permissions = unitOfWork.GetAutoSolutionContext().RolePermissions.Where(x => x.RoleId == 3).ToList();
+            IQueryable<Permission> result = unitOfWork.GetAutoSolutionContext().Permissions.Where(x => x.IsActive == true).OrderBy(x => x.ActionName).AsQueryable();
+            selectListItems = result.Select(x => new SelectListItem()
+            {
+                Text = x.ActionName,
+                Value = x.Id.ToString(),
+            }).ToList();
+            foreach(var item in permissions)
+            {
+                foreach(var innerItem in selectListItems)
+                {
+                    if (Convert.ToInt32(innerItem.Value) == item.PermissionId)
+                    {
+                        innerItem.Selected = true;
+                    }
+                }
+            }
+            return selectListItems;
+        }
+
+        public List<SelectListItem> GetPermissionLookup(int RoleId)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            var permissions = unitOfWork.GetAutoSolutionContext().RolePermissions.Where(x => x.RoleId == RoleId).ToList();
+            IQueryable<Permission> result = unitOfWork.GetAutoSolutionContext().Permissions.Where(x => x.IsActive == true).OrderBy(x => x.ActionName).AsQueryable();
+            selectListItems = result.Select(x => new SelectListItem()
+            {
+                Text = x.ActionName,
+                Value = x.Id.ToString(),
+            }).ToList();
+            foreach (var item in permissions)
+            {
+                foreach (var innerItem in selectListItems)
+                {
+                    if (Convert.ToInt32(innerItem.Value) == item.PermissionId)
+                    {
+                        innerItem.Selected = true;
+                    }
+                }
+            }
+            return selectListItems;
+        }
+
+        public List<SelectListItem> GetRolesLookup()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            IQueryable<Role> result = unitOfWork.GetAutoSolutionContext().Roles.AsQueryable();
+            selectListItems = result.Select(x => new SelectListItem()
+            {
+                Text = x.RoleName,
+                Value = x.Id.ToString()
+            }).OrderBy(x => x.Text).ToList();
+            return selectListItems;
+        }
     }
 }

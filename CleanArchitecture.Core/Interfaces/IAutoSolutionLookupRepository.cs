@@ -9,6 +9,9 @@ namespace CleanArchitecture.Core.Interfaces
     {
         List<SelectListItem> GetAutoManufacturerLookup();
         List<SelectListItem> GetAutoModelLookup();
+        List<SelectListItem> GetPermissionLookup();
+        List<SelectListItem> GetPermissionLookup(int RoleId);
+        public List<SelectListItem> GetRolesLookup();
 
     }
 }

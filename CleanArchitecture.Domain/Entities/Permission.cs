@@ -5,9 +5,10 @@ using System.Text;
 
 namespace CleanArchitecture.Domain.Entities
 {
-    public class Role : BaseEntity
+   public class Permission: BaseEntity
     {
-        public string RoleName { get; set; }
+
+        public string ActionName { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public DateTime ModifiedOn { get; set; }
@@ -17,7 +18,6 @@ namespace CleanArchitecture.Domain.Entities
         public string ModifiedBy { get; set; }
 
         public bool IsActive { get; set; }
-        public virtual ICollection<UserRoles> UserRoles { get; set; }
         public virtual ICollection<RolePermissions> RolePermissions { get; set; }
     }
 }

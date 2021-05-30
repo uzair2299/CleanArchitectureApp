@@ -97,11 +97,21 @@ var AutoSolutionUtility = {
     //get form data
     getFormData: function (formId) {
         var data = {};
+        var SelectedItems = [];
         $(formId).find('input[type=text],input[type=password]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
             }
         });
+        $(formId).find('input[type=checkbox]').each(function () {
+            if ($(this).prop("checked") == true) {
+                SelectedItems.push(this.value)
+                console.log(this.value);
+            }
+            data['SelectedItems'] = SelectedItems;
+            console.log(data);
+        });
+
         return data;
     },
     getFormDataWithFile: function (formId) {

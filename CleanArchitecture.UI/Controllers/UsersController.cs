@@ -12,10 +12,13 @@ namespace CleanArchitecture.UI.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService UserService;
+        private IAutoSolutionLookupService autoSolutionLookupService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService,
+            IAutoSolutionLookupService autoSolutionLookupService)
         {
             UserService = userService;
+            this.autoSolutionLookupService = autoSolutionLookupService;
         }
 
         public IActionResult Index()
@@ -32,7 +35,9 @@ namespace CleanArchitecture.UI.Controllers
         [HttpGet]
         public IActionResult UserSave()
         {
-            return PartialView("_UserPanel");
+            UserViewModel userViewModel = new UserViewModel();
+            userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+            return PartialView("_UserPanel", userViewModel);
         }
 
         [HttpPost]

@@ -91,7 +91,8 @@ var roles = {
     },
 
     saveRoles: function () {
-        var params = autoSolutionService.ajaxParams($(roles.rolesForm).serialize(), roles.rolesBaseURL + 'SaveRole', 'post', false);
+        var data = AutoSolutionUtility.getFormData(roles.rolesForm);
+        var params = autoSolutionService.ajaxParams(data, roles.rolesBaseURL + 'SaveRole', 'post', false);
         autoSolutionService.defaultService(params).done(function (response) {
             switch (response.status) {
                 case statusCode.UPDATE:

@@ -23,6 +23,10 @@ namespace CleanArchitecture.Infrastructure.Context
         #region Management
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<RolePermissions> RolePermissions { get; set; }
+
         #endregion
 
 

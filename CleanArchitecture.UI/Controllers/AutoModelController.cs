@@ -16,7 +16,6 @@ namespace CleanArchitecture.UI.Controllers
         }
         public IActionResult Index()
         {
-            
             return View();
         }
 

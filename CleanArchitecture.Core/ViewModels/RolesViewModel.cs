@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,10 +23,13 @@ namespace CleanArchitecture.Core.ViewModels
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
+        public List<SelectListItem> PermissionLookup { get; set; }
 
         public string SearchTerm { get; set; }
         public int PageNo { get; set; }
 
         public int PageSize { get; set; }
+
+        public int[] SelectedItems { get; set; }
     }
 }

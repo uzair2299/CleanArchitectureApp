@@ -9,5 +9,10 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IAutoSolutionLookupService
     {
         public List<SelectListItem> GetAutoManufacturerLookup();
+        public List<SelectListItem> GetPermissionLookup();
+        public List<SelectListItem> GetPermissionLookup(int RoleId);
+        public List<SelectListItem> GetRolesLookup();
+
+
     }
 }

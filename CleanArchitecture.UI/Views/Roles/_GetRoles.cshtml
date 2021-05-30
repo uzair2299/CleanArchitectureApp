@@ -26,27 +26,26 @@
                                 <th class="fit text-center">Action</th>
                             </tr>
                         </thead>
-                        @*@if (Model.Pager.TotalItems > 0)
-                        {*@
+                        @if (Model.Pager.TotalItems > 0)
+                            {
 
-                            <tbody>
-                                @foreach (var item in Model.Data)
-                                {
-                                    <tr>
-                                        <td class="pl-3">@item.RoleName</td>
-                                        <td class="fit text-center">
-                                            <!--<button class="btn btn-primary dropdown-toggle table_btn" type="button" data-toggle="dropdown">
-                                                Options-->
-                                                @*<span class="caret"></span>*@
-                                            <!--</button>
-                                            <ul class="dropdown-menu Table_Drop ul_Caim">-->
-                                                
-                                                    @*<li><a href="javascript:void(0);" class="option-a">Print</a></li>*@
-                                                    <!--<li><a href="javascript:void(0);" class="option-a">Edit</a></li>
-                                                    <li><a href="javascript:void(0);" class="option-a">Delete</a></li>
-                                                
-                                            </ul>-->
-                                            <div class="dropdown dropdown-inline">
+                        <tbody>
+                            @foreach (var item in Model.Data)
+                            {
+                                <tr>
+                                    <td class="pl-3">@item.RoleName</td>
+                                    <td class="fit text-center">
+                                        <!--<button class="btn btn-primary dropdown-toggle table_btn" type="button" data-toggle="dropdown">
+                                        Options-->
+                                        @*<span class="caret"></span>*@
+                                        <!--</button>
+                                        <ul class="dropdown-menu Table_Drop ul_Caim">-->
+                                        @*<li><a href="javascript:void(0);" class="option-a">Print</a></li>*@
+                                        <!--<li><a href="javascript:void(0);" class="option-a">Edit</a></li>
+                                                <li><a href="javascript:void(0);" class="option-a">Delete</a></li>
+
+                                        </ul>-->
+                                        @*<div class="dropdown dropdown-inline">
                                                 <button type="button" class="btn btn-hover-brand btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  data-reference="parent">
                                                     <i class="flaticon-more-1"></i>
                                                 </button>
@@ -55,27 +54,27 @@
                                                     <a class="dropdown-item" href="#"><i class="la la-user"></i> Add Customer</a>
                                                     <a class="dropdown-item" href="#"><i class="la la-cloud-download"></i> New Download</a>
                                                 </div>
-                                            </div>
-                                            @*<button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="roles.editRole(@item.Id)"><i class="la la-edit"></i></button>
-        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="roles.deleteRole(@item.Id)"><i class="la la-trash"></i></button>*@
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        @*}*@
-                        @*else
-                        {
-                            <tbody>
-                                <tr>
-                                    <td rowspan="2">
-                                        <div class="alert alert-solid-dark alert-bold" role="alert">
-                                            <div class="alert-text text-center font-weight-bold">There is no data to show</div>
-                                        </div>
+                                            </div>*@
+                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="roles.editRole(@item.Id)"><i class="la la-edit"></i></button>
+                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="roles.deleteRole(@item.Id)"><i class="la la-trash"></i></button>
                                     </td>
                                 </tr>
-                            </tbody>
-                        }*@
+                            }
+                        </tbody>    
+                        }
+                        else
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2">
+                                            <div class="alert alert-solid-dark alert-bold" role="alert">
+                                                <div class="alert-text text-center font-weight-bold">There is no data to show</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
                     </table>
                 </div>
             </div>

@@ -19,6 +19,21 @@ namespace CleanArchitecture.Core.Service
         public List<SelectListItem> GetAutoManufacturerLookup()
         {
             return autoSolutionLookupRepository.GetAutoManufacturerLookup();
-                    }
+        }
+
+        public List<SelectListItem> GetPermissionLookup()
+        {
+            return autoSolutionLookupRepository.GetPermissionLookup();
+        }
+
+        public List<SelectListItem> GetPermissionLookup(int RoleId)
+        {
+            return autoSolutionLookupRepository.GetPermissionLookup(RoleId);
+        }
+
+        public List<SelectListItem> GetRolesLookup()
+        {
+            return autoSolutionLookupRepository.GetRolesLookup();
+        }
     }
 }

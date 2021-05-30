@@ -1,13 +1,20 @@
 ﻿using CleanArchitecture.Domain.BaseEntities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CleanArchitecture.Domain.Entities
 {
-    public class Role : BaseEntity
+    public class UserRoles: BaseEntity
     {
-        public string RoleName { get; set; }
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
+        public virtual Role Role { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; } 
         public DateTime CreatedOn { get; set; }
 
         public DateTime ModifiedOn { get; set; }
@@ -15,9 +22,5 @@ namespace CleanArchitecture.Domain.Entities
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
-
-        public bool IsActive { get; set; }
-        public virtual ICollection<UserRoles> UserRoles { get; set; }
-        public virtual ICollection<RolePermissions> RolePermissions { get; set; }
     }
 }
