@@ -20,6 +20,14 @@ namespace CleanArchitecture.Infrastructure.Repositories
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper autoMapper;
 
+        #region store procedure parameters
+        private const string RoleId = "@RoleId";
+        private const string RoleName = "@RoleName";
+        private const string RolePermissions = "@RolePermissions";
+        private const string OutPutResult = "@OutPutResult";
+
+        #endregion
+
         public RolesRepository(IUnitOfWork unitOfWork, IRepository<Role> repository, IMapper autoMapper = null)
         {
             this.unitOfWork = unitOfWork;
@@ -111,11 +119,20 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 {
                     permissions = null;
                 }
-                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.UpdateRole,
-                    new { RoleId = rolesViewModel.Id, RoleName = rolesViewModel.RoleName, RolePermissions = permissions },
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add(RoleId, rolesViewModel.Id, DbType.Int32, ParameterDirection.Input);
+                parameter.Add(RoleName, rolesViewModel.RoleName, DbType.String, ParameterDirection.Input);
+                parameter.Add(RolePermissions, permissions, DbType.String, ParameterDirection.Input);
+                parameter.Add(OutPutResult, permissions, DbType.Boolean, ParameterDirection.Output);
+
+                //new { RoleId = rolesViewModel.Id, RoleName = rolesViewModel.RoleName, RolePermissions = permissions },
+                db.Execute(AutoSolutionStoreProcedureUtility.UpdateRole,parameter,
                     commandType: CommandType.StoredProcedure);
+                var result = parameter.Get<dynamic>(OutPutResult);
+                return result;
             }
-            return true;
+
             //var checkAlreadyExist = repository.GetById(role.Id);
             //if (checkAlreadyExist != null)
             //{

@@ -10,9 +10,9 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IUserRepository
     {
         bool DeleteUser(int Id);
-        UserViewModel SaveUser(User User);
+        UserViewModel SaveUser(UserViewModel userViewModel);
         AutoSolutionPageSet<UserViewModel> GetUser(UserViewModel UserViewModel);
         UserViewModel GetUserById(int Id);
-        bool UpdateUser(User User);
+        bool UpdateUser(User user);
     }
 }

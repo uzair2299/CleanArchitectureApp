@@ -4,8 +4,11 @@ using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
+using CleanArchitecture.Infrastructure.Utility;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace CleanArchitecture.Infrastructure.Repositories
@@ -15,6 +18,15 @@ namespace CleanArchitecture.Infrastructure.Repositories
         private readonly IRepository<User> repository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper autoMapper;
+
+
+        #region store procedure parameters
+        private const string UserId = "@UserId";
+        private const string UserName = "@UserName";
+        private const string UserRoles = "@UserRoles";
+        private const string OutPutResult = "@OutPutResult";
+        #endregion
+
         public UserRepository(IRepository<User> repository, IUnitOfWork unitOfWork, IMapper autoMapper)
         {
             this.repository = repository;
@@ -59,16 +71,27 @@ namespace CleanArchitecture.Infrastructure.Repositories
         }
 
 
-        public UserViewModel SaveUser(User User)
+        public UserViewModel SaveUser(UserViewModel userViewModel)
         {
-            var alreadyExist = UserAlreadyExist(User);
-            if (!alreadyExist) {
-                var result = repository.Add(User);
-                unitOfWork.SaveChanges();
-                return autoMapper.Map<UserViewModel>(result);
-            }
-            else
+
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             {
+                db.Open();
+                var roles = "";
+                if (userViewModel.SelectedItems != null)
+                {
+                    roles = string.Join(',', userViewModel.SelectedItems);
+                }
+                else
+                {
+                    roles = null;
+                }
+
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add(UserName, userViewModel.UserName, DbType.String, ParameterDirection.Input);
+                parameter.Add(UserRoles, roles, DbType.String, ParameterDirection.Input);
+                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.spInsertUser,
+                    parameter, commandType: CommandType.StoredProcedure);
                 return null;
             }
         }

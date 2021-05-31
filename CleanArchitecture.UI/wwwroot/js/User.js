@@ -90,7 +90,8 @@
         },
 
         saveUser: function () {
-            var params = autoSolutionService.ajaxParams($(User.UserForm).serialize(), User.UserBaseURL + 'UserSave', 'post', false);
+            var data = AutoSolutionUtility.getFormData(User.UserForm);
+            var params = autoSolutionService.ajaxParams(data, User.UserBaseURL + 'UserSave', 'post', false);
             autoSolutionService.defaultService(params).done(function (response) {
                 switch (response.status) {
                     case statusCode.UPDATE:

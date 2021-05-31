@@ -60,6 +60,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult EditUser(int Id)
         {
             var result = UserService.GetUserById(Id);
+            result.RolesLookup = autoSolutionLookupService.GetRolesLookup(result.Id);
             return PartialView("_UserPanel", result);
         }
 

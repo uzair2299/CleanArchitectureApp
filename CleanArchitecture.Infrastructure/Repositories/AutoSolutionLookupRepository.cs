@@ -150,5 +150,28 @@ namespace CleanArchitecture.Infrastructure.Repositories
             }).OrderBy(x => x.Text).ToList();
             return selectListItems;
         }
+
+        public List<SelectListItem> GetRolesLookup(int UserId)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            var userRoles = unitOfWork.GetAutoSolutionContext().UserRoles.Where(x => x.UserId == UserId).ToList();
+            IQueryable<Role> result = unitOfWork.GetAutoSolutionContext().Roles.Where(x => x.IsActive == true).OrderBy(x => x.RoleName).AsQueryable();
+            selectListItems = result.Select(x => new SelectListItem()
+            {
+                Text = x.RoleName,
+                Value = x.Id.ToString(),
+            }).ToList();
+            foreach (var item in userRoles)
+            {
+                foreach (var innerItem in selectListItems)
+                {
+                    if (Convert.ToInt32(innerItem.Value) == item.RoleId)
+                    {
+                        innerItem.Selected = true;
+                    }
+                }
+            }
+            return selectListItems;
+        }
     }
 }

@@ -35,5 +35,11 @@ namespace CleanArchitecture.Core.Service
         {
             return autoSolutionLookupRepository.GetRolesLookup();
         }
+
+
+        public List<SelectListItem> GetRolesLookup(int UserId)
+        {
+            return autoSolutionLookupRepository.GetRolesLookup(UserId);
+        }
     }
 }

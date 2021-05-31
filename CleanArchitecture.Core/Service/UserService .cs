@@ -23,8 +23,8 @@ namespace CleanArchitecture.Core.Service
 
         public UserViewModel UserSave(UserViewModel UserViewModel)
         {
-            User = autoMapper.Map<User>(UserViewModel);
-            return UserRepository.SaveUser(User);
+            //User = autoMapper.Map<User>(UserViewModel);
+            return UserRepository.SaveUser(UserViewModel);
         }
 
         public bool DeleteUser(int Id)

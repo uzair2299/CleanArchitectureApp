@@ -12,6 +12,7 @@ namespace CleanArchitecture.Core.Interfaces
         List<SelectListItem> GetPermissionLookup();
         List<SelectListItem> GetPermissionLookup(int RoleId);
         public List<SelectListItem> GetRolesLookup();
+        public List<SelectListItem> GetRolesLookup(int UserId);
 
     }
 }
