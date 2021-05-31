@@ -21,9 +21,16 @@ namespace CleanArchitecture.UI.Controllers
             this.autoSolutionLookupService = autoSolutionLookupService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(UserViewModel userViewModel)
         {
-            return View();
+            AutoSolutionPageSet<UserViewModel> result = UserService.GetUser(userViewModel);
+            return View(result);
+        }
+        public IActionResult AddNew()
+        {
+            UserViewModel userViewModel = new UserViewModel();
+            userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+            return View(userViewModel);
         }
         [HttpGet]
         public IActionResult GetUser(UserViewModel UserViewModel)

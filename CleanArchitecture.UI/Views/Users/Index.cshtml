@@ -17,8 +17,12 @@
                 <div class="kt-subheader__wrapper">
                     <button class="btn btn-dark btn-icon-sm" onclick="User.loadUserPanel()" id="_UserPanelbtn">
                         <i class="la la-plus"></i>
-                        Add New
+                        Quick Add
                     </button>
+                    <a asp-action="AddNew" asp-controller="Users" class="btn btn-dark btn-icon-sm">
+                        <i class="la la-plus"></i>
+                        Add New
+                    </a>
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="" data-placement="left" data-original-title="Quick actions">
                         <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
@@ -128,7 +132,7 @@
             <div class="kt-separator kt-separator--md kt-separator--dashed m-0"></div>
             <div id="_GetUser">
 
-
+                <partial name="_GetUsers.cshtml">
             </div>
         </div>
         <div id="_UserPanelContainer">

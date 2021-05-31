@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    User.getUser();
+    //User.getUser();
 });
 
 
