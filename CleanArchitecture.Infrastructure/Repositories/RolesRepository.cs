@@ -4,8 +4,12 @@ using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
+using CleanArchitecture.Infrastructure.Utility;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace CleanArchitecture.Infrastructure.Repositories
@@ -57,36 +61,73 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return autoSolutionPageSet;
         }
 
-        public RolesViewModel SaveRole(Role role)
+        public string SaveRole(RolesViewModel rolesViewModel)
         {
-            var alreadyExist = RoleAlreadyExist(role);
-            if (!alreadyExist)
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             {
-                var result = repository.Add(role);
-                unitOfWork.SaveChanges();
-                return autoMapper.Map<RolesViewModel>(result);
+                db.Open();
+                var permissions = "";
+                if (rolesViewModel.SelectedItems != null)
+                {
+                     permissions = string.Join(',', rolesViewModel.SelectedItems);
+                }
+                else
+                {
+                    permissions = null;
+                }
+                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.InsertRole,
+                    new { RoleName = rolesViewModel.RoleName,
+                        RolePermissions = permissions
+                    }, commandType: CommandType.StoredProcedure);
+                return result.ToString();
             }
-            else
-            {
-                return null;
-            }
+
+            //var  role = autoMapper.Map<Role>(rolesViewModel);
+            //var alreadyExist = RoleAlreadyExist(role);
+            //if (!alreadyExist)
+            //{
+            //    var result = repository.Add(role);
+            //    unitOfWork.SaveChanges();
+            //    return autoMapper.Map<RolesViewModel>(result);
+            //}
+            //else
+            //{
+               return null;
+            //}
 
         }
 
-        public bool UpdateRole(Role role)
+        public bool UpdateRole(RolesViewModel rolesViewModel)
         {
-            var checkAlreadyExist = repository.GetById(role.Id);
-            if (checkAlreadyExist != null)
+            var permissions = "";
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             {
-                unitOfWork.GetAutoSolutionContext().Entry(checkAlreadyExist).State = EntityState.Detached;
-                checkAlreadyExist = autoMapper.Map<Role>(role);
-                repository.Update(checkAlreadyExist);
-                autoMapper.Map<RolesViewModel>(checkAlreadyExist);
-                var resultbool = unitOfWork.SaveChanges();
-                return resultbool == true ? true : false;
+                db.Open();
+                if (rolesViewModel.SelectedItems != null)
+                {
+                    permissions = string.Join(',', rolesViewModel.SelectedItems);
+                }
+                else
+                {
+                    permissions = null;
+                }
+                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.UpdateRole,
+                    new { RoleId = rolesViewModel.Id, RoleName = rolesViewModel.RoleName, RolePermissions = permissions },
+                    commandType: CommandType.StoredProcedure);
             }
-            else
-                return false;
+            return true;
+            //var checkAlreadyExist = repository.GetById(role.Id);
+            //if (checkAlreadyExist != null)
+            //{
+            //    unitOfWork.GetAutoSolutionContext().Entry(checkAlreadyExist).State = EntityState.Detached;
+            //    checkAlreadyExist = autoMapper.Map<Role>(role);
+            //    repository.Update(checkAlreadyExist);
+            //    autoMapper.Map<RolesViewModel>(checkAlreadyExist);
+            //    var resultbool = unitOfWork.SaveChanges();
+            //    return resultbool == true ? true : false;
+            //}
+            //else
+            //    return false;
         }
 
 

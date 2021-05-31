@@ -98,7 +98,7 @@ var AutoSolutionUtility = {
     getFormData: function (formId) {
         var data = {};
         var SelectedItems = [];
-        $(formId).find('input[type=text],input[type=password]').each(function () {
+        $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
             }
@@ -118,7 +118,7 @@ var AutoSolutionUtility = {
         var data = {};
         var dataWithFile = new FormData();
 
-        $(formId).find('input[type=text],input[type=password]').each(function () {
+        $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
                 dataWithFile.append(this.id,this.value.trim());
@@ -138,7 +138,7 @@ var AutoSolutionUtility = {
 
     getFormDataByName: function (formId) {
         var data = {};
-        $(formId).find('input[type=text],input[type=password]').each(function () {
+        $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
             if (this.name) {
                 data[this.name] = this.value.trim();
             }

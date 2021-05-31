@@ -10,9 +10,9 @@ namespace CleanArchitecture.Core.Interfaces
     public interface IRolesRepository
     {
         bool DeleteRole(int Id);
-        RolesViewModel SaveRole(Role role);
+        string SaveRole(RolesViewModel rolesViewModel);
         AutoSolutionPageSet<RolesViewModel> GetRoles(RolesViewModel rolesViewModel);
         RolesViewModel GetRoleById(int Id);
-        bool UpdateRole(Role role);
+        bool UpdateRole(RolesViewModel rolesViewModel);
     }
 }

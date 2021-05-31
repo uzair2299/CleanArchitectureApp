@@ -10,6 +10,8 @@ namespace CleanArchitecture.Infrastructure.Utility
         public const string SelectAutoModel = "SelectAutoModel";
         public const string SelectAutoVersion = "SelectAutoVersion";
         public const string LookupForAutoVersion = "LookupForAutoVersion";
+        public const string InsertRole = "spInsertRole";
+        public const string UpdateRole = "spUpdateRole";
 
     }
 }

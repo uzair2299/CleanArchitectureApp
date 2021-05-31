@@ -37,16 +37,15 @@ namespace CleanArchitecture.Core.Service
             return rolesRepository.GetRoles(rolesViewModel);
         }
 
-        public RolesViewModel SaveRole(RolesViewModel rolesViewModel)
+        public string SaveRole(RolesViewModel rolesViewModel)
         {
-            role = autoMapper.Map<Role>(rolesViewModel);
-            return rolesRepository.SaveRole(role);
+            return rolesRepository.SaveRole(rolesViewModel);
         }
 
         public bool UpdateRole(RolesViewModel rolesViewModel)
         {
-            role = autoMapper.Map<Role>(rolesViewModel);
-            return rolesRepository.UpdateRole(role);
+            //role = autoMapper.Map<Role>(rolesViewModel);
+            return rolesRepository.UpdateRole(rolesViewModel);
         }
     }
 }
