@@ -6,11 +6,11 @@
 };
 
 const statusCode = {
-    UPDATE : 'Update',
+    UPDATE: 'Update',
     FAIL: 'fail',
     SAVE: 'save',
     DELETE: 'delete',
-    ALREADY:'exist'
+    ALREADY: 'exist'
 }
 
 const toastMessage = {
@@ -18,7 +18,7 @@ const toastMessage = {
     ERROR: 'Opps...Some Thing Went Wrong',
     UPDATE: 'Update Successfully',
     DELETE: 'Delete Successfully',
-    ALREADYEXIST:'Record Already Exist'
+    ALREADYEXIST: 'Record Already Exist'
 };
 
 const htmlTemplate = {
@@ -57,7 +57,7 @@ var AutoSolutionUtility = {
 
 
     //toast notification
-    toastNotifiy: function (type,message) {
+    toastNotifiy: function (type, message) {
         toastr.options = {
             "closeButton": true,
             "debug": false,
@@ -78,7 +78,7 @@ var AutoSolutionUtility = {
     },
 
     deleteConfirmationBox: function () {
-        return  swal.fire({
+        return swal.fire({
             title: 'Are you sure?',
             width: 600,
             heightAuto: false,
@@ -89,7 +89,7 @@ var AutoSolutionUtility = {
             allowOutsideClick: false,
             scrollbarPadding: false,
             confirmButtonText: '<i class="mr-2 fa fa-times"></i>Yes, delete it!',
-            cancelButtonText:'<i class="mr-2 fa fa-trash-alt"></i>Cancel'
+            cancelButtonText: '<i class="mr-2 fa fa-trash-alt"></i>Cancel'
         })
     },
 
@@ -111,6 +111,13 @@ var AutoSolutionUtility = {
             data['SelectedItems'] = SelectedItems;
             console.log(data);
         });
+        $(formId).find('select').each(function (i, list) {
+            //console.log(this.id);
+            //console.log(list);
+            //console.log($(list).find('option:selected').val());
+            data[this.id] = $(list).find('option:selected').val()
+            data[this.id+"Text"] = $(list).find('option:selected').text();
+        });
 
         return data;
     },
@@ -121,7 +128,7 @@ var AutoSolutionUtility = {
         $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
-                dataWithFile.append(this.id,this.value.trim());
+                dataWithFile.append(this.id, this.value.trim());
             }
         });
 
@@ -155,7 +162,7 @@ var AutoSolutionUtility = {
             }
             reader.readAsDataURL(element.files[0]);
 
-           // KTUtil.addClass(the.element, 'kt-avatar--changed');
+            // KTUtil.addClass(the.element, 'kt-avatar--changed');
         }
     },
 
@@ -184,24 +191,28 @@ var AutoSolutionUtility = {
         element.css(styleProp, value);
     },
 
-    removeAttribute: function (element, attribute) {
-        $(element).removeAttr(attribute);
+    removeAttribute: function (selector, attribute) {
+        $(selector).removeAttr(attribute);
     },
 
-    addAttribute: function (element, attribute,value) {
-        $(element).attr(attribute,value);
+    addAttribute: function (selector, attribute, value) {
+        $(selector).attr(attribute, value);
     },
-    removeCssClass: function (element, className) {
-        $(element).removeClass(className);
+    removeCssClass: function (selector, className) {
+        $(selector).removeClass(className);
     },
-     addCssClass: function (element, className) {
-         $(element).addClass(className);
+    addCssClass: function (selector, className) {
+        $(selector).addClass(className);
     },
 
-     appendDefaultSelectOption: function (selector,_value,_text) {
-         $(selector).append($('<option/> ', {
-             value: _value,
-             text: _text
-         }));
+    appendDefaultSelectOption: function (selector, _value, _text) {
+        $(selector).append($('<option/> ', {
+            value: _value,
+            text: _text
+        }));
+    },
+
+    setSelectOptionValue: function (selector, value) {
+        $(selector).val(value);
     }
 }

@@ -1,312 +1,314 @@
-﻿@{
+﻿@model CleanArchitecture.Core.ViewModels.PriceCalculatorViewModel
+@{
+
     ViewData["Title"] = "Price Calculator";
 }
 <script src="~/js/PriceCalculator.js"></script>
-                    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
-                        <!-- begin:: Content Head -->
-                        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                            <div class="kt-container  kt-container--fluid ">
-                                <div class="kt-subheader__main">
-                                    <h3 class="kt-subheader__title">Price Calculator</h3>
-                                    <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-                                </div>
-                                <!--<div class="kt-subheader__toolbar">
-                                    <div class="kt-subheader__wrapper">
-                                        <button class="btn btn-dark btn-icon-sm" onclick="PriceCalculator.loadPriceCalculatorPanel()" id="_PriceCalculatorPanelbtn">
-                                            <i class="la la-plus"></i>
-                                            Quick Add
-                                        </button>
-                                        <a asp-action="AddNew" asp-controller="Price Calculators" class="btn btn-dark btn-icon-sm">
-                                            <i class="la la-plus"></i>
-                                            Add New
-                                        </a>
-                                        <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="" data-placement="left" data-original-title="Quick actions">
-                                            <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
-                                                        <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                                                        <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" id="Combined-Shape" fill="#000000"></path>
-                                                    </g>
-                                                </svg>-->
-                                <!--<i class="flaticon2-plus"></i>-->
-                                <!--</a>
-                                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">-->
-                                <!--begin::Nav-->
-                                <!--<ul class="kt-nav">
-                                    <li class="kt-nav__head">
-                                        Add anything or jump to:
-                                        <i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
-                                    </li>
-                                    <li class="kt-nav__separator"></li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-drop"></i>
-                                            <span class="kt-nav__link-text">Order</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-calendar-8"></i>
-                                            <span class="kt-nav__link-text">Ticket</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-link"></i>
-                                            <span class="kt-nav__link-text">Goal</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-new-email"></i>
-                                            <span class="kt-nav__link-text">Support Case</span>
-                                            <span class="kt-nav__link-badge">
-                                                <span class="kt-badge kt-badge--success">5</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__separator"></li>
-                                    <li class="kt-nav__foot">
-                                        <a class="btn btn-label-brand btn-bold btn-sm" href="#">Upgrade plan</a>
-                                        <a class="btn btn-clean btn-bold btn-sm" href="#" data-toggle="kt-tooltip" data-placement="right" title="" data-original-title="Click to learn more...">Learn more</a>
-                                    </li>
-                                </ul>-->
-                                <!--end::Nav-->
-                                <!--</div>
-                                        </div>
-                                    </div>
-                                </div>-->
-                            </div>
-                        </div>
+    <!-- begin:: Content Head -->
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">Price Calculator</h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            </div>
+            <!--<div class="kt-subheader__toolbar">
+                <div class="kt-subheader__wrapper">
+                    <button class="btn btn-dark btn-icon-sm" onclick="PriceCalculator.loadPriceCalculatorPanel()" id="_PriceCalculatorPanelbtn">
+                        <i class="la la-plus"></i>
+                        Quick Add
+                    </button>
+                    <a asp-action="AddNew" asp-controller="Price Calculators" class="btn btn-dark btn-icon-sm">
+                        <i class="la la-plus"></i>
+                        Add New
+                    </a>
+                    <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="" data-placement="left" data-original-title="Quick actions">
+                        <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                    <path d="M11,14 L9,14 C8.44771525,14 8,13.5522847 8,13 C8,12.4477153 8.44771525,12 9,12 L11,12 L11,10 C11,9.44771525 11.4477153,9 12,9 C12.5522847,9 13,9.44771525 13,10 L13,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L13,14 L13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,14 Z" id="Combined-Shape" fill="#000000"></path>
+                                </g>
+                            </svg>-->
+            <!--<i class="flaticon2-plus"></i>-->
+            <!--</a>
+            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">-->
+            <!--begin::Nav-->
+            <!--<ul class="kt-nav">
+                <li class="kt-nav__head">
+                    Add anything or jump to:
+                    <i class="flaticon2-information" data-toggle="kt-tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
+                </li>
+                <li class="kt-nav__separator"></li>
+                <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                        <i class="kt-nav__link-icon flaticon2-drop"></i>
+                        <span class="kt-nav__link-text">Order</span>
+                    </a>
+                </li>
+                <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                        <i class="kt-nav__link-icon flaticon2-calendar-8"></i>
+                        <span class="kt-nav__link-text">Ticket</span>
+                    </a>
+                </li>
+                <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                        <i class="kt-nav__link-icon flaticon2-link"></i>
+                        <span class="kt-nav__link-text">Goal</span>
+                    </a>
+                </li>
+                <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                        <i class="kt-nav__link-icon flaticon2-new-email"></i>
+                        <span class="kt-nav__link-text">Support Case</span>
+                        <span class="kt-nav__link-badge">
+                            <span class="kt-badge kt-badge--success">5</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="kt-nav__separator"></li>
+                <li class="kt-nav__foot">
+                    <a class="btn btn-label-brand btn-bold btn-sm" href="#">Upgrade plan</a>
+                    <a class="btn btn-clean btn-bold btn-sm" href="#" data-toggle="kt-tooltip" data-placement="right" title="" data-original-title="Click to learn more...">Learn more</a>
+                </li>
+            </ul>-->
+            <!--end::Nav-->
+            <!--</div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
 
-                        <!-- end:: Content Head -->
-                        <!-- begin:: Content -->
-                        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-                            <div class="kt-portlet kt-portlet--mobile">
-                                <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
-                                    <div class="kt-portlet__head-label">
-                                        <span class="kt-portlet__head-icon">
-                                            <i class="fa fa-calculator"></i>
-                                        </span>
-                                        <h3 class="kt-portlet__head-title">
-                                            Price Calculator
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="kt-portlet__body">
-                                    <form class="kt-form kt-form--fit kt-margin-b-20 kt-separator--danger" id="PriceCalculator">
-                                        <div class="form-group row">
-                                            <div class="col-lg-4">
-                                                <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
-                                                @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                <select asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" id="SelectedManufacturer" style="width:100%">
-                                                    <option value="" class="text-center">Select Manufacturer</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
-                                                @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                <select class="form-control kt-select2 disabled" name="SelectedModel" id="SelectedModel" style="width:100%" disabled>
-                                                    <option value="">Select Model</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Version:</label>
-                                                @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                <select class="form-control kt-select2 disabled" name="SelectedVersion" id="SelectedVersion" style="width:100%" disabled>
-                                                    <option value="">Select Version</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 text-right">
-                                                <button type="button" class="btn btn-dark btn-brand--icon btn-sm disabled" id="kt_search" onclick="PriceCalculator.searchAutoManufacture(event);" disabled>
-                                                    <span>
-                                                        <i class="la la-calculator"></i>
-                                                        <span>Calculate</span>
-                                                    </span>
-                                                </button>
-                                                &nbsp;&nbsp;
-                                                <button class="btn btn-secondary btn-secondary--icon btn-sm" type="button" onclick="PriceCalculator.Reset()">
-                                                    <span>
-                                                        <i class="la la-close"></i>
-                                                        <span>Reset</span>
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+    <!-- end:: Content Head -->
+    <!-- begin:: Content -->
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
+                <div class="kt-portlet__head-label">
+                    <span class="kt-portlet__head-icon">
+                        <i class="fa fa-calculator"></i>
+                    </span>
+                    <h3 class="kt-portlet__head-title">
+                        Price Calculator
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <form class="kt-form kt-form--fit kt-margin-b-20 kt-separator--danger" id="PriceCalculator">
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
+                            @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                            <select asp-for="SelectedAutoManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" id="SelectedAutoManufacturer" style="width:100%">
+                                <option value="" class="text-center">Select Manufacturer</option>
+                            </select>
                         </div>
-                        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-                            <div class="kt-portlet kt-portlet--mobile">
-                                <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
-                                    <div class="kt-portlet__head-label">
-                                        <span class="kt-portlet__head-icon">
-                                            <i class="fa fa-car"></i>
-                                        </span>
-                                        <h3 class="kt-portlet__head-title">
-                                            On Road Price
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="kt-portlet__body">
-                                    <div class="kt-section kt-section--space-md">
-                                        <div class="kt-widget24 kt-widget24--solid">
-                                            <div class="kt-widget24__details">
-                                                <div class="kt-widget24__info">
-                                                    <h5 class="kt-link">
-                                                        Vehicle Detail
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Manufacturer
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    Toyota
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Model
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    Corolla
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Version
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    GLI
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Ex-Factory Price
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    GLI
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="kt-section kt-section--space-md">
-                                        <div class="kt-widget24 kt-widget24--solid">
-                                            <div class="kt-widget24__details">
-                                                <div class="kt-widget24__info">
-                                                    <h5 class="kt-link">
-                                                        With Holding Charges
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    7500
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Non Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    15000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="kt-section kt-section--space-md">
-                                        <div class="kt-widget24 kt-widget24--solid">
-                                            <div class="kt-widget24__details">
-                                                <div class="kt-widget24__info">
-                                                    <h5 class="kt-link">
-                                                        Ex-Showroom Price
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    7500
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Non Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    15000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="kt-section kt-section--space-md">
-                                        <div class="kt-widget24 kt-widget24--solid">
-                                            <div class="kt-widget24__details">
-                                                <div class="kt-widget24__info">
-                                                    <h5 class="kt-link">
-                                                        Punjab Govt. Charges
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Number Plate Charges
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    7500
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change">
-                                                    Registration Document Price
-                                                </span>
-                                                <span class="kt-widget24__number">
-                                                    15000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="kt-section kt-section--space-md">
-                                        <div class="kt-widget24 kt-widget24--solid">
-                                            <div class="kt-widget24__details">
-                                                <div class="kt-widget24__info">
-                                                    <h5 class="kt-link">
-                                                        Price
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change text-success font-weight-bold">
-                                                    Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number text-success font-weight-bold">
-                                                    7500
-                                                </span>
-                                            </div>
-                                            <div class="kt-widget24__action p-1">
-                                                <span class="kt-widget24__change text-success font-weight-bold">
-                                                    Non Tax Filer
-                                                </span>
-                                                <span class="kt-widget24__number text-success font-weight-bold">
-                                                    15000
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-4">
+                            <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
+                            @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                            <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedModel" id="SelectedAutoModel" style="width:100%" disabled>
+                                <option value="">Select Model</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Version:</label>
+                            @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                            <select asp-for="SelectedAutoVersion" class="form-control kt-select2 disabled" name="SelectedVersion" id="SelectedAutoVersion" style="width:100%" disabled>
+                                <option value="">Select Version</option>
+                            </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <button type="button" class="btn btn-dark btn-brand--icon btn-sm" id="kt_search" onclick="PriceCalculator.CalculatePrice();">
+                                <span>
+                                    <i class="la la-calculator"></i>
+                                    <span>Calculate</span>
+                                </span>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button class="btn btn-secondary btn-secondary--icon btn-sm" type="button" onclick="PriceCalculator.Reset()">
+                                <span>
+                                    <i class="la la-close"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
+                <div class="kt-portlet__head-label">
+                    <span class="kt-portlet__head-icon">
+                        <i class="fa fa-car"></i>
+                    </span>
+                    <h3 class="kt-portlet__head-title">
+                        On Road Price
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-section kt-section--space-md">
+                    <div class="kt-widget24 kt-widget24--solid">
+                        <div class="kt-widget24__details">
+                            <div class="kt-widget24__info">
+                                <h5 class="kt-link">
+                                    Vehicle Detail
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Manufacturer
+                            </span>
+                            <span class="kt-widget24__number">
+                                Toyota
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Model
+                            </span>
+                            <span class="kt-widget24__number">
+                                Corolla
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Version
+                            </span>
+                            <span class="kt-widget24__number">
+                                GLI
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Ex-Factory Price
+                            </span>
+                            <span class="kt-widget24__number">
+                                GLI
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--space-md">
+                    <div class="kt-widget24 kt-widget24--solid">
+                        <div class="kt-widget24__details">
+                            <div class="kt-widget24__info">
+                                <h5 class="kt-link">
+                                    With Holding Charges
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Tax Filer
+                            </span>
+                            <span class="kt-widget24__number">
+                                7500
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Non Tax Filer
+                            </span>
+                            <span class="kt-widget24__number">
+                                15000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--space-md">
+                    <div class="kt-widget24 kt-widget24--solid">
+                        <div class="kt-widget24__details">
+                            <div class="kt-widget24__info">
+                                <h5 class="kt-link">
+                                    Ex-Showroom Price
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Tax Filer
+                            </span>
+                            <span class="kt-widget24__number">
+                                7500
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Non Tax Filer
+                            </span>
+                            <span class="kt-widget24__number">
+                                15000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--space-md">
+                    <div class="kt-widget24 kt-widget24--solid">
+                        <div class="kt-widget24__details">
+                            <div class="kt-widget24__info">
+                                <h5 class="kt-link">
+                                    Punjab Govt. Charges
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Number Plate Charges
+                            </span>
+                            <span class="kt-widget24__number">
+                                7500
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change">
+                                Registration Document Price
+                            </span>
+                            <span class="kt-widget24__number">
+                                15000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--space-md">
+                    <div class="kt-widget24 kt-widget24--solid">
+                        <div class="kt-widget24__details">
+                            <div class="kt-widget24__info">
+                                <h5 class="kt-link">
+                                    Price
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change text-success font-weight-bold">
+                                Tax Filer
+                            </span>
+                            <span class="kt-widget24__number text-success font-weight-bold">
+                                7500
+                            </span>
+                        </div>
+                        <div class="kt-widget24__action p-1">
+                            <span class="kt-widget24__change text-success font-weight-bold">
+                                Non Tax Filer
+                            </span>
+                            <span class="kt-widget24__number text-success font-weight-bold">
+                                15000
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

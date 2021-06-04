@@ -24,6 +24,11 @@ namespace CleanArchitecture.UI.Controllers
             return View(priceCalculatorViewModel);
         }
 
+        public IActionResult GetOnRoadPrice(PriceCalculatorViewModel priceCalculatorViewModel)
+        {
+            return PartialView();
+        }
+
         public IActionResult GetAutoModelLookUp(int Id)
         {
             var result = autoSolutionLookupService.GetAutoModelLookup(Id);

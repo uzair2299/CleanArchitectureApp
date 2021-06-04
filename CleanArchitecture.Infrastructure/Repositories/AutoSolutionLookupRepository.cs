@@ -92,7 +92,22 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Text = x.ModelName,
                 Value = x.Id.ToString()
             }).ToList();
-            return selectListItems;
+            if (selectListItems.Count > 1)
+            {
+                return selectListItems;
+            }
+            else
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = "Select Model",
+                    Value = ""
+                };
+                selectListItems.Add(selectListItem);
+                return selectListItems;
+            }
+
+
         }
 
         public List<SelectListItem> GetAutoVersionLookup(int Id)

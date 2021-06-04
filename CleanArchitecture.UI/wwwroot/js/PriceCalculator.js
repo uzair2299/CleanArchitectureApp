@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
-    SelectedManufacturer = "#SelectedManufacturer";
-    SelectedModel = "#SelectedModel";
-    SelectedVersion = "#SelectedVersion";
+    SelectedManufacturer = "#SelectedAutoManufacturer";
+    SelectedModel = "#SelectedAutoModel";
+    SelectedVersion = "#SelectedAutoVersion";
         $(SelectedManufacturer).on('change', function () {
             var SelectedManufacturerId = $(SelectedManufacturer).val();
             console.log(SelectedManufacturerId);
@@ -37,8 +37,6 @@
             AutoSolutionUtility.clearHTML("SelectedVersion")
             AutoSolutionUtility.appendDefaultSelectOption(SelectedVersion, "", "Select Version");
         }
-
-
     })
 });
 
@@ -81,9 +79,9 @@
         PriceCalculatoreSearchForm:"#PriceCalculatorSearchForm",
 
         //LookUp Ids
-        SelectedManufacturer : "#SelectedManufacturer",
-        SelectedModel: "#SelectedModel",
-        SelectedVersion: "#SelectedVersion",
+        SelectedManufacturer : "#SelectedAutoManufacturer",
+        SelectedModel : "#SelectedAutoModel",
+        SelectedVersion: "#SelectedAutoVersion",
 
         PriceCalculatorGetPanel: "_GetPriceCalculator",
 
@@ -91,63 +89,44 @@
             event.preventDefault();
             $(PriceCalculator.PriceCalculatorForm).validate({
                 rules: {
-                    PriceCalculatorName: {
+                    SelectedManufacturer: {
+                        required: true
+                    },
+                    SelectedModel: {
+                        required: true
+                    },
+                    SelectedVersion: {
                         required: true
                     }
+
                 },
                 messages: {
-                    PriceCalculatorName: {
-                        required: "Name is Required"
+                    SelectedManufacturer: {
+                        required: "Auto Manufacturer is Required"
+                    },
+                    SelectedModel: {
+                        required: "Auto Model is Required"
+                    },
+                    SelectedVersion: {
+                        required: "Auto Version is Required"
                     }
                 }
             });
 
             if ($(PriceCalculator.PriceCalculatorForm).valid()) {
-                PriceCalculator.savePriceCalculator();
+                PriceCalculator.CalculatePrice();
             }
             else {
                 console.log("fuck");
             }
             return false;
         },
-
-        editPriceCalculator: function (id) {
-            data = { Id: id }
-            var params = autoSolutionService.ajaxParams(data, PriceCalculator.PriceCalculatorBaseURL + 'EditPriceCalculator', 'get', true);
-            autoSolutionService.defaultService(params).done(function (response) {
-                AutoSolutionUtility.clearHTML(PriceCalculator.PriceCalculatorPanelContainer);
-                AutoSolutionUtility.appendHTML(PriceCalculator.PriceCalculatorPanelContainer, response);
-                $("#" + PriceCalculator.PriceCalculatorPanel + " .modal-title").text(PriceCalculator.PriceCalculatorPanelUpdateTitle);
-                $("#" + PriceCalculator.PriceCalculatorPanel + " #btnPriceCalculator").html(htmlTemplate.UPDATE_BTN);
-                AutoSolutionUtility.showPanel(PriceCalculator.PriceCalculatorPanel);
-                AutoSolutionUtility.hideLoader()
-            });
-        },
-
-        savePriceCalculator: function () {
+        
+        CalculatePrice: function () {
+            AutoSolutionUtility.showLoader
             var data = AutoSolutionUtility.getFormData(PriceCalculator.PriceCalculatorForm);
-            var params = autoSolutionService.ajaxParams(data, PriceCalculator.PriceCalculatorBaseURL + 'PriceCalculatorSave', 'post', false);
+            var params = autoSolutionService.ajaxParams(data, PriceCalculator.PriceCalculatorBaseURL + 'GetOnRoadPrice', 'get', false);
             autoSolutionService.defaultService(params).done(function (response) {
-                switch (response.status) {
-                    case statusCode.UPDATE:
-                        AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.UPDATE);
-                        PriceCalculator.getPriceCalculator();
-                        AutoSolutionUtility.hidePanel(PriceCalculator.PriceCalculatorPanelContainer);
-                        AutoSolutionUtility.clearHTML(PriceCalculator.PriceCalculatorPanelContainer);
-                        break;
-                    case statusCode.SAVE:
-                        AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
-                        PriceCalculator.getPriceCalculator();
-                        AutoSolutionUtility.hidePanel(PriceCalculator.PriceCalculatorPanelContainer);
-                        AutoSolutionUtility.clearHTML(PriceCalculator.PriceCalculatorPanelContainer);
-                        break;
-                    case statusCode.ALREADY:
-                        AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ALREADYEXIST);
-                        break;
-                    default:
-                        AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ERROR);
-                }
-                AutoSolutionUtility.hideLoader();
             });
         },
 
@@ -196,6 +175,8 @@
         },
 
         Reset: function () {
+            AutoSolutionUtility.setSelectOptionValue(PriceCalculator.SelectedManufacturer, "");
+
             AutoSolutionUtility.clearHTML("SelectedModel");
             AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedModel, "", "Select Model")
             AutoSolutionUtility.addAttribute(PriceCalculator.SelectedModel, "disabled", true);
@@ -205,6 +186,8 @@
             AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedVersion, "", "Select Version")
             AutoSolutionUtility.addAttribute(PriceCalculator.SelectedVersion, "disabled", true);
             AutoSolutionUtility.addCssClass(PriceCalculator.SelectedVersion, "disabled");
+            //var validator = $(PriceCalculator.PriceCalculatorForm).validate();
+            //validator.resetForm();
 }
 
 
