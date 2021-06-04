@@ -4,85 +4,22 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210601100950_Actions")]
+    partial class Actions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AppControllerActions", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("ActionName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ControllerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ControllerId");
-
-                    b.ToTable("AppControllerActions");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AppControllers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("ControllerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppControllers");
-                });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoBodyType", b =>
                 {
@@ -498,17 +435,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AppControllerActions", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Entities.AppControllers", "AppControllers")
-                        .WithMany("AppControllerActions")
-                        .HasForeignKey("ControllerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppControllers");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoModel", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoManufacturer", "AutoManufacturer")
@@ -592,11 +518,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AppControllers", b =>
-                {
-                    b.Navigation("AppControllerActions");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>

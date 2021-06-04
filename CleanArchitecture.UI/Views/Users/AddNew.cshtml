@@ -20,14 +20,14 @@
                         Back
                     </button>
                     @*<button class="btn btn-dark btn-icon-sm" onclick="User.loadUserPanel()" id="_UserPanelbtn">
-            <i class="la la-plus"></i>
-            Add New 1ss
-        </button>
+                            <i class="la la-plus"></i>
+                            Add New 1ss
+                        </button>
 
-        <button class="btn btn-dark btn-icon-sm" onclick="User.loadUserPanel()" id="_UserPanelbtn">
-            <i class="la la-plus"></i>
-            Add New
-        </button>*@
+                        <button class="btn btn-dark btn-icon-sm" onclick="User.loadUserPanel()" id="_UserPanelbtn">
+                            <i class="la la-plus"></i>
+                            Add New
+                        </button>*@
                     <div class="dropdown dropdown-inline" data-toggle="kt-tooltip" title="" data-placement="left" data-original-title="Quick actions">
                         <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--md">
@@ -111,124 +111,276 @@
                         <div class="kt-portlet__body">
                             <div class="kt-section">
                                 <div class="kt-section__content">
-                                    <div class="form-group row">
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span> First Name:</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span>Last Name:</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span>User Name:</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Email :</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Password:</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Confirm Password:</label>
-                                            <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
+                                    <div class="row">
                                         <div class="col-12">
-                                            <label class="col-form-label">Assign Role :</label>
-                                            <div class="row">
-                                                @foreach (var item in Model.RolesLookup)
-                                                {
-                                                    <div class="col-3">
-                                                        <label class="kt-checkbox kt-checkbox--solid">
-                                                            <input type="checkbox" value="@item.Value" checked="@item.Selected"> @item.Text
-                                                            <span></span>
-                                                        </label>
+                                            <div class="kt-portlet kt-portlet--bordered">
+                                                <div class="kt-portlet__head bg-info">
+                                                    <div class="kt-portlet__head-label">
+                                                        <h3 class="kt-portlet__head-title">
+                                                            User Basic Info
+                                                        </h3>
                                                     </div>
-                                                }
+                                                </div>
+                                                <div class="kt-portlet__body">
+                                                    <div class="kt-widget1 p-0">
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span> First Name:</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span>Last Name:</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span>User Name:</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Email :</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Password:</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label class="form-control-label" for="UserName"><span class="text-danger">*</span> Confirm Password:</label>
+                                                                <input type="text" asp-for="UserName" name="UserName" class="form-control" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-3">
+                                                                <label class="kt-checkbox kt-checkbox--solid">
+                                                                    <input type="checkbox" value="" checked> Is Active
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 text-right">
+                                                                <button type="submit" class="btn btn-dark btn-sm" onclick="User.validdateUser(event)" id="btnUser">
+                                                                    <i class="fa fa-plus"></i>
+                                                                    Add New
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+
+                                                            </div>
+                                                              
+
+                                                        </div>
+                                                           
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="row">
                                         <div class="col-12">
-                                            <label class="col-form-label">Additional Permissions :</label>
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
+                                            <div class="kt-portlet kt-portlet--bordered">
+                                                <div class="kt-portlet__head bg-info">
+                                                    <div class="kt-portlet__head-label">
+                                                        <h3 class="kt-portlet__head-title">
+                                                            Assign Roles
+                                                        </h3>
+                                                    </div>
                                                 </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
-                                                </div>
-                                                <div class="col-3">
-                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                        <input type="checkbox"> Permissions
-                                                        <span></span>
-                                                    </label>
+                                                <div class="kt-portlet__body">
+                                                    <div class="kt-widget1 p-0">
+                                                        <div class="kt-widget1__item mb-5">
+                                                            <div class="kt-widget1__info">
+                                                                <h3 class="kt-widget1__title">Quick Select</h3>
+                                                                @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--danger">
+                                                                        <input type="checkbox">Select All
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                @*<label class="col-form-label">Assign Role :</label>*@
+                                                                <div class="row">
+                                                                    @foreach (var item in Model.pagePermissionViewModel.Roles)
+                                                                    {
+                                                                        <div class="col-3">
+                                                                            <label class="kt-checkbox kt-checkbox--solid">
+                                                                                <input type="checkbox" value="@item.Id"> @item.RoleName
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 text-right">
+                                                                <button type="submit" class="btn btn-dark btn-sm" onclick="User.validdateUser(event)" id="btnUser">
+                                                                    <i class="fa fa-plus"></i>
+                                                                    Add New
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    @*<div class="row">
+            <div class="col-sm-12">
+
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="kt-bg-fill-dark text-center">
+                        <tr>
+                            <th class="pl-3">Name</th>
+                            <th class="pl-3">Add</th>
+                            <th class="pl-3">View</th>
+                            <th class="pl-3">Update</th>
+                            <th class="pl-3">Delete</th>
+                            <th class="pl-3">Print</th>
+                            <th class="fit text-center">All</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.pagePermissionViewModel.PagePermissions)
+                        {
+                            <tr>
+                                <td>@item.ControllerName</td>
+                                @foreach (var innerItem in item.Action)
+                                {
+                                    <td>
+                                        <label class="kt-checkbox kt-checkbox--solid ">
+                                            <input type="checkbox" value="@innerItem.Id" checked="checked"> @innerItem.ActionName
+                                            <span></span>
+                                        </label>
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>*@
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="kt-portlet kt-portlet--bordered">
+                                                <div class="kt-portlet__head bg-info">
+                                                    <div class="kt-portlet__head-label">
+                                                        <h3 class="kt-portlet__head-title">
+                                                            Additional Permissions
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                                <div class="kt-portlet__body">
+                                                    <div class="kt-widget1 p-0">
+                                                        <div class="kt-widget1__item">
+                                                            <div class="kt-widget1__info">
+                                                                <h3 class="kt-widget1__title">Quick Select</h3>
+                                                                @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <label class="kt-checkbox kt-checkbox--solid kt-checkbox--danger">
+                                                                        <input type="checkbox">Select All
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                @foreach (var item in Model.pagePermissionViewModel.PagePermissions)
+                                                                {
+                                                                    <label class="col-form-label">@item.ControllerName</label>
+                                                                    <div class="row">
+                                                                        @foreach (var innerItem in item.Action)
+                                                                        {
+
+                                                                            <div class="col-3">
+                                                                                <label class="kt-checkbox kt-checkbox--solid">
+                                                                                    <input type="checkbox" value="@innerItem.Id"> @innerItem.ActionName
+                                                                                    <span></span>
+                                                                                </label>
+                                                                            </div>
+                                                                        }
+                                                                        <div class="col-3">
+                                                                            <label class="kt-checkbox kt-checkbox--solid">
+                                                                                <input type="checkbox" value=""> Select All
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                }
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12 text-right">
+                                                                <button type="submit" class="btn btn-dark btn-sm" onclick="User.validdateUser(event)" id="btnUser">
+                                                                    <i class="fa fa-plus"></i>
+                                                                    Add New
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
+                                                            </div>
+                                                        </div>
+
+                                                        @*@foreach (var item in Model.pagePermissionViewModel.PagePermissions)
+        {
+            <div class="kt-widget1__item">
+                <div class="kt-widget1__info">
+                    <h3 class="kt-widget1__title">@item.ControllerName</h3>
+                </div>
+                <div class="row">
+                    @foreach (var innerItem in item.Action)
+                    {
+                        <div class="col-4">
+                            <label class="kt-checkbox kt-checkbox--solid ">
+                                <input type="checkbox" checked="checked">@innerItem.ActionName
+                                <span></span>
+                            </label>
+                        </div>
+                    }
+                    <div class="col-4">
+                        <label class="kt-checkbox kt-checkbox--solid kt-checkbox--danger">
+                            <input type="checkbox">Select All
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        }*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark" onclick="User.validdateUser(event)" id="btnUser">
-                            <i class="fa fa-plus"></i>
-                            Add New
-                        </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>Cancel</button>
-                    </div>
+
                     <input type="hidden">
                 </form>
             </div>
 
 
             <div class="kt-separator kt-separator--md kt-separator--dashed m-0"></div>
-           
+
         </div>
     </div>
 </div>

@@ -24,6 +24,9 @@ namespace CleanArchitecture.Infrastructure.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<AppControllers> AppControllers { get; set; }
+
+        public DbSet<AppControllerActions> AppControllerActions { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<RolePermissions> RolePermissions { get; set; }
 

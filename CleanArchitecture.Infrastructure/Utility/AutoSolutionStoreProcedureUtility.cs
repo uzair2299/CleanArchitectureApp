@@ -13,6 +13,7 @@ namespace CleanArchitecture.Infrastructure.Utility
         
         public const string InsertRole = "spInsertRole";
         public const string UpdateRole = "spUpdateRole";
+        public const string GetPagePermissions = "spGetPagePermissions";
 
         public const string spInsertUser = "spInsertUser";
 

@@ -4,14 +4,16 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210601104749_actionsSet")]
+    partial class actionsSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +30,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<string>("ActionName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("AppControllersId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ControllerId")
                         .HasColumnType("int");
@@ -49,7 +54,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ControllerId");
+                    b.HasIndex("AppControllersId");
 
                     b.ToTable("AppControllerActions");
                 });
@@ -502,9 +507,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.AppControllers", "AppControllers")
                         .WithMany("AppControllerActions")
-                        .HasForeignKey("ControllerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppControllersId");
 
                     b.Navigation("AppControllers");
                 });

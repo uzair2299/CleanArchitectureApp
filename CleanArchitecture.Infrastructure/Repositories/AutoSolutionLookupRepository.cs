@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Core.ViewModels;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Interfaces;
 using CleanArchitecture.Infrastructure.Utility;
 using Dapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -172,6 +175,24 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 }
             }
             return selectListItems;
+        }
+
+        public PagePermissionViewModel GetPagesPermissionLookUp()
+        {
+            using(var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            {
+                db.Open();
+                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.GetPagePermissions,
+                   new { }, commandType: CommandType.StoredProcedure);
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (var rec in result)
+                {
+                    stringBuilder.Append(rec);
+                }
+                var response = JsonConvert.DeserializeObject<PagePermissionViewModel>(stringBuilder.ToString());
+                db.Close();
+                return response;
+            }
         }
     }
 }

@@ -21,6 +21,11 @@ namespace CleanArchitecture.Core.Service
             return autoSolutionLookupRepository.GetAutoManufacturerLookup();
         }
 
+        public PagePermissionViewModel GetPagesPermissionLookUp()
+        {
+            return autoSolutionLookupRepository.GetPagesPermissionLookUp();
+        }
+
         public List<SelectListItem> GetPermissionLookup()
         {
             return autoSolutionLookupRepository.GetPermissionLookup();

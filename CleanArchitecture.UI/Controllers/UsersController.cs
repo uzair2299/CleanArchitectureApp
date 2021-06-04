@@ -29,7 +29,8 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult AddNew()
         {
             UserViewModel userViewModel = new UserViewModel();
-            userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+            userViewModel.pagePermissionViewModel = autoSolutionLookupService.GetPagesPermissionLookUp();
+            //userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
             return View(userViewModel);
         }
         [HttpGet]

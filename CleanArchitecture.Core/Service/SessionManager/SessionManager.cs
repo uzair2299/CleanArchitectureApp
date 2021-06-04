@@ -24,7 +24,7 @@ namespace CleanArchitecture.Core.Service.SessionManager
         }
 
         public void SetJson(string key, object value)
-        {
+        {   
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
         /// <summary>
