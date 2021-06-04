@@ -84,6 +84,27 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return selectListItems;
         }
 
+        public List<SelectListItem> GetAutoModelLookup(int Id)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoModels.Where(x => x.AutoManufacturerId == Id).OrderBy(x=>x.ModelName).Select(x => new SelectListItem()
+            {
+                Text = x.ModelName,
+                Value = x.Id.ToString()
+            }).ToList();
+            return selectListItems;
+        }
+
+        public List<SelectListItem> GetAutoVersionLookup(int Id)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoVersion.Where(x => x.AutoModelId == Id).OrderBy(x => x.AutoVersionName).Select(x => new SelectListItem()
+            {
+                Text = x.AutoVersionName,
+                Value = x.Id.ToString()
+            }).ToList();
+            return selectListItems;
+        }
         public List<SelectListItem> GetAutoModelLookup()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();

@@ -23,5 +23,17 @@ namespace CleanArchitecture.UI.Controllers
             priceCalculatorViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
             return View(priceCalculatorViewModel);
         }
+
+        public IActionResult GetAutoModelLookUp(int Id)
+        {
+            var result = autoSolutionLookupService.GetAutoModelLookup(Id);
+            return Json(new { status = result != null ? true : false, data = result });
+        }
+
+        public IActionResult GetAutoVersionLookUp(int Id)
+        {
+            var result = autoSolutionLookupService.GetAutoVersionLookup(Id);
+            return Json(new { status = result != null ? true : false, data = result });
+        }
     }
 }

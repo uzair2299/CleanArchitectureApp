@@ -46,5 +46,7 @@
             dataType:"Json"
         });
     },
-
+    getJsonDataById: function (id,url) {
+      return $.getJSON(url, { Id: id });
+    }
 }

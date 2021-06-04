@@ -182,5 +182,26 @@ var AutoSolutionUtility = {
     //css Utility
     css: function (element, styleProp, value) {
         element.css(styleProp, value);
+    },
+
+    removeAttribute: function (element, attribute) {
+        $(element).removeAttr(attribute);
+    },
+
+    addAttribute: function (element, attribute,value) {
+        $(element).attr(attribute,value);
+    },
+    removeCssClass: function (element, className) {
+        $(element).removeClass(className);
+    },
+     addCssClass: function (element, className) {
+         $(element).addClass(className);
+    },
+
+     appendDefaultSelectOption: function (selector,_value,_text) {
+         $(selector).append($('<option/> ', {
+             value: _value,
+             text: _text
+         }));
     }
 }
