@@ -10,15 +10,15 @@
             }
             else {
                 AutoSolutionUtility.showLoader();
-                AutoSolutionUtility.addAttribute(SelectedModel, "disabled", true);
-                AutoSolutionUtility.addCssClass(SelectedModel, "disabled");
+                //AutoSolutionUtility.addAttribute(SelectedModel, "disabled", true);
+                //AutoSolutionUtility.addCssClass(SelectedModel, "disabled");
                 AutoSolutionUtility.clearHTML("SelectedModel")
                 SelectedModel.append($('<option/> ', {
                     value: "",
                     text: "Select Model"
                 }));
-                AutoSolutionUtility.addAttribute(SelectedVersion, "disabled", true);
-                AutoSolutionUtility.addCssClass(SelectedVersion, "disabled");
+                //AutoSolutionUtility.addAttribute(SelectedVersion, "disabled", true);
+                //AutoSolutionUtility.addCssClass(SelectedVersion, "disabled");
                 AutoSolutionUtility.clearHTML("SelectedVersion")
                 AutoSolutionUtility.appendDefaultSelectOption(SelectedVersion, "", "Select Version");
                 AutoSolutionUtility.hideLoader();
@@ -32,10 +32,19 @@
             PriceCalculator.getAutoVersion(SelectedModelId);
         }
         else {
-            AutoSolutionUtility.addAttribute(SelectedVersion, "disabled", true);
-            AutoSolutionUtility.addCssClass(SelectedVersion, "disabled");
+            //AutoSolutionUtility.addAttribute(SelectedVersion, "disabled", true);
+            //AutoSolutionUtility.addCssClass(SelectedVersion, "disabled");
             AutoSolutionUtility.clearHTML("SelectedVersion")
             AutoSolutionUtility.appendDefaultSelectOption(SelectedVersion, "", "Select Version");
+        }
+    })
+
+    $(".ErrorRemove").on("change", function () {
+        let val = $(this).val();
+        if (val != null && val != "") {
+            $(this).siblings(".invalid-feedback").html("");
+            $(this).removeClass("is-invalid");
+            //$(this).addClass("is-valid");
         }
     })
 });
@@ -85,49 +94,59 @@
 
         PriceCalculatorGetPanel: "_GetPriceCalculator",
 
-        validdatePriceCalculator: function (event) {
-            event.preventDefault();
-            $(PriceCalculator.PriceCalculatorForm).validate({
-                rules: {
-                    SelectedManufacturer: {
-                        required: true
-                    },
-                    SelectedModel: {
-                        required: true
-                    },
-                    SelectedVersion: {
-                        required: true
-                    }
+        //validdatePriceCalculator: function (event) {
 
-                },
-                messages: {
-                    SelectedManufacturer: {
-                        required: "Auto Manufacturer is Required"
-                    },
-                    SelectedModel: {
-                        required: "Auto Model is Required"
-                    },
-                    SelectedVersion: {
-                        required: "Auto Version is Required"
-                    }
-                }
-            });
+        //    event.preventDefault();
+        //    AutoSolutionUtility.defaultValidation(PriceCalculator.PriceCalculatorForm);
+        //    $(PriceCalculator.PriceCalculatorForm).validate({
+        //        rules: {
+        //            SelectedManufacturer: {
+        //                required: true
+        //            },
+        //            SelectedModel: {
+        //                required: true
+        //            },
+        //            SelectedVersion: {
+        //                required: true
+        //            }
 
-            if ($(PriceCalculator.PriceCalculatorForm).valid()) {
-                PriceCalculator.CalculatePrice();
-            }
-            else {
-                console.log("fuck");
-            }
-            return false;
-        },
+        //        },
+        //        messages: {
+        //            SelectedManufacturer: {
+        //                required: "Auto Manufacturer is Required"
+        //            },
+        //            SelectedModel: {
+        //                required: "Auto Model is Required"
+        //            },
+        //            SelectedVersion: {
+        //                required: "Auto Version is Required"
+        //            }
+        //        }
+        //    });
+
+        //    if ($(PriceCalculator.PriceCalculatorForm).valid()) {
+        //        PriceCalculator.CalculatePrice();
+        //    }
+        //    else {
+        //        console.log("fuck");
+        //    }
+        //    return false;
+        //},
         
         CalculatePrice: function () {
-            AutoSolutionUtility.showLoader
-            var data = AutoSolutionUtility.getFormData(PriceCalculator.PriceCalculatorForm);
-            var params = autoSolutionService.ajaxParams(data, PriceCalculator.PriceCalculatorBaseURL + 'GetOnRoadPrice', 'get', false);
-            autoSolutionService.defaultService(params).done(function (response) {
-            });
+            var result = AutoSolutionUtility.defaultValidation(PriceCalculator.PriceCalculatorForm);
+            if (result) {
+                AutoSolutionUtility.showLoader
+                var data = AutoSolutionUtility.getFormData(PriceCalculator.PriceCalculatorForm);
+                var params = autoSolutionService.ajaxParams(data, PriceCalculator.PriceCalculatorBaseURL + 'GetOnRoadPrice', 'get', false);
+                autoSolutionService.defaultService(params).done(function (response) {
+                    AutoSolutionUtility.clearHTML(PriceCalculator.PriceCalculatorPanelContainer);
+                    AutoSolutionUtility.appendHTML(PriceCalculator.PriceCalculatorPanelContainer, response);
+                });
+            } else {
+                return false;
+            }
+
         },
 
         getAutoModel: function (id) {
@@ -139,13 +158,30 @@
                 SelectedModel.empty();
                 AutoSolutionUtility.removeAttribute(SelectedModel, "disabled");
                 AutoSolutionUtility.removeCssClass(SelectedModel, "disabled");
+                var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
+                var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
                 if (response != null && !jQuery.isEmptyObject(response)) {
+                    AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedModel, "", "Select Model");
+
+                    //$(SelectedModel).append($('<option/> ', {
+                    //    value: "",
+                    //    text: "Select Model"
+                    //}));
                     $.each(response.data, function (index, model) {
-                        SelectedModel.append($('<option/> ', {
-                            value: model.value,
-                            text: model.text
-                        }));
+                        if (model.group.name == "Popular Models") {
+                            $(popularOptGroup).append($('<option/> ', {
+                                value: model.value,
+                                text: model.text
+                            }));
+                        } else {
+                            $(otherOptGroup).append($('<option/> ', {
+                                value: model.value,
+                                text: model.text
+                            }));
+                        }
                     });
+                    SelectedModel.append(popularOptGroup);
+                    SelectedModel.append(otherOptGroup);
                 } else {
                     //
                 }
@@ -162,8 +198,13 @@
                 AutoSolutionUtility.removeAttribute(SelectedVersion, "disabled");
                 AutoSolutionUtility.removeCssClass(SelectedVersion, "disabled");
                 if (response != null && !jQuery.isEmptyObject(response)) {
+                    //$(SelectedVersion).append($('<option/> ', {
+                    //    value: "",
+                    //    text: "Select Version"
+                    //}));
+                    AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedVersion, "", "Select Version");
                     $.each(response.data, function (index, version) {
-                        SelectedModel.append($('<option/> ', {
+                        SelectedVersion.append($('<option/> ', {
                             value: version.value,
                             text: version.text
                         }));
@@ -177,12 +218,12 @@
         Reset: function () {
             AutoSolutionUtility.setSelectOptionValue(PriceCalculator.SelectedManufacturer, "");
 
-            AutoSolutionUtility.clearHTML("SelectedModel");
+            AutoSolutionUtility.clearHTML("SelectedAutoModel");
             AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedModel, "", "Select Model")
             AutoSolutionUtility.addAttribute(PriceCalculator.SelectedModel, "disabled", true);
             AutoSolutionUtility.addCssClass(PriceCalculator.SelectedModel, "disabled");
 
-            AutoSolutionUtility.clearHTML("SelectedVersion");
+            AutoSolutionUtility.clearHTML("SelectedAutoVersion");
             AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedVersion, "", "Select Version")
             AutoSolutionUtility.addAttribute(PriceCalculator.SelectedVersion, "disabled", true);
             AutoSolutionUtility.addCssClass(PriceCalculator.SelectedVersion, "disabled");

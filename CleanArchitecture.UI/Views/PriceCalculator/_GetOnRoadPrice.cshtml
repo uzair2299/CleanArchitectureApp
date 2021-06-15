@@ -1,0 +1,168 @@
+﻿@model CleanArchitecture.Core.ViewModels.PriceCalculatorViewModel
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                    <i class="fa fa-car"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                    On Road Price
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="kt-section kt-section--space-md">
+                <div class="kt-widget24 kt-widget24--solid">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h5 class="kt-link">
+                                Vehicle Detail
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Manufacturer
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.AutoManufacturerName
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Model
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.ModelName
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Version
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.AutoVersionName
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Ex-Factory Price
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.ExFactoryPrice.ToString("#,##0.###")
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-section kt-section--space-md">
+                <div class="kt-widget24 kt-widget24--solid">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h5 class="kt-link">
+                                With Holding Charges
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Tax Filer
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.WithHoldingTaxForFiler.ToString("#,##0.###")
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Non Tax Filer
+                        </span>
+                        <span class="kt-widget24__number">
+                            @Model.WithHoldingTaxForNonFiler.ToString("#,##0.###")
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-section kt-section--space-md">
+                <div class="kt-widget24 kt-widget24--solid">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h5 class="kt-link">
+                                Ex-Showroom Price
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Tax Filer
+                        </span>
+                        <span class="kt-widget24__number">
+                            7500
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Non Tax Filer
+                        </span>
+                        <span class="kt-widget24__number">
+                            15000
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-section kt-section--space-md">
+                <div class="kt-widget24 kt-widget24--solid">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h5 class="kt-link">
+                                Punjab Govt. Charges
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Number Plate Charges
+                        </span>
+                        <span class="kt-widget24__number">
+                            7500
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change">
+                            Registration Document Price
+                        </span>
+                        <span class="kt-widget24__number">
+                            15000
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-section kt-section--space-md">
+                <div class="kt-widget24 kt-widget24--solid">
+                    <div class="kt-widget24__details">
+                        <div class="kt-widget24__info">
+                            <h5 class="kt-link">
+                                Price
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change text-success font-weight-bold">
+                            Tax Filer
+                        </span>
+                        <span class="kt-widget24__number text-success font-weight-bold">
+                            7500
+                        </span>
+                    </div>
+                    <div class="kt-widget24__action p-1">
+                        <span class="kt-widget24__change text-success font-weight-bold">
+                            Non Tax Filer
+                        </span>
+                        <span class="kt-widget24__number text-success font-weight-bold">
+                            15000
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

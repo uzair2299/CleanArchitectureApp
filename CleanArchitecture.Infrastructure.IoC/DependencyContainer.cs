@@ -70,6 +70,10 @@ namespace CleanArchitecture.Infrastructure.IoC
             //builder.RegisterType<AutoSolutionLookupService>().As<IAutoSolutionLookupService>().InstancePerLifetimeScope();
             //builder.RegisterType<AutoSolutionLookupRepository>().As<IAutoSolutionLookupRepository>().InstancePerLifetimeScope();
 
+            
+            builder.RegisterType<PriceCalculatorService>().As<IPriceCalculatorService>().InstancePerLifetimeScope();
+            builder.RegisterType<PriceCalculatorRepository>().As<IPriceCalculatorRepository>().InstancePerLifetimeScope();
+
 
 
             #region lookUp 

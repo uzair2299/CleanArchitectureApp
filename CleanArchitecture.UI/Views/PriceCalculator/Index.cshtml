@@ -103,28 +103,31 @@
                         <div class="col-lg-4">
                             <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
                             @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                            <select asp-for="SelectedAutoManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" id="SelectedAutoManufacturer" style="width:100%">
+                            <select asp-for="SelectedAutoManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2 ErrorRemove" name="SelectedManufacturer" id="SelectedAutoManufacturer" style="width:100%">
                                 <option value="" class="text-center">Select Manufacturer</option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="col-lg-4">
                             <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                             @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                            <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedModel" id="SelectedAutoModel" style="width:100%" disabled>
+                            <select asp-for="SelectedAutoModel" class="form-control kt-select2 ErrorRemove disabled" name="SelectedModel" id="SelectedAutoModel" style="width:100%" disabled>
                                 <option value="">Select Model</option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="col-lg-4">
                             <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Version:</label>
                             @*@Html.DropDownListFor(x => Model.SelectedManufacturer,Model.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                            <select asp-for="SelectedAutoVersion" class="form-control kt-select2 disabled" name="SelectedVersion" id="SelectedAutoVersion" style="width:100%" disabled>
+                            <select asp-for="SelectedAutoVersion" class="form-control kt-select2  ErrorRemove disabled" name="SelectedVersion" id="SelectedAutoVersion" style="width:100%" disabled>
                                 <option value="">Select Version</option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-right">
-                            <button type="button" class="btn btn-dark btn-brand--icon btn-sm" id="kt_search" onclick="PriceCalculator.CalculatePrice();">
+                            <button type="button" class="btn btn-dark btn-brand--icon btn-sm" id="kt_search" onclick="PriceCalculator.CalculatePrice(event);">
                                 <span>
                                     <i class="la la-calculator"></i>
                                     <span>Calculate</span>
@@ -143,7 +146,12 @@
             </div>
         </div>
     </div>
-    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div id="_PriceCalculatorPanelContainer">
+
+
+    </div>
+    @*<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
         <div class="kt-portlet kt-portlet--mobile">
             <div class="kt-portlet__head kt-portlet__head--lg" style="background-color: #f9f9fc;">
                 <div class="kt-portlet__head-label">
@@ -309,6 +317,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
 

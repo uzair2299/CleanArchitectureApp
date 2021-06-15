@@ -11,10 +11,12 @@ namespace CleanArchitecture.UI.Controllers
     public class PriceCalculatorController : Controller
     {
         IAutoSolutionLookupService autoSolutionLookupService;
+        IPriceCalculatorService priceCalculatorService;
 
-        public PriceCalculatorController(IAutoSolutionLookupService autoSolutionLookupService)
+        public PriceCalculatorController(IAutoSolutionLookupService autoSolutionLookupService, IPriceCalculatorService priceCalculatorService)
         {
             this.autoSolutionLookupService = autoSolutionLookupService;
+            this.priceCalculatorService = priceCalculatorService;
         }
 
         public IActionResult Index()
@@ -26,7 +28,9 @@ namespace CleanArchitecture.UI.Controllers
 
         public IActionResult GetOnRoadPrice(PriceCalculatorViewModel priceCalculatorViewModel)
         {
-            return PartialView();
+            var result = priceCalculatorService.GetOnRoadPrice(priceCalculatorViewModel);
+
+            return PartialView("_GetOnRoadPrice",result);
         }
 
         public IActionResult GetAutoModelLookUp(int Id)

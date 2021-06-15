@@ -17,11 +17,12 @@ namespace CleanArchitecture.Domain.Entities
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
+        public bool IsPopular { get; set; }
 
         //public DateTime StartYear { get; set; }
-        
+
         //public DateTime EndYear { get; set; }
-        
+
         [ForeignKey("AutoManufacturer")]
         public int AutoManufacturerId { get; set; }
         

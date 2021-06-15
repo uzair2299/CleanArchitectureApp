@@ -17,6 +17,8 @@ namespace CleanArchitecture.Infrastructure.Utility
 
         public const string spInsertUser = "spInsertUser";
 
+        public const string spGetOnRoadPrice = "spGetOnRoadPrice";
+
     }
 
 

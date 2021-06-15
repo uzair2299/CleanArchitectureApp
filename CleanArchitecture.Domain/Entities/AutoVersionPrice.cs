@@ -20,6 +20,7 @@ namespace CleanArchitecture.Domain.Entities
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
+        public bool IsPopular { get; set; }
 
         [ForeignKey("AutoVersion")]
         public int AutoVersionId { get; set; }

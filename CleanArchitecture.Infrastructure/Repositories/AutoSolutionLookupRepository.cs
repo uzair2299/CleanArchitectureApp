@@ -28,12 +28,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public List<SelectListItem> GetAutoManufacturerLookup()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();
+            var PopularGroup = new SelectListGroup { Name = "Popular Manufacturer" };
+            var OtherGroup = new SelectListGroup { Name = "Other Manufacturer" };
             IQueryable<AutoManufacturer> result = unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
             selectListItems =  result.Select(x => new SelectListItem()
             {
                 Text = x.AutoManufacturerName,
-                Value = x.Id.ToString()
+                Value = x.Id.ToString(),
+                Group = x.IsPopular?PopularGroup:OtherGroup
             }).OrderBy(x=>x.Text).ToList();
+            selectListItems =  selectListItems.OrderByDescending(x => x.Group.Name).ToList();
 
             //using (var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             //{
@@ -86,14 +90,24 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public List<SelectListItem> GetAutoModelLookup(int Id)
         {
+            var PopularGroup = new SelectListGroup { Name = "Popular Models" };
+            var OtherGroup = new SelectListGroup { Name = "Other Models" };
             List<SelectListItem> selectListItems = new List<SelectListItem>();
             selectListItems = unitOfWork.GetAutoSolutionContext().AutoModels.Where(x => x.AutoManufacturerId == Id).OrderBy(x=>x.ModelName).Select(x => new SelectListItem()
             {
                 Text = x.ModelName,
-                Value = x.Id.ToString()
+                Value = x.Id.ToString(),
+                Group = x.IsPopular?PopularGroup:OtherGroup
             }).ToList();
+            selectListItems = selectListItems.OrderByDescending(x => x.Group.Name).ToList();
             if (selectListItems.Count > 1)
             {
+                //SelectListItem selectListItem = new SelectListItem()
+                //{
+                //    Text = "Select Model",
+                //    Value = ""
+                //};
+                //selectListItems.Insert(0, selectListItem);
                 return selectListItems;
             }
             else
@@ -116,7 +130,8 @@ namespace CleanArchitecture.Infrastructure.Repositories
             selectListItems = unitOfWork.GetAutoSolutionContext().AutoVersion.Where(x => x.AutoModelId == Id).OrderBy(x => x.AutoVersionName).Select(x => new SelectListItem()
             {
                 Text = x.AutoVersionName,
-                Value = x.Id.ToString()
+                Value = x.Id.ToString(),
+
             }).ToList();
             return selectListItems;
         }

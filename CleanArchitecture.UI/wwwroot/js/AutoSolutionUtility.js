@@ -214,5 +214,22 @@ var AutoSolutionUtility = {
 
     setSelectOptionValue: function (selector, value) {
         $(selector).val(value);
+    },
+
+    defaultValidation: function (selector) {
+        var isValid = true;
+        $(selector).find('select').not(":disabled").each(function (i, item) {
+            //console.log("#" + this.id);
+            //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
+            var selectorId = "#" + this.id;
+             var value = $(this).find('option:selected').val();
+            if (value == "") {
+                AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
+                $(this).siblings(".invalid-feedback").append("Required");
+                isValid = false;
+            }
+
+        })
+        return isValid;
     }
 }

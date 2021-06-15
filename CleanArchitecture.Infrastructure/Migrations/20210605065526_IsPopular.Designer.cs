@@ -4,14 +4,16 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210605065526_IsPopular")]
+    partial class IsPopular
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,9 +195,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsPopular")
-                        .HasColumnType("bit");
-
                     b.Property<string>("ModelName")
                         .HasColumnType("nvarchar(max)");
 
@@ -242,9 +241,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<DateTime?>("EndProductionYear")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("EngineCapacity")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -293,9 +289,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<decimal>("EndPrice")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsPopular")
-                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
