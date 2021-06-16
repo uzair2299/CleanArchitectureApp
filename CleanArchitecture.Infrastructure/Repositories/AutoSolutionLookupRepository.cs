@@ -245,5 +245,23 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 return response;
             }
         }
+
+        public AutoVersionViewModel GetAutoVersionLookUpData()
+        {
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            {
+                db.Open();
+                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.spGetAutoVersionLookUp,
+                   new { }, commandType: CommandType.StoredProcedure);
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (var rec in result)
+                {
+                    stringBuilder.Append(rec);
+                }
+                var response = JsonConvert.DeserializeObject<AutoVersionViewModel>(stringBuilder.ToString());
+                db.Close();
+                return response;
+            }
+        }
     }
 }

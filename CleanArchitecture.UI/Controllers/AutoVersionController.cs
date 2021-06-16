@@ -36,7 +36,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult AutoVersionSave()
         {
             AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
-            autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+            autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
             return PartialView("_AutoVersionPanel", autoVersionViewModel);
         }
 
@@ -61,6 +61,11 @@ namespace CleanArchitecture.UI.Controllers
             autoVersionViewModel = autoVersionService.GetAutoVersionById(Id);
             autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
             return PartialView("_AutoVersionPanel", autoVersionViewModel);
+        }
+        public IActionResult GetAutoModelLookUp(int Id)
+        {
+            var result = autoSolutionLookupService.GetAutoModelLookup(Id);
+            return Json(new { status = result != null ? true : false, data = result });
         }
     }
 }

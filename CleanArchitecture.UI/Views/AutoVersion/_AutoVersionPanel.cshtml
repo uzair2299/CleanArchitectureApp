@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="_AutoVersionPanel" tabindex="-1" role="dialog" aria-labelledby="AutoModelPanel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content">   
             <div class="modal-header">
                 <h5 class="modal-title">Auto Version</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -14,46 +14,60 @@
                         <div class="kt-section">
                             <div class="kt-section__content">
                                 <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="form-control-label" for="AutoVersionName">* Version Name:</label>
+
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
+                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoManufacturer">
+                                            <option value="">Select Manufacturer</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
+                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2 disabled" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoModel" disabled>
+                                            <option value="">Select Model</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="AutoVersionName"><span class="text-danger">*</span> Version Name:</label>
                                         <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
                                     </div>
-                                    <div class="col-lg-6">
-                                        <label class="form-control-label" for="SelectedManufacturer">* Auto Manufactuer:</label>
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Engine Type:</label>
                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%">
-                                            <option value="">select</option>
+                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoEngineTypeLookup" class="form-control kt-select2 disabled" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoModel">
+                                            <option value="">Select Engine Type</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Body Type:</label>
+                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2 disabled" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoModel">
+                                            <option value="">Select Body Type</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="col-form-label">Start Date</label>
+                                    <div class="col-lg-4">
+                                        <label class="col-form-label"><span class="text-danger">*</span>Start Date</label>
                                         <div class="input-group date">
-                                            <input type="text" class="form-control kt_datepicker_1_modal" readonly="" placeholder="Select date" id="kt_datepicker_1_modal">
-                                            <div class="input-group-append">
+                                            <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
+                                            @*<div class="input-group-append">
                                                 <span class="input-group-text">
                                                     <i class="la la-calendar-check-o"></i>
                                                 </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label class="col-form-label">End Date</label>
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control kt_datepicker_1_modal" readonly="" placeholder="Select date" id="kt_datepicker_1_modal">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="la la-calendar-check-o"></i>
-                                                </span>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-6">
-                                        <label class="form-control-label" for="AutoVersionName">* Price:</label>
-                                        <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
+                                    <div class="col-lg-4">
+                                        <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
+                                        <input type="number" name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
                                     </div>
                                     Maximum power - Output - Horsepower (hp)
                                 </div>
@@ -208,92 +222,6 @@
                                             </div><div class="col-3">
                                                 <label class="kt-checkbox" cheched="">
                                                     <input type="checkbox"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <label class="col-form-label">Body Type</label>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-12">
-                                        <label class="col-form-label">Engine Type</label>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="kt-radio">
-                                                    <input type="radio" name="radio4"> Option 1
                                                     <span></span>
                                                 </label>
                                             </div>

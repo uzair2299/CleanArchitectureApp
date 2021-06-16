@@ -28,13 +28,16 @@ namespace CleanArchitecture.Core.Service
 
         public List<SelectListItem> GetAutoVersionLookup(int Id)
         {
-
             return autoSolutionLookupRepository.GetAutoVersionLookup(Id);
         }
 
         public PagePermissionViewModel GetPagesPermissionLookUp()
         {
             return autoSolutionLookupRepository.GetPagesPermissionLookUp();
+        }
+        public AutoVersionViewModel GetAutoVersionLookUpData()
+        {
+            return autoSolutionLookupRepository.GetAutoVersionLookUpData();
         }
 
         public List<SelectListItem> GetPermissionLookup()

@@ -75,8 +75,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
                                 AutoManufacturerName = reader["AutoManufacturerName"].ToString(),
                                 AutoVersionName = reader["AutoVersionName"].ToString(),
                                 StartProductionYear = (DateTime)reader["StartProductionYear"],
-                                EndProductionYear = (DateTime)reader["EndProductionYear"],
+                                //EndProductionYear = (DateTime)reader["EndProductionYear"],
                                 ImagePath = reader["ImagePath"].ToString(),
+                                EngineCapacity =Convert.ToInt32(reader["EngineCapacity"]),
+                                CurrentPrice = Convert.ToInt64(reader["CurrentPrice"]) 
                             });
                         }
 

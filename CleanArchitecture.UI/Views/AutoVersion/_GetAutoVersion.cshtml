@@ -25,10 +25,11 @@
                                 <th class="pl-3">Version</th>
                                 <th class="pl-3">Model</th>
                                 <th class="pl-3">Manufacturer</th>
+                                <th class="pl-3">Engine Capacity</th>
                                 <th class="pl-3">Start&nbsp;Production</th>
-                                <th class="pl-3">End&nbsp;Production</th>
+                                @*<th class="pl-3">End&nbsp;Production</th>*@
                                 <th class="pl-3">Current&nbsp;Price</th>
-                                <th class="pl-3">Previous&nbsp;Price</th>
+
                                 <th class="fit text-center">Action</th>
                             </tr>
                         </thead>    
@@ -46,10 +47,10 @@
                                 <td class="pl-3">@item.AutoVersionName</td>
                                 <td class="pl-3">@item.ModelName</td>
                                 <td class="pl-3">@item.AutoManufacturerName</td>
+                                <td class="pl-3 text-center">@(item.EngineCapacity.ToString("#,##0.###") + " "+ "cc" )</td>
                                 <td class="pl-3 text-center">@item.StartProductionYear.Value.Year</td>
-                                <td class="pl-3 text-center">@item.EndProductionYear.Value.Year</td>
-                                <td class="pl-3 text-center">1000</td>
-                                <td class="pl-3 text-center">1000</td>
+                                @*<td class="pl-3 text-center">@item.EndProductionYear.Value.Year</td>*@
+                                <td class="pl-3 text-center">@item.CurrentPrice.ToString("#,##0.###")</td>
                                 <td class="fit text-center">
                                     <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
                                     <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoModel.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>

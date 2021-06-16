@@ -40,6 +40,9 @@ var autoVersion = {
     autoVersionForm: "#VehicleVersion",
     autoVersioneSearchForm: "#AutoVersionSearchForm",
 
+    //select
+    selectedAutoModel: "#SelectedAutoModel",
+
     autoVersionGetPanel: "_GetAutoVersion",
 
     validdateAutoVersion: function (event) {
@@ -85,13 +88,31 @@ var autoVersion = {
         autoSolutionService.defaultService(params).done(function (response) {
             AutoSolutionUtility.clearHTML(autoVersion.autoVersionPanelContainer);
             AutoSolutionUtility.appendHTML(autoVersion.autoVersionPanelContainer, response);
+            var today = new Date();
+            //var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+            var yyyy = today.getFullYear();
+            var minYear = yyyy - 50;
+            //if (dd < 10) {
+            //    dd = '0' + dd
+            //}
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            
+            today = yyyy + '-' + mm;
+            $("#startMonth").val(today);
+            $('#startMonth').attr('min', "1950-01");
+            $('#startMonth').attr('max', today);
+            //document.getElementById("startMonth").setAttribute("min", today);
+
             //AutoSolutionUtility.select2DropDown("SelectedVersionr");
-            $('body .kt_datepicker_1_modal').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayHighlight: true,
-                orientation: "bottom left",
+            //$('body .kt_datepicker_1_modal').datepicker({
+            //    rtl: KTUtil.isRTL(),
+            //    todayHighlight: true,
+            //    orientation: "bottom left",
                 
-            });
+            //});
             AutoSolutionUtility.showPanel(autoVersion.autoVersionPanel);
             AutoSolutionUtility.hideLoader();
         })
@@ -166,6 +187,7 @@ var autoVersion = {
             AutoSolutionUtility.hideLoader();
         })
     },
+
     deleteAutoVersion: function (id) {
         console.log(id);
         data = { Id: id }
@@ -193,6 +215,55 @@ var autoVersion = {
         var data = AutoSolutionUtility.getFormDat(autoVersion.autoVersioneSearchForm);
         autoVersion.getAutoVersion(data);
     },
+
+    getAutoModelLookup: function (element) {
+        console.log(element.value);
+        var id = element.value
+        autoSolutionService.getJsonDataById(id, autoVersion.autoVersionBaseURL + "GetAutoModelLookUp").done(function (response) {
+
+            console.log(response.data);
+            SelectedModel = $(autoVersion.selectedAutoModel);
+            SelectedModel.empty();
+            AutoSolutionUtility.removeAttribute(SelectedModel, "disabled");
+            AutoSolutionUtility.removeCssClass(SelectedModel, "disabled");
+            if (response != null && !jQuery.isEmptyObject(response)) {
+                $.each(response.data, function (index, version) {
+                    SelectedModel.append($('<option/> ', {
+                        value: version.value,
+                        text: version.text
+                    }));
+                });
+            }
+
+            //var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
+            //var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
+            //if (response != null && !jQuery.isEmptyObject(response)) {
+            //    AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedModel, "", "Select Model");
+
+            //    //$(SelectedModel).append($('<option/> ', {
+            //    //    value: "",
+            //    //    text: "Select Model"
+            //    //}));
+            //    $.each(response.data, function (index, model) {
+            //        if (model.group.name == "Popular Models") {
+            //            $(popularOptGroup).append($('<option/> ', {
+            //                value: model.value,
+            //                text: model.text
+            //            }));
+            //        } else {
+            //            $(otherOptGroup).append($('<option/> ', {
+            //                value: model.value,
+            //                text: model.text
+            //            }));
+            //        }
+            //    });
+            //    SelectedModel.append(popularOptGroup);
+            //    SelectedModel.append(otherOptGroup);
+            //} else {
+            //    //
+            //}
+        })
+    }
 }
 
 /*
