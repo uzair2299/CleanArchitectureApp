@@ -1,0 +1,119 @@
+﻿@using CleanArchitecture.Core.ViewModels
+@model CleanArchitecture.Core.PageSet.AutoSolutionPageSet<AutoLookUpTypeViewModel>;
+
+
+
+@if (Model.Pager.TotalItems > 0)
+{
+    <div class="kt-portlet__body">
+        <div id="kt_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered table-hover">
+                        <thead class="kt-bg-fill-dark">
+                            <tr>
+                                <th class="pl-3">Name</th>
+                                <th class="fit text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Data)
+                            {
+                                <tr>
+                                    <td class="pl-3">@item.LookUpTypeName</td>
+                                    <td class="fit text-center">
+                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="AutoLookUpType.editAutoLookUpType(@item.Id)"><i class="la la-edit"></i></button>
+                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="AutoLookUpType.deleteAutoLookUpType(@item.Id,this)"><i class="la la-trash"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="kt-section">
+            <div class="kt-pagination  kt-pagination--dark kt-pagination--circle">
+                <div class="kt-pagination__toolbar">
+                    <select class="form-control kt-font-dark" style="width: 60px;" id="pageSize">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <span class="pagination__desc">
+                        Displaying @(Model.Pager.CurrentPage == 1 ? 1: ((((Model.Pager.CurrentPage-1)  * Model.Pager.PageSize))+1)) to @(Model.Pager.CurrentPage* Model.Pager.PageSize) of @Model.Pager.TotalItems total
+                    </span>
+                </div>
+                <ul class="kt-pagination__links">
+                    @if (Model.Pager.EndPage > 1)
+                    {
+
+                        if (Model.Pager.CurrentPage > 1)
+                        {
+
+                            <li class="kt-pagination__link--first pageButtons">
+                                <a data-pageNo="@Model.Pager.StartPage"><i class="fa fa-angle-double-left kt-font-dark"></i></a>
+                            </li>
+                            <li class="kt-pagination__link--next pageButtons">
+                                <a data-pageNo="@(Model.Pager.CurrentPage-1)"><i class="fa fa-angle-left kt-font-dark"></i></a>
+                            </li>
+                        }
+                        for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                        {
+                            <li class="pageButtons @(page == Model.Pager.CurrentPage ? "kt-pagination__link--active" : "")">
+                                <a data-pageNo="@(page)">@(page)</a>
+                            </li>
+                        }
+
+                        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                        {
+
+                            <li class="kt-pagination__link--prev pageButtons">
+                                <a data-pageNo="@(Model.Pager.CurrentPage+1)"><i class="fa fa-angle-right kt-font-dark"></i></a>
+                            </li>
+                            <li class="kt-pagination__link--last pageButtons">
+                                <a data-pageNo="@Model.Pager.TotalPages"><i class="fa fa-angle-double-right kt-font-dark"></i></a>
+                            </li>
+                        }
+                    }
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-solid-dark alert-bold kt-m10" role="alert">
+        <div class="alert-text text-center"> <h3>No Data to Show</h3></div>
+    </div>
+}
+
+@*@section Scripts{
+
+    }*@
+<script>
+    $('.pageButtons').click(function () {
+        var data = AutoSolutionUtility.getFormData(AutoLookUpType.AutoLookUpTypeeSearchForm);
+        data['PageNo'] = $(this).find('a').attr('data-pageNo');
+        data['PageSize'] = $('#pageSize').val();
+        AutoLookUpType.getAutoLookUpType(data);
+    });
+
+    $('#pageSize').on('change', function (e) {
+        var pageSize = $(this).val();
+        data = {
+            PageNo: 1,
+            PageSize: pageSize
+        }
+        AutoLookUpType.getAutoLookUpType(data);
+    });
+    $('#SearchTerm').on('keyup', function (e) {
+        console.log($(this).val());
+    });
+</script>

@@ -18,7 +18,12 @@ namespace CleanArchitecture.Core.ViewModels
         public decimal CurrentPrice { get; set; }
         public decimal PreviousPrice { get; set; }
         public int EngineCapacity { get; set; }
-
+        public int ExteriorLength { get; set; }
+        public int ExteriorHeight { get; set; }
+        public int ExteriorWidth { get; set; }
+        public int Wheelbase { get; set; }
+        public int GroundClearance { get; set; }
+        public int RunningGroundClearance { get; set; }
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         

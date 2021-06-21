@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="_AutoVersionPanel" tabindex="-1" role="dialog" aria-labelledby="AutoModelPanel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">   
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Auto Version</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,8 +11,100 @@
             <form class="kt-form kt-form--label-right" id="AutoVersion">
                 <div class="modal-body">
                     <div class="kt-portlet__body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="kt-portlet kt-portlet--bordered">
+                                    <div class="kt-portlet__head bg-dark">
+                                        <div class="kt-portlet__head-label">
+                                            <h4 class="kt-portlet__head-title text-white">
+                                                General Info
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-widget1 p-0">
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
+                                                    @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                    <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoManufacturer">
+                                                        <option value="">Select Manufacturer</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
+                                                    @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                    <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2 disabled" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoModel" disabled>
+                                                        <option value="">Select Model</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="AutoVersionName"><span class="text-danger">*</span> Version Name:</label>
+                                                    <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label"><span class="text-danger">*</span>Start Date</label>
+                                                    <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
+                                                    <input type="number" name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="kt-portlet kt-portlet--bordered">
+                                    <div class="kt-portlet__head bg-dark">
+                                        <div class="kt-portlet__head-label">
+                                            <h4 class="kt-portlet__head-title text-white">
+                                                Dimensions
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__body">
+                                        <div class="kt-widget1 p-0">
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="ExteriorHeight">Exterior Height:</label>
+                                                    <input type="text" name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="ExteriorWidth">Exterior Width:</label>
+                                                    <input type="text" name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="ExteriorLength">Exterior Length:</label>
+                                                    <input type="text" name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="GroundClearance">Minmum Ground Clearance:</label>
+                                                    <input type="text" name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="form-control-label" for="RunningGroundClearance">Minmum Running Ground Clearance:</label>
+                                                    <input type="text" name="RunningGroundClearance" class="form-control" placeholder="" asp-for="RunningGroundClearance">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+
                         <div class="kt-section">
                             <div class="kt-section__content">
+
                                 <div class="form-group row">
 
                                     <div class="col-lg-4">
@@ -57,18 +149,15 @@
                                         <div class="input-group date">
                                             <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
                                             @*<div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <i class="la la-calendar-check-o"></i>
-                                                </span>
-                                            </div>*@
+                                                    <span class="input-group-text">
+                                                        <i class="la la-calendar-check-o"></i>
+                                                    </span>
+                                                </div>*@
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-lg-4">
-                                        <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
-                                        <input type="number" name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
-                                    </div>
+                                    
                                     Maximum power - Output - Horsepower (hp)
                                 </div>
                                 <div class="form-group row">

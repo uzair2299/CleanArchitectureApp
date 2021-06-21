@@ -139,3 +139,11 @@ cursor:pointer;
 .disabled{
     cursor: not-allowed !important
 }
+
+
+@media (min-width: 1024px) {
+    .modal-lg,
+    .modal-xl {
+        max-width: 900px !important;
+    }
+}
