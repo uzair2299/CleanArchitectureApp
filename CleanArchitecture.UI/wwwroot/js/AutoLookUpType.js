@@ -52,7 +52,7 @@ var AutoLookUpType = {
             },
             messages: {
                 LookUpTypeName: {
-                    required: "Manufacturer Name is Required"
+                    required: "Type is Required"
                 }
             },
         }); 
