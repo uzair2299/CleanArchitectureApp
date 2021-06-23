@@ -127,7 +127,7 @@ var AutoSolutionUtility = {
 
         $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
             if (this.id) {
-                data[this.id] = this.value.trim();
+                //data[this.id] = this.value.trim();
                 dataWithFile.append(this.id, this.value.trim());
             }
         });
@@ -136,11 +136,12 @@ var AutoSolutionUtility = {
         var file = document.getElementById("fileUpload").files[0];
         if (file) {
             dataWithFile.append('ImageFile', file);
-            return dataWithFile;
+            //return dataWithFile;
         }
-        else {
-            return data;
-        }
+        //else {
+        //    //return data;
+        //}
+        return dataWithFile;
     },
 
     getFormDataByName: function (formId) {
@@ -218,6 +219,11 @@ var AutoSolutionUtility = {
 
     defaultValidation: function (selector) {
         var isValid = true;
+        //$(selector).find('input[type=text],input[type=password],input[type=file],input[type=hidden]').each(function () {
+        //    var value = this.val();
+        //    if (value=="") {
+        //    }
+        //});
         $(selector).find('select').not(":disabled").each(function (i, item) {
             //console.log("#" + this.id);
             //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
@@ -228,7 +234,6 @@ var AutoSolutionUtility = {
                 $(this).siblings(".invalid-feedback").append("Required");
                 isValid = false;
             }
-
         })
         return isValid;
     }

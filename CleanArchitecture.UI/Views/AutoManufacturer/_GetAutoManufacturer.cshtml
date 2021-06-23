@@ -12,6 +12,7 @@
                     <table class="table table-bordered table-hover">
                         <thead class="kt-bg-fill-dark">
                             <tr>
+                                <th class="pl-3" style="width:100px">Logo</th>
                                 <th class="pl-3">Name</th>
                                 <th class="fit text-center">Action</th>
                             </tr>
@@ -20,6 +21,21 @@
                             @foreach (var item in Model.Data)
                             {
                                 <tr>
+
+                                    <td class="pl-3">
+                                        <div class="kt-user-card-v2 justify-content-center">
+                                            <div class="kt-user-card-v2__pic">
+                                                @if (item.ImagePath is null)
+                                                {
+                                                    <img src="~/Images/Avatar/car.png" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Images/@item.ImagePath" />
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td class="pl-3">@item.AutoManufacturerName</td>
                                     <td class="fit text-center">
                                         <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>

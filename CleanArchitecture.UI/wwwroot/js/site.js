@@ -50,31 +50,37 @@ var autoManufacturer = {
                 AutoManufacturerName: {
                     required: true
                 },
-                fileUpload: {
-                    required: true,
-                }
+                //fileUpload: {
+                //    required: true,
+                //}
             },
             messages: {
                 AutoManufacturerName: {
                     required: "Manufacturer Name is Required"
                 },
-                fileUpload: {
-                    required: "Logo is Required"
-                }
+                //fileUpload: {
+                //    required: "Logo is Required"
+                //}
             },
-            errorPlacement: function (error, element) {
-                console.log(error);
-                console.log(element);
-                if (element.attr('type') == 'file') {
-                    debugger;
-                    error.appendTo($('#fileUpload').parent().parent().find('.CustomDiv'));
-                    //$('#fileUpload').parent().parent().find('.CustomDiv').append(error);
-                }
-                else {
-                    error.insertAfter(element);
-                }
-            }
+            //errorPlacement: function (error, element) {
+            //    console.log(error);
+            //    console.log(element);
+            //    if (element.attr('type') == 'file') {
+            //        debugger;
+            //        error.appendTo($('#fileUpload').parent().parent().find('.CustomDiv'));
+            //        //$('#fileUpload').parent().parent().find('.CustomDiv').append(error);
+            //    }
+            //    else {
+            //        error.insertAfter(element);
+            //    }
+            //},
 
+            //highlight: function (element, errorClass, validClass) {
+            //    $(element).addClass("is-invalid");
+            //    $(element).next("div").addClass("invalid-feedback")
+            //    $(element).siblings(".error").addClass("invalid-feedback");
+
+            //}, 
         }); 
 
         if ($(autoManufacturer.autoManufacturerForm).valid()) {
@@ -83,7 +89,7 @@ var autoManufacturer = {
         else {
             console.log("fuck");
         }
-        return false;
+//        return false;
     },
 
     loadAutoManufacturerPanel: function () {
@@ -153,10 +159,11 @@ var autoManufacturer = {
                 "info": false,
                 "lengthChange": false,
                 "paging": false,
+                "order": [[1, "asc"]],
                 "columnDefs": [{
-                    "targets": -1,
+                    "targets":[0,-1],
                     "orderable": false
-                }]
+                },             ]
             });
             AutoSolutionUtility.hideLoader();
         })
