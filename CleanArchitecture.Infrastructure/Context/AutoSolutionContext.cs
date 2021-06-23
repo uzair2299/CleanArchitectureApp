@@ -18,6 +18,7 @@ namespace CleanArchitecture.Infrastructure.Context
         public DbSet<AutoEngineType> AutoEngineType { get; set; }
         public DbSet<AutoVersionPrice> AutoVersionPrice { get; set; }
         public DbSet<AutoLookUpType> AutoLookUpType { get; set; }
+        public DbSet<AutoSpecification> AutoSpecifications { get; set; }
 
         #endregion
 

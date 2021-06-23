@@ -60,5 +60,10 @@ namespace CleanArchitecture.Core.Service
         {
             return autoSolutionLookupRepository.GetRolesLookup(UserId);
         }
+
+        public List<SelectListItem> GetAutoSpecfication()
+        {
+            return autoSolutionLookupRepository.GetAutoSpecficationType();
+        }
     }
 }

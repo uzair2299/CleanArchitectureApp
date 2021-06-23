@@ -18,6 +18,7 @@ namespace CleanArchitecture.Core.Interfaces
         public List<SelectListItem> GetRolesLookup(int UserId);
         public PagePermissionViewModel GetPagesPermissionLookUp();
         public AutoVersionViewModel GetAutoVersionLookUpData();
+        public List<SelectListItem> GetAutoSpecficationType();
 
 
     }

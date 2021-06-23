@@ -239,6 +239,26 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("AutoModels");
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SpecificationParameter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpecificationTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecificationTypeId");
+
+                    b.ToTable("AutoSpecifications");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
                 {
                     b.Property<int>("Id")
@@ -559,6 +579,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("AutoManufacturer");
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecification", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.AutoLookUpType", "SpecificationType")
+                        .WithMany("AutoSpecifications")
+                        .HasForeignKey("SpecificationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SpecificationType");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoBodyType", "AutoBodyType")
@@ -641,6 +672,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
                 {
                     b.Navigation("AutoVersions");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoLookUpType", b =>
+                {
+                    b.Navigation("AutoSpecifications");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>

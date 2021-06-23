@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    [Migration("20210601104749_actionsSet")]
-    partial class actionsSet
+    [Migration("20210622145048_Specfication")]
+    partial class Specfication
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,9 +30,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<string>("ActionName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("AppControllersId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ControllerId")
                         .HasColumnType("int");
@@ -54,7 +51,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppControllersId");
+                    b.HasIndex("ControllerId");
 
                     b.ToTable("AppControllerActions");
                 });
@@ -146,6 +143,33 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("AutoEngineType");
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoLookUpType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LookUpTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AutoLookUpType");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>
                 {
                     b.Property<int>("Id")
@@ -166,6 +190,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPopular")
                         .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
@@ -195,6 +222,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsPopular")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ModelName")
                         .HasColumnType("nvarchar(max)");
 
@@ -209,6 +239,26 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("AutoManufacturerId");
 
                     b.ToTable("AutoModels");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SpecificationParameter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpecificationTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecificationTypeId");
+
+                    b.ToTable("AutoSpecifications");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
@@ -241,6 +291,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<DateTime?>("EndProductionYear")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("EngineCapacity")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -289,6 +342,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<decimal>("EndPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsPopular")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -507,7 +563,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.AppControllers", "AppControllers")
                         .WithMany("AppControllerActions")
-                        .HasForeignKey("AppControllersId");
+                        .HasForeignKey("ControllerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppControllers");
                 });
@@ -521,6 +579,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("AutoManufacturer");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecification", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.AutoLookUpType", "SpecificationType")
+                        .WithMany("AutoSpecifications")
+                        .HasForeignKey("SpecificationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SpecificationType");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
@@ -605,6 +674,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoEngineType", b =>
                 {
                     b.Navigation("AutoVersions");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoLookUpType", b =>
+                {
+                    b.Navigation("AutoSpecifications");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoManufacturer", b =>

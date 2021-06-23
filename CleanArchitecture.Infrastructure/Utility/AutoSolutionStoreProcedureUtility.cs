@@ -19,6 +19,7 @@ namespace CleanArchitecture.Infrastructure.Utility
 
         public const string spGetOnRoadPrice = "spGetOnRoadPrice";
 
+        public static string spSelectAutoSpecification = "spSelectAutoSpecification";
     }
 
 

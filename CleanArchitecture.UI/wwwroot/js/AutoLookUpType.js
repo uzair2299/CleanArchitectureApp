@@ -76,7 +76,7 @@ var AutoLookUpType = {
         })
     },
 
-    editAutoManufactuer: function (id) {
+    editAutoLookUpType: function (id) {
         data = { Id: id }
         var params = autoSolutionService.ajaxParams(data, AutoLookUpType.AutoLookUpTypeBaseURL + 'EditAutoLookUpType', 'get', true);
         autoSolutionService.defaultService(params).done(function (response) {
@@ -142,7 +142,7 @@ var AutoLookUpType = {
         })
     },
 
-    deleteAutoManufactuer: function (id, element) {
+    deleteAutoLookUpType: function (id, element) {
         
         console.log(id);
         data = { Id: id }

@@ -15,6 +15,6 @@ namespace CleanArchitecture.Domain.Entities
         public string CreatedBy { get; set; }
 
         public string ModifiedBy { get; set; }
-
+        public virtual ICollection<AutoSpecification> AutoSpecifications { get; set; }
     }
 }

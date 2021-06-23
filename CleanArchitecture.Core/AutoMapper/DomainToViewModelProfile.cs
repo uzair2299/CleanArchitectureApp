@@ -16,6 +16,7 @@ namespace CleanArchitecture.Core.AutoMapper
             CreateMap<Role, RolesViewModel>();
             CreateMap<User, UserViewModel>();
             CreateMap<AutoLookUpType, AutoLookUpTypeViewModel>();
+            CreateMap<AutoSpecification,AutoSpecificationViewModel>();
         }
     }
 }

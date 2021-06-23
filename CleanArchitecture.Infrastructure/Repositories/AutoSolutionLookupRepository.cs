@@ -263,5 +263,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 return response;
             }
         }
+
+        public List<SelectListItem> GetAutoSpecficationType()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoLookUpType.Select(x => new SelectListItem
+            {
+                Text = x.LookUpTypeName,
+                Value = x.Id.ToString()
+            }).ToList();
+            return selectListItems;
+        }
     }
 }
