@@ -41,7 +41,7 @@ namespace CleanArchitecture.UI.Controllers
         {
             if (ImageFile == null || ImageFile.Length == 0)
             {
-                autoManufacturerViewModel.ImagePath = null;
+                //autoManufacturerViewModel.ImagePath = null;
             }
             else
             {

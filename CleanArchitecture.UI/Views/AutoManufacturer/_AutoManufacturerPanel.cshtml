@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <form class="kt-form kt-form--label-right" id="VehicleManufacturer" enctype="multipart/form-data" >
+            <form class="kt-form kt-form--label-right" id="VehicleManufacturer" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="kt-portlet__body">
                         <div class="kt-section">
@@ -25,7 +25,7 @@
                                                 @*<label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>*@
                                                 <div class="col-lg-12">
                                                     <div class="kt-avatar kt-avatar--outline kt-avatar--circle" id="kt_apps_user_add_avatar">
-                                                        @if (Model!=null)
+                                                        @if (Model != null)
                                                         {
                                                             <div class="kt-avatar__holder imageHolder" style="background-image: url(@Url.Content("~/Images/"+Model.ImagePath))"></div>
                                                         }
@@ -35,13 +35,13 @@
                                                         }
                                                         <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Upload Logo">
                                                             <i class="fa fa-pen"></i>
-                                                            <input type="file" id="fileUpload" name="fileUpload">
+                                                            <input type="file" id="fileUpload" name="fileUpload" asp-for="ImagePath">
                                                         </label>
                                                         <div class="CustomDiv">
                                                         </div>
                                                         @*<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-            <i class="fa fa-times"></i>
-        </span>*@
+                                                    <i class="fa fa-times"></i>
+                                                </span>*@
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,6 +61,7 @@
                     </button>
                 </div>
                 <input type="hidden" asp-for="Id">
+                <input type="hidden" asp-for="ImagePath">
             </form>
         </div>
     </div>

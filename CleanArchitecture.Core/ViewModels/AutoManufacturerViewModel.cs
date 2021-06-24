@@ -9,5 +9,6 @@ namespace CleanArchitecture.Core.ViewModels
     {
         public string AutoManufacturerName { get; set; }
         public string ImagePath { get; set; }
+        public string CurrentImagePath { get; set; }
     }
 }
