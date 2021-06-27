@@ -24,6 +24,14 @@ namespace CleanArchitecture.Core.ViewModels
         public int Wheelbase { get; set; }
         public int GroundClearance { get; set; }
         public int RunningGroundClearance { get; set; }
+        public int SeatingCapacity { get; set; }
+        public int FuelTankCapacity { get; set; }
+        public int CrubWeight { get; set; }
+        public int GrossVehicleWeigth { get; set; }
+        public string SpareWheel { get; set; }
+        public string WheelType { get; set; }
+        public string TyreSize { get; set; }
+
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         

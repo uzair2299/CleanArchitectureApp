@@ -99,7 +99,6 @@ var autoVersion = {
             if (mm < 10) {
                 mm = '0' + mm
             }
-            
             today = yyyy + '-' + mm;
             $("#startMonth").val(today);
             $('#startMonth').attr('min', "1950-01");
@@ -113,6 +112,7 @@ var autoVersion = {
             //    orientation: "bottom left",
                 
             //});
+            $('#test').inputmask('a9[99]/9[9]R99.99');
             AutoSolutionUtility.showPanel(autoVersion.autoVersionPanel);
             AutoSolutionUtility.hideLoader();
         })

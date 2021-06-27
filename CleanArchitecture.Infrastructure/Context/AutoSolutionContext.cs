@@ -34,7 +34,7 @@ namespace CleanArchitecture.Infrastructure.Context
 
         #endregion
 
-
+        public DbSet<Province> Provinces { get; set; }
 
     }
 }

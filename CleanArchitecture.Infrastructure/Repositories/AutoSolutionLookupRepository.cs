@@ -274,5 +274,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
             }).ToList();
             return selectListItems;
         }
+
+        public List<SelectListItem> GetProvinceLookup()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems = unitOfWork.GetAutoSolutionContext().Provinces.Select(x => new SelectListItem
+            {
+                Text = x.ProvinceName,
+                Value = x.Id.ToString()
+            }).ToList();
+            return selectListItems;
+        }
     }
 }

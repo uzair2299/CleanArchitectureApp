@@ -11,9 +11,11 @@ namespace CleanArchitecture.Core.ViewModels
         public int SelectedAutoManufacturer { get; set; }
         public int SelectedAutoModel { get; set; }
         public int SelectedAutoVersion { get; set; }
+        public int SelectedProvince { get; set; }
         public string SelectedAutoManufacturerText { get; set; }
         public string SelectedAutoModelText { get; set; }
         public string SelectedAutoVersionText { get; set; }
+        public string SelectedProvinceText { get; set; }
         public string AutoVersionName { get; set; }
         public string ModelName { get; set; }
         public string AutoManufacturerName { get; set; }
@@ -24,5 +26,6 @@ namespace CleanArchitecture.Core.ViewModels
         public Decimal WithHoldingTaxForNonFiler { get; set; }
 
         public List<SelectListItem> AutoManufacturerLookup { get; set; }
+        public List<SelectListItem> AutoProvinceLookup { get; set; }
     }
 }

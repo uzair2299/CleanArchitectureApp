@@ -65,5 +65,10 @@ namespace CleanArchitecture.Core.Service
         {
             return autoSolutionLookupRepository.GetAutoSpecficationType();
         }
+
+        public List<SelectListItem> GetProvinceLookup()
+        {
+            return autoSolutionLookupRepository.GetProvinceLookup();
+        }
     }
 }

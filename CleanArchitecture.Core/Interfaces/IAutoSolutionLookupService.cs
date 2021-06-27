@@ -18,6 +18,7 @@ namespace CleanArchitecture.Core.Interfaces
         public PagePermissionViewModel GetPagesPermissionLookUp();
         public AutoVersionViewModel GetAutoVersionLookUpData();
         public List<SelectListItem> GetAutoSpecfication();
+        public List<SelectListItem> GetProvinceLookup();
 
     }
 }

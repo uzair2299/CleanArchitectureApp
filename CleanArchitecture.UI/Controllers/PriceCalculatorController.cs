@@ -22,7 +22,8 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult Index()
         {
             PriceCalculatorViewModel priceCalculatorViewModel = new PriceCalculatorViewModel();
-            priceCalculatorViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+            priceCalculatorViewModel.AutoProvinceLookup = autoSolutionLookupService.GetProvinceLookup();
+
             return View(priceCalculatorViewModel);
         }
 
