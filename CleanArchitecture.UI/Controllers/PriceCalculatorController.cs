@@ -23,7 +23,7 @@ namespace CleanArchitecture.UI.Controllers
         {
             PriceCalculatorViewModel priceCalculatorViewModel = new PriceCalculatorViewModel();
             priceCalculatorViewModel.AutoProvinceLookup = autoSolutionLookupService.GetProvinceLookup();
-
+            priceCalculatorViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
             return View(priceCalculatorViewModel);
         }
 

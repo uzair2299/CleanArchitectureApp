@@ -33,7 +33,8 @@ namespace CleanArchitecture.UI.Controllers
         [HttpGet]
         public IActionResult AutoManufacturerSave()
         {
-            return PartialView("_AutoManufacturerPanel");
+            AutoManufacturerViewModel autoManufacturerViewModel = new AutoManufacturerViewModel();
+            return PartialView("_AutoManufacturerPanel", autoManufacturerViewModel);
         }
 
         [HttpPost]

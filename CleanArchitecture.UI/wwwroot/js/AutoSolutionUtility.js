@@ -131,7 +131,13 @@ var AutoSolutionUtility = {
                 dataWithFile.append(this.id, this.value.trim());
             }
         });
+        var checkbox = $(formId).find("input[type=checkbox]")
+        if (checkbox.length > 1) {
 
+        }
+        else {
+            dataWithFile.append(checkbox[0].id, this.value);
+        }
         //var files = $('#fileUpload').get(0);
         var file = document.getElementById("fileUpload").files[0];
         if (file) {

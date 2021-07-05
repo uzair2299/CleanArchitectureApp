@@ -81,7 +81,7 @@ var autoManufacturer = {
             //    $(element).siblings(".error").addClass("invalid-feedback");
 
             //}, 
-        }); 
+        });
 
         if ($(autoManufacturer.autoManufacturerForm).valid()) {
             autoManufacturer.saveAutoManufacturerCopy();
@@ -89,7 +89,7 @@ var autoManufacturer = {
         else {
             console.log("fuck");
         }
-//        return false;
+        //        return false;
     },
 
     loadAutoManufacturerPanel: function () {
@@ -160,17 +160,17 @@ var autoManufacturer = {
                 "lengthChange": false,
                 "paging": false,
                 "order": [[1, "asc"]],
-                "columnDefs": [{
-                    "targets":[0,-1],
-                    "orderable": false
-                },             ]
+                "columnDefs": [
+                    { "targets": [0, -1], "orderable": false },
+                    { "width": "15%", "targets": [0, 2] }
+                ],
             });
             AutoSolutionUtility.hideLoader();
         })
     },
 
     deleteAutoManufactuer: function (id, element) {
-        
+
         console.log(id);
         data = { Id: id }
         AutoSolutionUtility.deleteConfirmationBox().then(function (result) {

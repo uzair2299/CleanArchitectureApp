@@ -12,37 +12,48 @@
                     <table class="table table-bordered table-hover">
                         <thead class="kt-bg-fill-dark">
                             <tr>
-                                <th class="pl-3" style="width:100px">Logo</th>
+                                <th class="pl-3">Logo</th>
                                 <th class="pl-3">Name</th>
+                                <th class="pl-3">Is Popular</th>
                                 <th class="fit text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.Data)
                             {
-                                <tr>
+                            <tr>
 
-                                    <td class="pl-3">
-                                        <div class="kt-user-card-v2 justify-content-center">
-                                            <div class="kt-user-card-v2__pic">
-                                                @if (item.ImagePath is null)
-                                                {
-                                                    <img src="~/Images/Avatar/car.png" />
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Images/@item.ImagePath" />
-                                                }
-                                            </div>
+                                <td class="pl-3">
+                                    <div class="kt-user-card-v2 justify-content-center">
+                                        <div class="kt-user-card-v2__pic">
+                                            @if (item.ImagePath is null)
+                                            {
+                                                <img src="~/Images/Avatar/car.png" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Images/@item.ImagePath" />
+                                            }
                                         </div>
-                                    </td>
-                                    <td class="pl-3">@item.AutoManufacturerName</td>
-                                    <td class="fit text-center">
-                                        <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
-                                        <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoManufacturer.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
-                                        <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoManufacturer.deleteAutoManufactuer(@item.Id,this)"><i class="la la-trash"></i></button>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                                <td class="pl-3">@item.AutoManufacturerName</td>
+                                @if (item.IsPopular)
+                                {
+                                    <td class="pl-3">Yes</td>
+
+                                }
+                                else
+                                {
+                                    <td class="pl-3">No</td>
+
+                                }
+                                <td class="fit text-center">
+                                    <button title="View Details" type="button" class="btnView btn btn-outline-hover-dark btn-sm btn-icon" data-id="@item.Id"><i class="la la-eye"></i></button>
+                                    <button title="Edit" type="button" class="btnEdit btn btn-outline-hover-dark btn-sm btn-icon" onclick="autoManufacturer.editAutoManufactuer(@item.Id)"><i class="la la-edit"></i></button>
+                                    <button title="Delete" type="button" class="btnDelete btn btn-outline-hover-danger btn-sm btn-icon" onclick="autoManufacturer.deleteAutoManufactuer(@item.Id,this)"><i class="la la-trash"></i></button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
