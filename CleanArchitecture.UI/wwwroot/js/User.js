@@ -67,7 +67,8 @@
         },
 
         loadUserPanel: function () {
-            var params = autoSolutionService.ajaxParams('', User.UserBaseURL + 'UserSave', 'get', true);
+            data = { isQuickAdd: true }
+            var params = autoSolutionService.ajaxParams(data, User.UserBaseURL + 'UserSave', 'get', true);
             autoSolutionService.defaultService(params).done(function (response) {
                 AutoSolutionUtility.clearHTML(User.UserPanelContainer);
                 AutoSolutionUtility.appendHTML(User.UserPanelContainer, response);

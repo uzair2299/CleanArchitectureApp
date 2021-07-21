@@ -10,13 +10,7 @@ namespace CleanArchitecture.Core.ViewModels
     {
         public string AutoManufacturerName { get; set; }
         public string ImagePath { get; set; }
-        public string CurrentImagePath { get; set; }
         public bool IsPopular { get; set; } = true;
-        //public SelectListItem IsPopular = new SelectListItem
-        //{
-        //    Text = "",
-        //    Value = "",
-        //    Selected = true
-        //};
+        
     }
 } 

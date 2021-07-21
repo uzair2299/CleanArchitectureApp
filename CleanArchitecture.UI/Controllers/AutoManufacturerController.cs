@@ -46,6 +46,7 @@ namespace CleanArchitecture.UI.Controllers
             }
             else
             {
+                // delete image
                 string ImagePath = fileUploadUtility.UplaodFile(ImageFile);
                 autoManufacturerViewModel.ImagePath = ImagePath;
             }
@@ -65,6 +66,7 @@ namespace CleanArchitecture.UI.Controllers
         public IActionResult EditAutoManufacturer(int Id)
         {
             var result  = autoManufacturerService.GetAutoManufacturerById(Id);
+           
             return PartialView("_AutoManufacturerPanel",result);
         }
 

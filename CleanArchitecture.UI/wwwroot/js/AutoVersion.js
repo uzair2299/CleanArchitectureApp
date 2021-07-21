@@ -37,7 +37,7 @@ var autoVersion = {
     autoVersionPanelUpdateTitle: "Update Auto Version",
 
     //form Name
-    autoVersionForm: "#VehicleVersion",
+    autoVersionForm: "#AutoVersion",
     autoVersioneSearchForm: "#AutoVersionSearchForm",
 
     //select
@@ -83,8 +83,9 @@ var autoVersion = {
         return false;
     },
 
-    loadAutoVersionPanel: function () {
-        var params = autoSolutionService.ajaxParams('', autoVersion.autoVersionBaseURL + 'AutoVersionSave', 'get', true);
+    loadAutoVersionPanel: function () { 
+        data = { isQuickAdd: true }
+        var params = autoSolutionService.ajaxParams(data, autoVersion.autoVersionBaseURL + 'AutoVersionSave', 'get', true);
         autoSolutionService.defaultService(params).done(function (response) {
             AutoSolutionUtility.clearHTML(autoVersion.autoVersionPanelContainer);
             AutoSolutionUtility.appendHTML(autoVersion.autoVersionPanelContainer, response);
@@ -132,7 +133,8 @@ var autoVersion = {
     },
 
     saveAutoVersion: function () {
-        var params = autoSolutionService.ajaxParams($(autoVersion.autoVersionForm).serialize(), autoVersion.autoVersionBaseURL + 'AutoVersionSave', 'post', false);
+        var data = AutoSolutionUtility.getFormData(autoVersion.autoVersionForm);
+        var params = autoSolutionService.ajaxParams(data, autoVersion.autoVersionBaseURL + 'AutoVersionSave', 'post', false);
         autoSolutionService.defaultService(params).done(function (response) {
             switch (response.status) {
                 case statusCode.UPDATE:
@@ -226,42 +228,42 @@ var autoVersion = {
             SelectedModel.empty();
             AutoSolutionUtility.removeAttribute(SelectedModel, "disabled");
             AutoSolutionUtility.removeCssClass(SelectedModel, "disabled");
-            if (response != null && !jQuery.isEmptyObject(response)) {
-                $.each(response.data, function (index, version) {
-                    SelectedModel.append($('<option/> ', {
-                        value: version.value,
-                        text: version.text
-                    }));
-                });
-            }
-
-            //var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
-            //var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
             //if (response != null && !jQuery.isEmptyObject(response)) {
-            //    AutoSolutionUtility.appendDefaultSelectOption(PriceCalculator.SelectedModel, "", "Select Model");
-
-            //    //$(SelectedModel).append($('<option/> ', {
-            //    //    value: "",
-            //    //    text: "Select Model"
-            //    //}));
-            //    $.each(response.data, function (index, model) {
-            //        if (model.group.name == "Popular Models") {
-            //            $(popularOptGroup).append($('<option/> ', {
-            //                value: model.value,
-            //                text: model.text
-            //            }));
-            //        } else {
-            //            $(otherOptGroup).append($('<option/> ', {
-            //                value: model.value,
-            //                text: model.text
-            //            }));
-            //        }
+            //    $.each(response.data, function (index, version) {
+            //        SelectedModel.append($('<option/> ', {
+            //            value: version.value,
+            //            text: version.text
+            //        }));
             //    });
-            //    SelectedModel.append(popularOptGroup);
-            //    SelectedModel.append(otherOptGroup);
-            //} else {
-            //    //
             //}
+
+            var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
+            var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
+            if (response != null && !jQuery.isEmptyObject(response)) {
+                AutoSolutionUtility.appendDefaultSelectOption(autoVersion.SelectedModel, "", "Select Model");
+
+                //$(SelectedModel).append($('<option/> ', {
+                //    value: "",
+                //    text: "Select Model"
+                //}));
+                $.each(response.data, function (index, model) {
+                    if (model.group.name == "Popular Models") {
+                        $(popularOptGroup).append($('<option/> ', {
+                            value: model.value,
+                            text: model.text
+                        }));
+                    } else {
+                        $(otherOptGroup).append($('<option/> ', {
+                            value: model.value,
+                            text: model.text
+                        }));
+                    }
+                });
+                SelectedModel.append(popularOptGroup);
+                SelectedModel.append(otherOptGroup);
+            } else {
+                //
+            }
         })
     }
 }

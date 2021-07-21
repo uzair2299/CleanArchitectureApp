@@ -33,11 +33,21 @@ namespace CleanArchitecture.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult AutoVersionSave()
+        public IActionResult AutoVersionSave(bool isQuickAdd)
         {
-            AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
-            autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
-            return PartialView("_AutoVersionPanel", autoVersionViewModel);
+            if (isQuickAdd)
+            {
+                AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
+                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+                return PartialView("_AutoVersionPanel", autoVersionViewModel);
+            }
+            else
+            {
+                AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
+                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+                return View("AutoVersionSave", autoVersionViewModel);
+
+            }
         }
 
         [HttpPost]

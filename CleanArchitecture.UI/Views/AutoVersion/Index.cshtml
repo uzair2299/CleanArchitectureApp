@@ -33,8 +33,12 @@
                         <div class="kt-portlet__head-actions">
                             <button class="btn btn-dark btn-icon-sm" onclick="autoVersion.loadAutoVersionPanel()" id="_AutoVersionPanelbtn">
                                 <i class="la la-plus"></i>
-                                Add New
+                                Quick Add
                             </button>
+                            <a asp-action="AutoVersionSave" asp-controller="AutoVersion" asp-route-isQuickAdd="false" class="btn btn-dark btn-icon-sm">
+                                <i class="la la-plus"></i>
+                                Add New
+                            </a>
                         </div>
                     </div>
                 </div>

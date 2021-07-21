@@ -26,13 +26,13 @@ namespace CleanArchitecture.UI.Controllers
             AutoSolutionPageSet<UserViewModel> result = UserService.GetUser(userViewModel);
             return View(result);
         }
-        public IActionResult AddNew()
-        {
-            UserViewModel userViewModel = new UserViewModel();
-            userViewModel.pagePermissionViewModel = autoSolutionLookupService.GetPagesPermissionLookUp();
-            //userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
-            return View(userViewModel);
-        }
+        //public IActionResult AddNew()
+        //{
+        //    UserViewModel userViewModel = new UserViewModel();
+        //    userViewModel.pagePermissionViewModel = autoSolutionLookupService.GetPagesPermissionLookUp();
+        //    //userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+        //    return View(userViewModel);
+        //}
         [HttpGet]
         public IActionResult GetUser(UserViewModel UserViewModel)
         {
@@ -41,11 +41,23 @@ namespace CleanArchitecture.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult UserSave()
+        public IActionResult UserSave(bool isQuickAdd)
         {
-            UserViewModel userViewModel = new UserViewModel();
-            userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
-            return PartialView("_UserPanel", userViewModel);
+
+            if (isQuickAdd)
+            {
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+                return PartialView("_UserPanel", userViewModel);
+            }
+            else
+            {
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.pagePermissionViewModel = autoSolutionLookupService.GetPagesPermissionLookUp();
+                //userViewModel.RolesLookup = autoSolutionLookupService.GetRolesLookup();
+                return View("AddNew",userViewModel);
+
+            }
         }
 
         [HttpPost]
