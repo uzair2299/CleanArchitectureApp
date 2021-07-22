@@ -34,6 +34,7 @@ namespace CleanArchitecture.Domain.Entities
 
         public string ModifiedBy { get; set; }
         public int EngineCapacity { get; set; }
+        public  virtual ICollection<AutoVersionDimension> AutoVersionDimensions { get; set; }
 
     }
 }

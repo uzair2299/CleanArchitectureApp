@@ -98,7 +98,7 @@ var AutoSolutionUtility = {
     getFormData: function (formId) {
         var data = {};
         var SelectedItems = [];
-        $(formId).find('input[type=text],input[type=password],input[type=hidden]').each(function () {
+        $(formId).find('input[type=text],input[type=number],input[type=password],input[type=hidden]').each(function () {
             if (this.id) {
                 data[this.id] = this.value.trim();
             }
