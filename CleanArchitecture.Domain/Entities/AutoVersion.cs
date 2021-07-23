@@ -34,7 +34,10 @@ namespace CleanArchitecture.Domain.Entities
 
         public string ModifiedBy { get; set; }
         public int EngineCapacity { get; set; }
-        public  virtual ICollection<AutoVersionDimension> AutoVersionDimensions { get; set; }
 
+        #region Navigational Properties
+        public virtual ICollection<AutoVersionDimension> AutoVersionDimensions { get; set; }
+        public virtual ICollection<AutoVersionWeightCapacity> AutoVersionWeightCapacities { get; set; }
+        #endregion
     }
 }

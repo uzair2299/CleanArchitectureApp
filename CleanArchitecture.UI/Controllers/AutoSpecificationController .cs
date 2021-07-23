@@ -53,7 +53,7 @@ namespace CleanArchitecture.UI.Controllers
             }
         }
         [HttpGet]
-         public IActionResult EditAutoSpecification(int Id)
+        public IActionResult EditAutoSpecification(int Id)
         {
             AutoSpecificationViewModel AutoSpecificationViewModel = new AutoSpecificationViewModel();
             AutoSpecificationViewModel= AutoSpecificationService.GetAutoSpecificationById(Id); 

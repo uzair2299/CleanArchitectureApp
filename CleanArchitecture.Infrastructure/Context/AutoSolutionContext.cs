@@ -19,6 +19,10 @@ namespace CleanArchitecture.Infrastructure.Context
         public DbSet<AutoVersionPrice> AutoVersionPrice { get; set; }
         public DbSet<AutoLookUpType> AutoLookUpType { get; set; }
         public DbSet<AutoSpecification> AutoSpecifications { get; set; }
+        public DbSet<AutoSpecificationSub> AutoSpecificationSubs { get; set; }
+        public DbSet<AutoVersionWeightCapacity> AutoVersionWeightCapacities { get; set; }
+        public DbSet<AutoVersionDimension> AutoVersionDimensions { get; set; }
+
 
         #endregion
 

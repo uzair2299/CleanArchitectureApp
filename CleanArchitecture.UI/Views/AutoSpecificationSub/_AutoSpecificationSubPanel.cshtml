@@ -1,0 +1,61 @@
+﻿@model CleanArchitecture.Core.ViewModels.AutoSpecificationSubViewModel
+<div class="modal fade" id="_AutoSpecificationSubPanel" tabindex="-1" role="dialog" aria-labelledby="AutoSpecificationSubPanel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vehicle Specification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <form class="kt-form kt-form--label-right" id="AutoSpecificationSub">
+                <div class="modal-body">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
+                                        <select asp-for="SpecificationType" asp-items="Model.AutoSpecificationSubTypeLookUp" class="form-control kt-select2" name="SpecificationType" style="width:100%">
+                                            <option value="">Select Specification Type</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
+                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                        <select class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled>
+                                            <option value="">Select Model</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoSpecificationSubName"><span class="text-danger">*</span> Specification</label>
+                                        <input type="text" name="SpecificationParameter" class="form-control" placeholder="" asp-for="SpecificationParameter">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="form-control-label" for="AutoSpecificationSubName">Description</label>
+                                        <textarea class="form-control" rows="5"></textarea>
+                                        @*<input type="text" name="SpecificationParameter" class="form-control" placeholder="Pending" asp-for="SpecificationParameter">*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                    <button type="submit" class="btn btn-dark btn-sm" onclick="AutoSpecificationSub.validdateAutoSpecificationSub(event)" id="btnAutoSpecificationSub">
+                        <i class="fa fa-plus"></i>
+                        Add New
+                    </button>
+                </div>
+                <input type="hidden" asp-for="Id">
+            </form>
+        </div>
+    </div>
+</div>

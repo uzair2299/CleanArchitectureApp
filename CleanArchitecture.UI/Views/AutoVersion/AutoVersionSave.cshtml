@@ -132,7 +132,7 @@
                                                     <div class="col-lg-4">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedAutoModel" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%"  id="SelectedAutoModel" disabled>
+                                                        <select asp-for="SelectedAutoModel"  class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%"  id="SelectedAutoModel" disabled>
                                                             <option value="">Select Model</option>
                                                         </select>
                                                     </div>
@@ -170,56 +170,55 @@
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorHeight">Exterior Height:</label>
+                                                        <label class="form-control-label" for="ExteriorHeight">Exterior Height(mm):</label>
                                                         <input type="number" name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorWidth">Exterior Width:</label>
+                                                        <label class="form-control-label" for="ExteriorWidth">Exterior Width(mm):</label>
                                                         <input type="number" name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorLength">Exterior Length:</label>
+                                                        <label class="form-control-label" for="ExteriorLength">Exterior Length(mm):</label>
                                                         <input type="number" name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="InteriorHeight">Interior Height:</label>
+                                                        <label class="form-control-label" for="InteriorHeight">Interior Height(mm):</label>
                                                         <input type="number" name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight" value="">
                                                     </div>
-
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="InteriorWidth">Interior Width:</label>
+                                                        <label class="form-control-label" for="InteriorWidth">Interior Width(mm):</label>
                                                         <input type="number" name="InteriorWidth" class="form-control" placeholder="" asp-for="InteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="InteriorLength">Interior Length:</label>
+                                                        <label class="form-control-label" for="InteriorLength">Interior Length(mm):</label>
                                                         <input type="number" name="InteriorLength" class="form-control" placeholder="" asp-for="InteriorLength" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="TreadFront">Tread Front:</label>
+                                                        <label class="form-control-label" for="TreadFront">Tread Front(mm):</label>
                                                         <input type="number" name="TreadFront" class="form-control" placeholder="" asp-for="TreadFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="TreadRear">Tread Rear:</label>
+                                                        <label class="form-control-label" for="TreadRear">Tread Rear(mm):</label>
                                                         <input type="number" name="TreadRear" class="form-control" placeholder="" asp-for="TreadRear" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="OverhangFront">Overhang Front</label>
+                                                        <label class="form-control-label" for="OverhangFront">Overhang Front(mm):</label>
                                                         <input type="number" name="OverhangFront" class="form-control" placeholder="" asp-for="OverhangFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="OverhangRear">Overhang Rear</label>
+                                                        <label class="form-control-label" for="OverhangRear">Overhang Rear(mm):</label>
                                                         <input type="number" name="OverhangRear" class="form-control" placeholder="" asp-for="OverhangRear" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="Wheelbase">Wheelbase:</label>
+                                                        <label class="form-control-label" for="Wheelbase">Wheelbase(mm):</label>
                                                         <input type="number" name="Wheelbase" class="form-control" placeholder="" asp-for="Wheelbase" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="GroundClearance">Ground Clearance:</label>
+                                                        <label class="form-control-label" for="GroundClearance">Ground Clearance(mm):</label>
                                                         <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
                                                     </div>
                                                     
@@ -249,24 +248,25 @@
                                         <div class="kt-portlet__body">
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorHeight">Seating Capacity(Persons):</label>
-                                                        <input type="text" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" id="kt_inputmask_1" value="">
+                                                        <input type="number" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="">
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorWidth">Fuel Tank Capacity(Liters):</label>
-                                                        <input type="text" name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
+                                                        <input type="number" name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorLength">Crub Weight(Kg):</label>
-                                                        <input type="text" name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
+                                                        <input type="number" name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
+                                                        <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <div class="col-lg-4">
-                                                        <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
-                                                        <input type="text" name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

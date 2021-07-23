@@ -37,14 +37,16 @@ namespace CleanArchitecture.Infrastructure.IoC
             builder.RegisterType<ViewDataSet>();
             builder.RegisterType<AutoLookUpType>();
             builder.RegisterType<AutoSpecification>();
+            builder.RegisterType<AutoSpecificationSub>();
 
             builder.RegisterType<AutoLookUpTypeViewModel>();
             builder.RegisterType<AutoModelViewModel>();
             builder.RegisterType<AutoBodyTypeViewModel>();
             builder.RegisterType<AutoEngineTypeViewModel>();
             builder.RegisterType<AutoSpecificationViewModel>();
+            builder.RegisterType<AutoSpecificationViewModel>();
 
-            
+
 
             //service & repositroy
             builder.RegisterType<AutoManufacturerService>().As<IAutoManufacturerService>().InstancePerLifetimeScope();
@@ -85,6 +87,10 @@ namespace CleanArchitecture.Infrastructure.IoC
 
             builder.RegisterType<AutoSpecificationService>().As<IAutoSpecificationService>().InstancePerLifetimeScope();
             builder.RegisterType<AutoSpecificationRepository>().As<IAutoSpecificationRepository>().InstancePerLifetimeScope();
+
+            builder.RegisterType<AutoSpecificationSubService>().As<IAutoSpecificationSubService>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoSpecificationSubRepository>().As<IAutoSpecificationSubRepository>().InstancePerLifetimeScope();
+
 
 
             #region lookUp 

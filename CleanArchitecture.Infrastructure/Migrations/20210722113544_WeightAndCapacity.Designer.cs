@@ -4,14 +4,16 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210722113544_WeightAndCapacity")]
+    partial class WeightAndCapacity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,26 +259,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("SpecificationTypeId");
 
                     b.ToTable("AutoSpecifications");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecificationSub", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("AutoSpecificationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SpecificationSubParameter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AutoSpecificationId");
-
-                    b.ToTable("AutoSpecificationSubs");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
@@ -744,17 +726,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("SpecificationType");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecificationSub", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Entities.AutoSpecification", "AutoSpecification")
-                        .WithMany()
-                        .HasForeignKey("AutoSpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AutoSpecification");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>

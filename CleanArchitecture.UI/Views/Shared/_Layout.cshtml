@@ -399,13 +399,15 @@
                                         <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoModel" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Model</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoEngineType" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Body Type</span></a></li>
                                         <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoBodyType" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Body Type</span></a></li>
-                                        <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoManufacturer" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Manufacturer</span></a></li>                           <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoManufacturer" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Manufacturer</span></a></li>
+                                        <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                             <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
                                             <div class="kt-menu__submenu ">
                                                 <span class="kt-menu__arrow"></span>
                                                 <ul class="kt-menu__subnav">
-                                                    <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoSpecification" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Sub Type</span></a></li>
-                                                    <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoLookUpType" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Type</span></a></li>
+                                                    <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoSpecificationSub" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Sub Class</span></a></li>
+                                                    <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoSpecification" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Clas</span></a></li>
+                                                    <li class="kt-menu__item " aria-haspopup="true"><a asp-controller="AutoLookUpType" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Auto Specification Group</span></a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -413,7 +415,7 @@
                                 </div>
                             </li>
                             <li class="kt-menu__item " aria-haspopup="true">
-                                <a  asp-action="Index" asp-controller="PriceCalculator" class="kt-menu__link ">
+                                <a asp-action="Index" asp-controller="PriceCalculator" class="kt-menu__link ">
                                     <span class="kt-menu__link-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -425,7 +427,7 @@
                                     </span><span class="kt-menu__link-text">Price Calculator</span>
                                 </a>
                             </li>
-                            
+
                             <li class="kt-menu__item " aria-haspopup="true">
                                 <a target="_blank" href="https://keenthemes.com/metronic/preview/demo1/builder.html" class="kt-menu__link ">
                                     <span class="kt-menu__link-icon">
@@ -2568,7 +2570,7 @@
     <script src="~/assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
     <script src="~/assets/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
     <script src="~/assets/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
-    
+
     <!--end:: Global Mandatory Vendors -->
     <!--begin:: Global Optional Vendors -->
     <script src="~/assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
@@ -2638,7 +2640,7 @@
 
     <script src="~/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
     <script src="~/assets/js/demo1/pages/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
-    		<script src="~/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
+    <script src="~/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
     @*<script src="~/assets/js/demo1/pages/crud/datatables/search-options/advanced-search.js" type="text/javascript"></script>*@
     <!--end::Page Scripts -->
 </body>
