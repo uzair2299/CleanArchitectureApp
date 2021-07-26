@@ -10,8 +10,8 @@ namespace CleanArchitecture.Domain.Entities
     {
         public string SpecificationSubParameter { get; set; }
 
-        [ForeignKey("AutoSpecification")]
-        public int AutoSpecificationId { get; set; }
-        public virtual AutoSpecification AutoSpecification { get; set; }
+        //[ForeignKey("AutoSpecification")]
+        //public int AutoSpecificationId { get; set; }
+        //public virtual AutoSpecification AutoSpecification { get; set; }
     }
 }

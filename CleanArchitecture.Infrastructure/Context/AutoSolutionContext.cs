@@ -40,5 +40,13 @@ namespace CleanArchitecture.Infrastructure.Context
 
         public DbSet<Province> Provinces { get; set; }
 
+        protected override void  OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AutoSpecification>()
+                .HasMany(x => x.SpecificationSubParameter)
+                .WithOne(x => x.ParentNode)
+                .HasForeignKey(x => x.ParentId);
+        }   
+
     }
 }

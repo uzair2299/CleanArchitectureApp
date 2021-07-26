@@ -59,7 +59,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             }
             
             command.Parameters.Add(new SqlParameter("@PageNo", AutoSpecificationViewModel.PageNo));
-            command.Parameters.Add(new SqlParameter("@PageSize", AutoSpecificationViewModel.PageSize));
+            command.Parameters.Add(new SqlParameter("@PageSize", 100));
             command.Parameters.Add(new SqlParameter("@TotalCount",0));
             command.Parameters["@TotalCount"].Direction = ParameterDirection.Output;
             List<AutoSpecificationViewModel> finalResult = new List<AutoSpecificationViewModel>();

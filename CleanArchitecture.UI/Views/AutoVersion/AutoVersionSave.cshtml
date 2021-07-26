@@ -132,7 +132,7 @@
                                                     <div class="col-lg-4">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedAutoModel"  class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%"  id="SelectedAutoModel" disabled>
+                                                        <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled>
                                                             <option value="">Select Model</option>
                                                         </select>
                                                     </div>
@@ -221,7 +221,7 @@
                                                         <label class="form-control-label" for="GroundClearance">Ground Clearance(mm):</label>
                                                         <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
                                                     </div>
-                                                    
+
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
@@ -266,7 +266,35 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="kt-portlet kt-portlet--bordered">
+                                        <div class="kt-portlet__head bg-dark">
+                                            <div class="kt-portlet__head-label">
+                                                <h4 class="kt-portlet__head-title text-white">
+                                                    Safety Features
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+                                            <div class="kt-widget1 p-0">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="ExteriorHeight">Seating Capacity(Persons):</label>
+                                                        <input type="number" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -275,42 +303,42 @@
                             </div>
 
                             @*<div class="row">
-                                <div class="col-12">
-                                    <div class="kt-portlet kt-portlet--bordered">
-                                        <div class="kt-portlet__head bg-dark">
-                                            <div class="kt-portlet__head-label">
-                                                <h4 class="kt-portlet__head-title text-white">
-                                                    Wheel & Tire
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="kt-portlet__body">
-                                            <div class="kt-widget1 p-0">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-4">
-                                                        <label class="form-control-label" for="TyreSize">Tyre Size:</label>
-                                                        <input type="text" name="TyreSize" class="form-control" placeholder="" asp-for="TyreSize" value="">
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <label class="form-control-label" for="WheelType">Wheel Type:</label>
-                                                        <select asp-for="SelectedManufacturer" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoManufacturer">
-                                                            <option value="">Select Wheel Type</option>
-                                                            <option value="Alloy Wheels">Alloy Wheels</option>
-                                                            <option value="Chrome Wheels">Chrome Wheels</option>
-                                                            <option value="Steel Wheels">Steel Wheels</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <label class="form-control-label" for="SpareWheel">Spare Wheel:</label>
-                                                        <input type="text" name="SpareWheel" class="form-control ip_address" placeholder="" asp-for="SpareWheel" value="">
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="col-12">
+                <div class="kt-portlet kt-portlet--bordered">
+                    <div class="kt-portlet__head bg-dark">
+                        <div class="kt-portlet__head-label">
+                            <h4 class="kt-portlet__head-title text-white">
+                                Wheel & Tire
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <div class="kt-widget1 p-0">
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    <label class="form-control-label" for="TyreSize">Tyre Size:</label>
+                                    <input type="text" name="TyreSize" class="form-control" placeholder="" asp-for="TyreSize" value="">
                                 </div>
-                            </div>*@
+                                <div class="col-lg-4">
+                                    <label class="form-control-label" for="WheelType">Wheel Type:</label>
+                                    <select asp-for="SelectedManufacturer" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedAutoManufacturer">
+                                        <option value="">Select Wheel Type</option>
+                                        <option value="Alloy Wheels">Alloy Wheels</option>
+                                        <option value="Chrome Wheels">Chrome Wheels</option>
+                                        <option value="Steel Wheels">Steel Wheels</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="form-control-label" for="SpareWheel">Spare Wheel:</label>
+                                    <input type="text" name="SpareWheel" class="form-control ip_address" placeholder="" asp-for="SpareWheel" value="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
                         </div>
                         <!--<div class="kt-portlet__body">
 
