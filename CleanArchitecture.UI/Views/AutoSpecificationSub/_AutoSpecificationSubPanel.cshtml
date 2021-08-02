@@ -1,4 +1,4 @@
-﻿@model CleanArchitecture.Core.ViewModels.AutoSpecificationSubViewModel
+﻿@model CleanArchitecture.Core.ViewModels.AutoSpecificationViewModel
 <div class="modal fade" id="_AutoSpecificationSubPanel" tabindex="-1" role="dialog" aria-labelledby="AutoSpecificationSubPanel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -16,7 +16,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
-                                        <select asp-for="SpecificationType" asp-items="Model.AutoSpecificationSubTypeLookUp" class="form-control kt-select2" name="SpecificationType" style="width:100%" id="SelectedpecificationType" onchange="AutoSpecificationSub.getSpecficationParameterLookup(this)">
+                                        <select asp-for="SpecificationTypeId" asp-items="Model.AutoSpecificationTypeLookUp" class="form-control kt-select2" name="SpecificationTypeId" style="width:100%" id="SelectedSpecificationType" onchange="AutoSpecificationSub.getSpecficationParameterLookup(this)">
                                             <option value="">Select Specification Type</option>
                                         </select>
                                     </div>
@@ -24,7 +24,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
-                                        <select class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedSpecificationParameter" disabled>
+                                        <select class="form-control kt-select2 disabled" name="SelectedSpecificationParameter" style="width:100%" id="SelectedSpecificationParameter" disabled>
                                             <option value="">Select Specification Parameter</option>
                                         </select>
                                     </div>

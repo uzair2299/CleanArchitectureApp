@@ -103,7 +103,8 @@ var AutoSpecificationSub = {
     },
 
     saveAutoSpecificationSub: function () {
-        var params = autoSolutionService.ajaxParams($(AutoSpecificationSub.AutoSpecificationSubForm).serialize(), AutoSpecificationSub.AutoSpecificationSubBaseURL + 'AutoSpecificationSubSave', 'post', false);
+        var data = AutoSolutionUtility.getFormData(AutoSpecificationSub.AutoSpecificationSubForm);
+        var params = autoSolutionService.ajaxParams(data, AutoSpecificationSub.AutoSpecificationSubBaseURL + 'AutoSpecificationSubSave', 'post', false);
         autoSolutionService.defaultService(params).done(function (response) {
             switch (response.status) {
                 case statusCode.UPDATE:

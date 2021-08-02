@@ -118,7 +118,7 @@ var AutoSolutionUtility = {
             data[this.id] = $(list).find('option:selected').val()
             data[this.id+"Text"] = $(list).find('option:selected').text();
         });
-
+        console.log(data);
         return data;
     },
     getFormDataWithFile: function (formId) {

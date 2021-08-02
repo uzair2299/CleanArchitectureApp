@@ -21,9 +21,9 @@ namespace CleanArchitecture.Core.Service
             this.AutoSpecificationSubRepository = AutoSpecificationSubRepository;
         }
 
-        public AutoSpecificationSubViewModel AutoSpecificationSubSave(AutoSpecificationSubViewModel AutoSpecificationSubViewModel)
+        public AutoSpecificationViewModel AutoSpecificationSubSave(AutoSpecificationViewModel AutoSpecificationViewModel)
         {
-            return AutoSpecificationSubRepository.AutoSpecificationSubSave(AutoSpecificationSubViewModel);
+            return AutoSpecificationSubRepository.AutoSpecificationSubSave(AutoSpecificationViewModel);
         }
 
         public AutoSolutionPageSet<AutoSpecificationSubViewModel> GetAutoSpecificationSub(AutoSpecificationSubViewModel AutoSpecificationSubViewModel)

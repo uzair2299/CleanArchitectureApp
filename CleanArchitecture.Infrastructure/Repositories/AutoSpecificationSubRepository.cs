@@ -26,20 +26,23 @@ namespace CleanArchitecture.Infrastructure.Repositories
             this.autoMapper = autoMapper;
             this.repository = repository;
         }
-        public AutoSpecificationSubViewModel AutoSpecificationSubSave(AutoSpecificationSubViewModel AutoSpecificationSubViewModel)
+        public AutoSpecificationViewModel AutoSpecificationSubSave(AutoSpecificationViewModel AutoSpecificationViewModel)
         {
-            //var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
-            //c.Open();
-            //var command = c.CreateCommand();
-            ////command.CommandType = System.Data.CommandType.StoredProcedure;
-            //command.CommandText ="EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoSpecificationSub + " @ModelName,@AutoManufacturerId";
-            //command.Parameters.Add(new SqlParameter("ModelName", AutoSpecificationSubViewModel.ModelName));
-            //command.Parameters.Add(new SqlParameter("AutoManufacturerId", AutoSpecificationSubViewModel.SelectedManufacturer));
-            //int rowAffected =  command.ExecuteNonQuery();
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            {
+                db.Open();
+                var command = db.CreateCommand();
+                //command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.spInsertAutoSpecification + " @SpecificationParameter,@SpecificationTypeId";
+                command.Parameters.Add(new SqlParameter("SpecificationParameter", AutoSpecificationViewModel.SpecificationParameter));
+                command.Parameters.Add(new SqlParameter("SpecificationTypeId", AutoSpecificationViewModel.SpecificationTypeId));
+                int rowAffected = command.ExecuteNonQuery();
 
-            //return rowAffected > 0 ? AutoSpecificationSubViewModel : null;
-            return null;
-                }
+                return rowAffected > 0 ? AutoSpecificationViewModel : null;
+
+            }
+
+        }
 
         public AutoSolutionPageSet<AutoSpecificationSubViewModel> GetAutoSpecificationSub(AutoSpecificationSubViewModel AutoSpecificationSubViewModel)
         {

@@ -38,22 +38,22 @@ namespace CleanArchitecture.UI.Controllers
         [HttpGet]
         public IActionResult AutoSpecificationSubSave()
         {
-            AutoSpecificationSubViewModel AutoSpecificationSubViewModel = new AutoSpecificationSubViewModel();
-            AutoSpecificationSubViewModel.AutoSpecificationSubTypeLookUp = autoSolutionLookupService.GetAutoSpecfication();
-            return PartialView("_AutoSpecificationSubPanel", AutoSpecificationSubViewModel);
+            AutoSpecificationViewModel AutoSpecificationViewModel = new AutoSpecificationViewModel();
+            AutoSpecificationViewModel.AutoSpecificationTypeLookUp = autoSolutionLookupService.GetAutoSpecfication();
+            return PartialView("_AutoSpecificationSubPanel", AutoSpecificationViewModel);
         }
 
         [HttpPost]
-        public IActionResult AutoSpecificationSubSave(AutoSpecificationSubViewModel AutoSpecificationSubViewModel)
+        public IActionResult AutoSpecificationSubSave(AutoSpecificationViewModel AutoSpecificationViewModel)
         {
-            if (AutoSpecificationSubViewModel.Id > 0)
+            if (AutoSpecificationViewModel.Id > 0)
             {
-                var result = AutoSpecificationSubService.AutoSpecificationSubSave(AutoSpecificationSubViewModel);
+                var result = AutoSpecificationSubService.AutoSpecificationSubSave(AutoSpecificationViewModel);
                 return Json(new { status = result != null ? "save" : "exist", data = result });
             }
             else
             {
-                var result = AutoSpecificationSubService.AutoSpecificationSubSave(AutoSpecificationSubViewModel);
+                var result = AutoSpecificationSubService.AutoSpecificationSubSave(AutoSpecificationViewModel);
                 return Json(new { status = result != null ? "save" : "exist", data = result });
             }
         }

@@ -15,6 +15,7 @@ namespace CleanArchitecture.Core.ViewModels
         public string SpecificationSubParameter { get; set; }
         public string SpecificationType { get; set; }
         public string SpecificationParameter { get; set; }
+        public int SelectedSpecificationParameter { get; set; }
         public List<SelectListItem> AutoSpecificationSubTypeLookUp { get; set; }
     }
 }

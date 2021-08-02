@@ -15,6 +15,10 @@ namespace CleanArchitecture.Core.ViewModels
         public string SpecificationType { get; set; }
         public int SpecificationTypeId { get; set; }
         public string SpecificationParameter { get; set; }
+        public int SelectedSpecificationType { get; set; }
+        public string SelectedSpecificationTypeText { get; set; }
+        public int SelectedSpecificationParameter { get; set; }
+        public string SelectedSpecificationParameterText { get; set; }
         public List<SelectListItem> AutoSpecificationTypeLookUp { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace CleanArchitecture.Core.Interfaces
 {
     public interface IAutoSpecificationSubService
     {
-        AutoSpecificationSubViewModel AutoSpecificationSubSave(AutoSpecificationSubViewModel AutoSpecificationSubViewModel);
+        AutoSpecificationViewModel AutoSpecificationSubSave(AutoSpecificationViewModel AutoSpecificationViewModel);
         AutoSolutionPageSet<AutoSpecificationSubViewModel> GetAutoSpecificationSub(AutoSpecificationSubViewModel AutoSpecificationSubViewModel);
         AutoSpecificationSubViewModel GetAutoSpecificationSubById(int Id);
     }
