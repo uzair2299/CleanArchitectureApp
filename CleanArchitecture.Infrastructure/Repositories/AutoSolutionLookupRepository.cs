@@ -285,5 +285,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
             }).ToList();
             return selectListItems;
         }
+
+        public List<SelectListItem> GetSpecficationParameterLookup(int Id)
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoSpecifications.Where(x=>x.SpecificationTypeId==Id && x.ParentId==null).Select(x => new SelectListItem
+            {
+                Text = x.SpecificationParameter,
+                Value = x.Id.ToString()
+            }).ToList();
+            return selectListItems;
+        }
     }
 }

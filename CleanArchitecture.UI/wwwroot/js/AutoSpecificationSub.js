@@ -26,6 +26,9 @@
 var AutoSpecificationSub = {
     AutoSpecificationSubBaseURL: "/AutoSpecificationSub/",
 
+    SelectedpecificationType : "#SelectedpecificationType",
+    SelectedSpecificationParameter: "#SelectedSpecificationParameter",
+    
     //Penal buttons section
     AutoSpecificationSubPanelbtn: "_AutoSpecificationSubPanelbtn",
 
@@ -176,6 +179,29 @@ var AutoSpecificationSub = {
         event.preventDefault();
         var data = AutoSolutionUtility.getFormDat(AutoSpecificationSub.autoManufactuereSearchForm);
         AutoSpecificationSub.getAutoSpecificationSub(data);
+    },
+
+    getSpecficationParameterLookup: function (element) {
+        console.log(element.value);
+        var id = element.value
+        autoSolutionService.getJsonDataById(id, AutoSpecificationSub.AutoSpecificationSubBaseURL + "GetSpecficationParameterLookup").done(function (response) {
+
+            console.log(response.data);
+            SelectedSpecificationParameter = $(AutoSpecificationSub.SelectedSpecificationParameter);
+            SelectedSpecificationParameter.empty();
+            AutoSolutionUtility.removeAttribute(SelectedSpecificationParameter, "disabled");
+            AutoSolutionUtility.removeCssClass(SelectedSpecificationParameter, "disabled");
+
+            if (response != null && !jQuery.isEmptyObject(response)) {
+                AutoSolutionUtility.appendDefaultSelectOption(AutoSpecificationSub.SelectedSpecificationParameter, "", "Select Specification Parameter");
+                $.each(response.data, function (index, model) {
+                    $(AutoSpecificationSub.SelectedSpecificationParameter).append($('<option/> ', {
+                            value: model.value,
+                            text: model.text
+                        }));
+                    })
+            } 
+        })
     },
 }
 

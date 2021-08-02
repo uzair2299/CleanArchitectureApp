@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Linq;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
@@ -28,17 +29,20 @@ namespace CleanArchitecture.Infrastructure.Repositories
         }
         public AutoSpecificationViewModel AutoSpecificationSave(AutoSpecificationViewModel AutoSpecificationViewModel)
         {
-            //var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
-            //c.Open();
-            //var command = c.CreateCommand();
-            ////command.CommandType = System.Data.CommandType.StoredProcedure;
-            //command.CommandText ="EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoSpecification + " @ModelName,@AutoManufacturerId";
-            //command.Parameters.Add(new SqlParameter("ModelName", AutoSpecificationViewModel.ModelName));
-            //command.Parameters.Add(new SqlParameter("AutoManufacturerId", AutoSpecificationViewModel.SelectedManufacturer));
-            //int rowAffected =  command.ExecuteNonQuery();
+            bool result = AutoSpecificationAlreadyExist(AutoSpecificationViewModel);
+            using (var db  = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            {
+                db.Open();
+                var command = db.CreateCommand();
+                //command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.spInsertAutoSpecification + " @SpecificationParameter,@SpecificationTypeId";
+                command.Parameters.Add(new SqlParameter("SpecificationParameter", AutoSpecificationViewModel.SpecificationParameter));
+                command.Parameters.Add(new SqlParameter("SpecificationTypeId", AutoSpecificationViewModel.SpecificationTypeId));
+                int rowAffected = command.ExecuteNonQuery();
 
-            //return rowAffected > 0 ? AutoSpecificationViewModel : null;
-            return null;
+                return rowAffected > 0 ? AutoSpecificationViewModel : null;
+
+            }
                 }
 
         public AutoSolutionPageSet<AutoSpecificationViewModel> GetAutoSpecification(AutoSpecificationViewModel AutoSpecificationViewModel)
@@ -99,5 +103,13 @@ namespace CleanArchitecture.Infrastructure.Repositories
             //string ne = auto.AutoManufacturer.AutoManufacturerName;
             //return null;
         }
+        private bool AutoSpecificationAlreadyExist(AutoSpecificationViewModel autoSpecificationViewModel)
+        {
+            var result = (from item in unitOfWork.GetAutoSolutionContext().AutoSpecifications
+                           where(item.SpecificationParameter == autoSpecificationViewModel.SpecificationParameter)
+                           select item).FirstOrDefault();
+            return result != null ? true : false;
+        }
+
     }
 }

@@ -13,6 +13,7 @@ namespace CleanArchitecture.Core.ViewModels
             AutoSpecificationTypeLookUp = new List<SelectListItem>();
         }
         public string SpecificationType { get; set; }
+        public int SpecificationTypeId { get; set; }
         public string SpecificationParameter { get; set; }
         public List<SelectListItem> AutoSpecificationTypeLookUp { get; set; }
     }

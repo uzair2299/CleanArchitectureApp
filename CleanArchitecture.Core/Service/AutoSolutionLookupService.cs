@@ -70,5 +70,10 @@ namespace CleanArchitecture.Core.Service
         {
             return autoSolutionLookupRepository.GetProvinceLookup();
         }
+
+        public List<SelectListItem> GetSpecficationParameterLookup(int Id)
+        {
+            return autoSolutionLookupRepository.GetSpecficationParameterLookup(Id);
+        }
     }
 }

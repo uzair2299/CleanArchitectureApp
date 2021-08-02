@@ -65,6 +65,12 @@ namespace CleanArchitecture.UI.Controllers
             AutoSpecificationSubViewModel.AutoSpecificationSubTypeLookUp = autoSolutionLookupService.GetAutoSpecfication();
             return PartialView("_AutoSpecificationSubPanel", AutoSpecificationSubViewModel);
         }
+        [HttpGet]
+        public IActionResult GetSpecficationParameterLookup(int Id)
+        {
+            var result = autoSolutionLookupService.GetSpecficationParameterLookup(Id);
+            return Json(new { status = result != null ? true : false, data = result });
+        }
 
     }
 }

@@ -20,6 +20,7 @@ namespace CleanArchitecture.Core.Interfaces
         public AutoVersionViewModel GetAutoVersionLookUpData();
         public List<SelectListItem> GetProvinceLookup();
         public List<SelectListItem> GetAutoSpecficationType();
+        public List<SelectListItem> GetSpecficationParameterLookup(int Id);
 
 
     }
