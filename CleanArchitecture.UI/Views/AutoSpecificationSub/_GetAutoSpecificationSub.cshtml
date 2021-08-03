@@ -10,7 +10,8 @@
                     <table class="table table-bordered table-hover">
                         <thead class="kt-bg-fill-dark">
                             <tr>
-                                <th class="pl-3">Name</th>
+                                <th class="pl-3">Specification Sub Parameter</th>
+                                <th class="pl-3">Specification Parameter</th>
                                 <th class="pl-3">Type</th>
                                 <th class="fit text-center">Action</th>
                             </tr>
@@ -19,6 +20,7 @@
                             @foreach (var item in Model.Data)
                             {
                             <tr>
+                                <td class="pl-3">@item.SpecificationSubParameter</td>
                                 <td class="pl-3">@item.SpecificationParameter</td>
                                 <td class="pl-3">@item.SpecificationType</td>
                                 <td class="fit text-center">

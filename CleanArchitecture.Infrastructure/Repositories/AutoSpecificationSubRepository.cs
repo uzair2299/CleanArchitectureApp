@@ -51,7 +51,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
             c.Open();
             var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.spSelectAutoSpecification + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
+            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.spSelectAutoSpecificationSub + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
             if (AutoSpecificationSubViewModel.SearchTerm == null)
             {
                 command.Parameters.Add(new SqlParameter("SearchTerm",DBNull.Value));
@@ -71,17 +71,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
             {
                 if (reader.HasRows)
                 {
-
                     while (reader.Read())
                     {
                         finalResult.Add(new AutoSpecificationSubViewModel
                         {
                             Id = Convert.ToInt32(reader["Id"]),
                             SpecificationParameter = reader["SpecificationParameter"].ToString(),
+                            SpecificationSubParameter = reader["SpecificationSubParameter"].ToString(),
                             SpecificationType = reader["SpecificationType"].ToString()
                         });
                     }
-
                 }
             }
 

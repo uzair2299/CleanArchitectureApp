@@ -21,6 +21,7 @@ namespace CleanArchitecture.Infrastructure.Utility
 
         public static string spSelectAutoSpecification = "spSelectAutoSpecification";
         public static string spInsertAutoSpecification = "spInsertAutoSpecification";
+        public static string spSelectAutoSpecificationSub = "spSelectAutoSpecificationSub";
     }
 
 
