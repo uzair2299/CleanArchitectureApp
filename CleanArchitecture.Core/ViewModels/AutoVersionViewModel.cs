@@ -9,6 +9,10 @@ namespace CleanArchitecture.Core.ViewModels
 {
     public class AutoVersionViewModel:AutoSolutionBaseViewModel
     {
+        public AutoVersionViewModel()
+        {
+            //AutoSpecification = new List<AutoSpecificationSubDTO>();        
+        }
         public string AutoVersionName { get; set; }
         public string ModelName { get; set; }
         public string AutoManufacturerName { get; set; }
@@ -53,7 +57,13 @@ namespace CleanArchitecture.Core.ViewModels
         public List<SelectListItem> AutoBodyTypeLookup { get; set; }
 
         public List<SelectListItem> AutoEngineTypeLookup { get; set; }
+        public List<SelectListItem> AirBag { get; set; }
+        public string SelectedStabilityControlSystem { get; set; }
+        public List<SelectListItem> StabilityControlSystem { get; set; }
 
+        public List<SelectListItem> AutoSpecification { get; set; }
+
+        public List<SelectListItem> SeatBelt { get; set; }
 
     }
 }

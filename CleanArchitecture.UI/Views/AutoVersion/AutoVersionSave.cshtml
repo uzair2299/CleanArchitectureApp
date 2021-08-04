@@ -122,33 +122,33 @@
                                         <div class="kt-portlet__body">
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
                                                         <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedManufacturer">
                                                             <option value="">Select Manufacturer</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
                                                         <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled>
                                                             <option value="">Select Model</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="AutoVersionName"><span class="text-danger">*</span> Version Name:</label>
                                                         <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-lg-4">
-                                                        <label class="form-control-label"><span class="text-danger">*</span>Start Date</label>
-                                                        <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
-                                                    </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-3">
                                                         <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
                                                         <input type="number" name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label"><span class="text-danger">*</span>Start Date</label>
+                                                        <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
                                                     </div>
                                                 </div>
                                             </div>
@@ -286,17 +286,106 @@
                                         </div>
                                         <div class="kt-portlet__body">
                                             <div class="kt-widget1 p-0">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorHeight">Seating Capacity(Persons):</label>
-                                                        <input type="number" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="">
+                                                <div class="kt-widget1__item mb-5">
+                                                    <div class="kt-widget1__info">
+                                                        <h3 class="kt-widget1__title">Features</h3>
+                                                        @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
                                                     </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-12">
+                                                        @*<label class="col-form-label">Assign Role :</label>*@
+                                                        <div class="row">
+                                                            @foreach (var item in Model.AutoSpecification)
+                                                            {
+                                                                <div class="col-3">
+                                                                    <label class="kt-checkbox kt-checkbox--solid">
+                                                                        <input type="checkbox" value="@item.Value"> @item.Text
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="kt-widget1 p-0">
+                                                <div class="kt-widget1__item mb-5">
+                                                    <div class="kt-widget1__info">
+                                                        <h3 class="kt-widget1__title">Air Bags</h3>
+                                                        @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-12">
+                                                        @*<label class="col-form-label">Assign Role :</label>*@
+                                                        <div class="row">
+                                                            @foreach (var item in Model.AirBag)
+                                                            {
+                                                                <div class="col-3">
+                                                                    <label class="kt-checkbox kt-checkbox--solid">
+                                                                        <input type="checkbox" value="@item.Value"> @item.Text
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kt-widget1 p-0">
+                                                <div class="kt-widget1__item mb-5">
+                                                    <div class="kt-widget1__info">
+                                                        <h3 class="kt-widget1__title">Seat Belt</h3>
+                                                        @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-12">
+                                                        @*<label class="col-form-label">Assign Role :</label>*@
+                                                        <div class="row">
+                                                            @foreach (var item in Model.SeatBelt)
+                                                            {
+                                                                <div class="col-6">
+                                                                    <label class="kt-checkbox kt-checkbox--solid">
+                                                                        <input type="checkbox" value="@item.Value"> @item.Text
+                                                                        <span></span>
+                                                                    </label>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="kt-widget1 p-0">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-6">
+                                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> SelectedStability Control System:</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectedStabilityControlSystem" asp-items="Model.StabilityControlSystem" class="form-control kt-select2" name="SelectedStabilityControlSystem" style="width:100%" id="SelectedStabilityControlSystem">
+                                                            <option value="">Select SelectedStability Control System</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="ExteriorWidth">Fuel Tank Capacity(Liters):</label>
+                                                        <input type="number" name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="ExteriorLength">Crub Weight(Kg):</label>
+                                                        <input type="number" name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
+                                                        <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
+                                                    </div>
                                                 </div>
                                                 <div class="form-group row">
 
                                                 </div>
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
