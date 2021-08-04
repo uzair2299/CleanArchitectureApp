@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-                <form class="kt-form kt-form--label-right" id="AutoVersion">
+                <form class="kt-form kt-form--label-right" id="AutoVersion" asp-action="AutoVersionSave" asp-controller="AutoVersion" method="post" onsubmit=" return autoVersion.validdateAutoVersion();">
                     <div class="modal-body">
                         <div class="kt-portlet__body">
                             <div class="row">
@@ -296,15 +296,18 @@
                                                     <div class="col-12">
                                                         @*<label class="col-form-label">Assign Role :</label>*@
                                                         <div class="row">
-                                                            @foreach (var item in Model.AutoSpecification)
+                                                            @for(var item = 0; item< Model.AutoSpecification.Count();item++)
                                                             {
-                                                                <div class="col-3">
-                                                                    <label class="kt-checkbox kt-checkbox--solid">
-                                                                        <input type="checkbox" value="@item.Value"> @item.Text
-                                                                        <span></span>
-                                                                    </label>
-                                                                </div>
-                                                            }
+                                                                            <div class="col-3">
+                                                                                <label class="kt-checkbox kt-checkbox--solid">
+                                                                                    <input asp-for="AutoSpecification[item].Selected">@Model.AutoSpecification[item].Text
+                                                                                    <input type="hidden" asp-for="@Model.AutoSpecification[item].Value"/>
+                                                                                    <input type="hidden" asp-for="@Model.AutoSpecification[item].Text"/>
+                                                                                    <span></span>
+                                                                                </label>
+                                                                            </div>
+                                                                        }
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -321,11 +324,13 @@
                                                     <div class="col-12">
                                                         @*<label class="col-form-label">Assign Role :</label>*@
                                                         <div class="row">
-                                                            @foreach (var item in Model.AirBag)
+                                                            @for (var item = 0; item < Model.AirBag.Count(); item++)
                                                             {
                                                                 <div class="col-3">
                                                                     <label class="kt-checkbox kt-checkbox--solid">
-                                                                        <input type="checkbox" value="@item.Value"> @item.Text
+                                                                        <input asp-for="AirBag[item].Selected">@Model.AirBag[item].Text
+                                                                        <input type="hidden" asp-for="@Model.AirBag[item].Value" />
+                                                                        <input type="hidden" asp-for="@Model.AirBag[item].Text" />
                                                                         <span></span>
                                                                     </label>
                                                                 </div>
@@ -345,11 +350,13 @@
                                                     <div class="col-12">
                                                         @*<label class="col-form-label">Assign Role :</label>*@
                                                         <div class="row">
-                                                            @foreach (var item in Model.SeatBelt)
+                                                            @for (var item = 0; item < Model.SeatBelt.Count(); item++)
                                                             {
                                                                 <div class="col-6">
                                                                     <label class="kt-checkbox kt-checkbox--solid">
-                                                                        <input type="checkbox" value="@item.Value"> @item.Text
+                                                                        <input asp-for="SeatBelt[item].Selected">@Model.SeatBelt[item].Text
+                                                                        <input type="hidden" asp-for="@Model.SeatBelt[item].Value" />
+                                                                        <input type="hidden" asp-for="@Model.SeatBelt[item].Text" />
                                                                         <span></span>
                                                                     </label>
                                                                 </div>
@@ -653,7 +660,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
-                        <button type="submit" class="btn btn-dark btn-sm" onclick="autoVersion.validdateAutoVersion(event)" id="btnAutoVersion">
+                        <button type="submit" class="btn btn-dark btn-sm">
                             <i class="fa fa-plus"></i>
                             Add New
                         </button>

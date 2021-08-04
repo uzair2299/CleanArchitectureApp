@@ -45,15 +45,15 @@ var autoVersion = {
 
     autoVersionGetPanel: "_GetAutoVersion",
 
-    validdateAutoVersion: function (event) {
-        event.preventDefault();
+    validdateAutoVersion: function () {
+        //event.preventDefault();
         $(autoVersion.autoVersionForm).validate({
             ignore: [],
             rules: {
-                VersionName: {
+                SelectedManufacturer: {
                     required: true
                 },
-                SelectedVersionr: {
+                SelectedAutoModel: {
                     required:true
                 }
             },
@@ -64,10 +64,10 @@ var autoVersion = {
             //        error.insertAfter(element);
             //},
             messages: {
-                VersionName: {
+                SelectedManufacturer: {
                     required: "Version Name is Required"
                 },
-                SelectedVersionr: {
+                SelectedAutoModel: {
                 /* To force a user to select an option from a select box, provide an empty options like<option value = "">Choose...</option>*/
                     required: "Select Auto Versione Name"
                 }
@@ -75,10 +75,10 @@ var autoVersion = {
         });
 
         if ($(autoVersion.autoVersionForm).valid()) {
-            autoVersion.saveAutoVersion();
+            return true;
         }
         else {
-            console.log("fuck");
+            return false;
         }
         return false;
     },

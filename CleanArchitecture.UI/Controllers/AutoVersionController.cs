@@ -38,8 +38,9 @@ namespace CleanArchitecture.UI.Controllers
             if (isQuickAdd)
             {
                 AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
+                //autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
+                //var dtp = autoSolutionLookupService.GetAutoVersionLookUpData();
                 autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
-                var dtp = autoSolutionLookupService.GetAutoVersionLookUpData();
                 return PartialView("_AutoVersionPanel", autoVersionViewModel);
             }
             else
