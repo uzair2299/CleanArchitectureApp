@@ -50,6 +50,10 @@
     background-position:center;
     background-size:contain;
 }
+
+#DefaultImage {
+    display: none;
+}
 /*loader start*/
 #loaderdiv {
     display: none;

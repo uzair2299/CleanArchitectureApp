@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Core.DTO;
 using CleanArchitecture.Core.ViewModels.BaseViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,10 @@ namespace CleanArchitecture.Core.ViewModels
         public int GrossVehicleWeigth { get; set; }
         #endregion
 
+
+        #region uploads
+        public IFormFile DefaultImage { get; set; }
+        #endregion
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         
