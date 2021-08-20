@@ -19,9 +19,10 @@ namespace CleanArchitecture.UI.Controllers
             this.fileUploadUtility = fileUploadUtility;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(AutoManufacturerViewModel autoManufacturerViewModel)
         {
-            return View();
+            AutoSolutionPageSet<AutoManufacturerViewModel> result = autoManufacturerService.GetAutoManufacturer(autoManufacturerViewModel);
+            return View(result);
         }
         [HttpGet]
         public IActionResult GetAutoManufacturer(AutoManufacturerViewModel autoManufacturerViewModel)

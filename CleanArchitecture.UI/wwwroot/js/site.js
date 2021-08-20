@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    autoManufacturer.getAutoManufacturer();
-    autoManufacturer.loadGird();
+    //autoManufacturer.getAutoManufacturer();
+    //autoManufacturer.loadGird();
 });
 
 
