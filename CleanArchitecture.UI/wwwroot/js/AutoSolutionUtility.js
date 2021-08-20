@@ -1,4 +1,17 @@
-﻿const toastType = {
+﻿//global variable
+//Variable and function names written as camelCase
+//Global variables written in UPPERCASE
+
+//var singleImage = [];
+//var gallaryImages = [];
+
+const IMAGECONTAINERTYPE = {
+    singleContainer: 'singlecontainer',
+    gallaryImages: 'GallaryImages'
+}
+
+
+const toastType = {
     Error: 'error',
     INFO: 'info',
     WARNING: 'warning',
@@ -26,8 +39,8 @@ const htmlTemplate = {
 }
 
 
-
 var AutoSolutionUtility = {
+
     clearHTML: function (containerId) {
         $("#" + containerId).html("");
     },
@@ -116,7 +129,7 @@ var AutoSolutionUtility = {
             //console.log(list);
             //console.log($(list).find('option:selected').val());
             data[this.id] = $(list).find('option:selected').val()
-            data[this.id+"Text"] = $(list).find('option:selected').text();
+            data[this.id + "Text"] = $(list).find('option:selected').text();
         });
         console.log(data);
         return data;
@@ -136,7 +149,7 @@ var AutoSolutionUtility = {
 
         }
         else {
-            dataWithFile.append(checkbox[0].id, this.value);
+            dataWithFile.append(checkbox[0].id, checkbox[0].checked);
         }
         //var files = $('#fileUpload').get(0);
         var file = document.getElementById("fileUpload").files[0];
@@ -147,6 +160,21 @@ var AutoSolutionUtility = {
         //else {
         //    //return data;
         //}
+        //display only values
+        //for (var key of dataWithFile.keys()) {
+        //    console.log(value);
+        //}
+
+        //display only key
+        //for (var key of dataWithFile.values()) {
+        //    console.log(value);
+        //}
+
+        //display key+values
+        for (var pair of dataWithFile.entries()) {
+            console.log(pair);
+        }
+
         return dataWithFile;
     },
 
@@ -159,6 +187,7 @@ var AutoSolutionUtility = {
         });
         return data;
     },
+
 
     fileReader: function (element, imageHolder) {
 
@@ -234,7 +263,7 @@ var AutoSolutionUtility = {
             //console.log("#" + this.id);
             //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
             var selectorId = "#" + this.id;
-             var value = $(this).find('option:selected').val();
+            var value = $(this).find('option:selected').val();
             if (value == "") {
                 AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
                 $(this).siblings(".invalid-feedback").append("Required");
@@ -242,5 +271,48 @@ var AutoSolutionUtility = {
             }
         })
         return isValid;
+    },
+
+
+    //images and files
+    image_select: function (e, element) {
+        let images = []
+        console.log("e :", e);
+        console.log("image selected");
+        var image = document.getElementById(element).files;
+
+        console.log("image:", image);
+
+        for (i = 0; i < image.length; i++) {
+            images.push({
+                "name": image[i].name,
+                "url": URL.createObjectURL(image[i]),
+                "file": image[i],
+            })
+        }
+        return images
+
+    },
+    image_show: function (images, imageContainer) {
+        var image = "";
+        images.forEach((i) => {
+            image += '<div class="image_container d-flex justify-content-center position-relative">' +
+                '<img src= ' + i.url + ' alt="Image">' +
+                '<span class="position-absolute" onclick="autoVersion.deleteImage(' + images.indexOf(i) + ')" > <i class="fa fa-trash-alt"></i></span ></div>'
+
+
+            //image += `<div class="image_container d-flex justify-content-center position-relative">
+            //	  <img src="`+ i.url + `" alt="Image">
+            //	  <span class="position-absolute" onclick="autoVersion.deleteImage("${imageContainer}")"><i class="fa fa-trash-alt"></i></span>
+            //</div>`;
+        })
+        return image;
+    },
+
+
+    deleteImage: function (index, images) {
+        images.splice(index, 1)
     }
 }
+
+

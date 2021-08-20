@@ -51,8 +51,12 @@
     background-size:contain;
 }
 
-#DefaultImage {
+#DefaultImage, #GallaryImages {
     display: none;
+}
+
+.LabelPointer{
+    cursor:pointer
 }
 /*loader start*/
 #loaderdiv {

@@ -270,6 +270,8 @@ var autoManufacturer = {
         AutoSolutionUtility.fileReader(element, imageHolder);
     },
 
+    
+
     saveAutoManufacturerCopy: function () {
         var data = AutoSolutionUtility.getFormDataWithFile(autoManufacturer.autoManufacturerForm);
         var params = autoSolutionService.ajaxParamsForFileUpload(data, autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'post', true, false, false);

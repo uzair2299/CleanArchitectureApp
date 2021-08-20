@@ -3,6 +3,40 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .image_container {
+        height: 170px;
+        width: 250px;
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 10px;
+        background-color: #e8e8ed;
+        border: 1px solid black;
+    }
+
+        .image_container img {
+            height: 100%;
+            width: auto;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .image_container span {
+            top: 3px;
+            right: 10px;
+            color: #fc0758;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+            .image_container span:hover {
+                top: 3px;
+                right: 10px;
+                color: #fd1361;
+                font-size: 18px;
+                cursor: pointer;
+            }
+</style>
 <script src="~/js/AutoVersion.js"></script>
 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
 
@@ -10,7 +44,7 @@
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
         <div class="kt-container  kt-container--fluid ">
             <div class="kt-subheader__main">
-                <h3 class="kt-subheader__title">User</h3>
+                <h3 class="kt-subheader__title">Auto Specfication</h3>
                 <span class="kt-subheader__separator kt-subheader__separator--v"></span>
             </div>
             <div class="kt-subheader__toolbar">
@@ -101,7 +135,7 @@
                         <i class="fab fa-whmcs"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        User
+                        Auto Specfication
                     </h3>
                 </div>
             </div>
@@ -374,25 +408,8 @@
                                                             <option value="">Select SelectedStability Control System</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorWidth">Fuel Tank Capacity(Liters):</label>
-                                                        <input type="number" name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorLength">Crub Weight(Kg):</label>
-                                                        <input type="number" name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
-                                                        <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -412,40 +429,72 @@
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
                                                     <div class="col-lg-6">
-                                                        <label class="form-control-label btn btn-dark" for="DefaultImage"><i class="fa fa-upload"></i>Default Image</label><span class="ml-4">No File Choose</span>
-                                                        <input type="file" name="DefaultImage" class="form-control" placeholder="" asp-for="DefaultImage" value="">
+                                                        @*<label class="form-control-label btn btn-dark" for="DefaultImage">
+                                                                <i class="fa fa-upload"></i>Default Image
+                                                            </label>*@
+                                                        <label class="form-control-label btn btn-dark LabelPointer" onclick="getElementById('DefaultImage').click()">
+                                                            <i class="fa fa-upload"></i>
+                                                            Default Image
+                                                        </label>
+                                                        <span class="ml-4">No File Choose</span>
+                                                        <input type="file" name="DefaultImage" class="form-control" placeholder="" asp-for="DefaultImage" value="" onchange="autoVersion.defaultImage(event,'DefaultImage','singlecontainer');">
                                                     </div>
-                                                    @*<div class="col-lg-6">
-                                                        <label class="form-control-label btn btn-dark" for="DefaultImage"><i class="fa fa-upload"></i>Interior Images</label><span class="ml-4">No File Choose</span>
-                                                        <input type="file" name="DefaultImage" class="form-control" placeholder="" asp-for="DefaultImage" value="">
-                                                    </div>*@
-                                                </div>
 
-                                                <div class="form-group row">
-                                                    @*<div class="col-lg-6">
-                                                        <label class="form-control-label btn btn-dark" for="DefaultImage"><i class="fa fa-upload"></i>Exterior Images</label><span class="ml-4">No File Choose</span>
-                                                        <input type="file" name="DefaultImage" class="form-control" placeholder="" asp-for="DefaultImage" value="">
-                                                    </div>*@
 
                                                 </div>
+                                                <div class="row">
+
+
+                                                    <div class="card-body d-flex flex-wrap justify-content-center align-items-center" id="singlecontainer">
+                                                    </div>
+                                                </div>
+
                                             </div>
+                                            <div class="kt-widget1 p-0">
+                                                <div class="kt-widget1__item mb-5">
+                                                    <div class="kt-widget1__info">
+                                                        <h3 class="kt-widget1__title"></h3>
+                                                        @*<span class="kt-widget1__desc">Awerage Weekly Profit</span>*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-6">
+                                                        @*<label class="form-control-label btn btn-dark" for="DefaultImage">
+                                                                <i class="fa fa-upload"></i>Default Image
+                                                            </label>*@
+                                                        <label class="form-control-label btn btn-dark LabelPointer" onclick="getElementById('GallaryImages').click()">
+                                                            <i class="fa fa-upload"></i>
+                                                            Gallary Images
+                                                        </label>
+                                                        <span class="ml-4">No File Choose</span>
+                                                        <input type="file" name="GallaryImages" class="form-control" placeholder="" asp-for="GallaryImages" value="" onchange="autoVersion.gallaryImage(event,'GallaryImages','MultipleImageContainer');" multiple>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="card-body d-flex flex-wrap justify-content-center align-items-center" id="MultipleImageContainer">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            
                         </div>
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
+                            <button type="submit" class="btn btn-dark btn-sm">
+                                <i class="fa fa-plus"></i>
+                                Add New
+                            </button>
+                        </div>
+                        <input type="hidden" asp-for="Id">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-times"></i>Close</button>
-                        <button type="submit" class="btn btn-dark btn-sm">
-                            <i class="fa fa-plus"></i>
-                            Add New
-                        </button>
-                    </div>
-                    <input type="hidden" asp-for="Id">
                 </form>
             </div>
 

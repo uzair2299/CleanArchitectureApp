@@ -53,6 +53,7 @@ namespace CleanArchitecture.Core.ViewModels
 
         #region uploads
         public IFormFile DefaultImage { get; set; }
+        public IFormFileCollection GallaryImages { get; set; }
         #endregion
         public string SelectedAutoModel { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }

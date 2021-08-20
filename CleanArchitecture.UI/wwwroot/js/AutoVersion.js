@@ -22,8 +22,11 @@
  */
 
 
+let singleImage = []
+let multipleImage = []
 
 var autoVersion = {
+
     autoVersionBaseURL: "/AutoVersion/",
 
     //Penal buttons section
@@ -265,7 +268,49 @@ var autoVersion = {
                 //
             }
         })
-    }
+    },
+
+    defaultImage: function (event, element, imageContainer) {
+        singleImage = AutoSolutionUtility.image_select(event, element);
+        document.getElementById(imageContainer).innerHTML = autoVersion.showDefaultImage(singleImage, imageContainer);
+    },
+
+    gallaryImage: function (event, element, imageContainer) {
+        multipleImage = AutoSolutionUtility.image_select(event, element);
+        document.getElementById(imageContainer).innerHTML = autoVersion.showGallaryImage(multipleImage, imageContainer);
+    },
+
+
+    showDefaultImage: function (images) {
+        var image = "";
+            images.forEach((i) => {
+                image += '<div class="image_container d-flex justify-content-center position-relative">' +
+                    '<img src= ' + i.url + ' alt="Image">' +
+                    '<span class="position-absolute" onclick="autoVersion.deleteDefaultImage(' + images.indexOf(i) + ')" > <i class="fa fa-trash-alt"></i></span ></div>'
+            })
+        
+        return image;
+    },
+
+    showGallaryImage: function (images) {
+        var image = "";
+            images.forEach((i) => {
+                image += '<div class="image_container d-flex justify-content-center position-relative">' +
+                    '<img src= ' + i.url + ' alt="Image">' +
+                    '<span class="position-absolute" onclick="autoVersion.deleteGallaryImage(' + images.indexOf(i) + ')" > <i class="fa fa-trash-alt"></i></span ></div>'
+            })
+        
+        return image;
+    },
+    deleteDefaultImage: function (index) {
+        AutoSolutionUtility.deleteImage(event, singleImage);
+        document.getElementById('singlecontainer').innerHTML = autoVersion.showDefaultImage(singleImage);
+    },
+
+    deleteGallaryImage: function (index) {
+        AutoSolutionUtility.deleteImage(event, multipleImage);
+        document.getElementById('MultipleImageContainer').innerHTML = autoVersion.showGallaryImage(multipleImage);
+    },
 }
 
 /*
