@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    autoModel.getAutoModel();
+   // autoModel.getAutoModel();
     //autoModel.loadGird();
 });
 
@@ -178,10 +178,17 @@ var autoModel = {
         });
     },
 
-    searchAutoManufacture: function (event) {
-        event.preventDefault();
-        var data = AutoSolutionUtility.getFormDat(autoModel.autoManufactuereSearchForm);
-        autoModel.getAutoModel(data);
+    searchAutoModel: function (event) {
+        var result = AutoSolutionUtility.defaultValidation(autoModel.autoManufactuereSearchForm);
+        if (result) {
+            event.preventDefault();
+            var data = AutoSolutionUtility.getFormData(autoModel.autoManufactuereSearchForm);
+            autoModel.getAutoModel(data);
+        }
+        else {
+            return false;
+        }
+
     },
 }
 

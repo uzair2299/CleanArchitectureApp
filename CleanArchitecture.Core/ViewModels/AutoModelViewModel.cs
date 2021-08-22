@@ -13,7 +13,8 @@ namespace CleanArchitecture.Core.ViewModels
 
         public int Id { get; set; }
         public string ModelName { get; set; }
-        public string SelectedManufacturer { get; set; }
+        public int  SelectedAutoManufacturer { get; set; }
+        public string SelectedAutoManufacturerText { get; set; }
         public string AutoManufacturerName { get; set; }
         public List<SelectListItem> AutoManufacturerLookup { get; set; }
 

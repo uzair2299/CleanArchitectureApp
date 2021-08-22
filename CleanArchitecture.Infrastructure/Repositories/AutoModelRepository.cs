@@ -34,7 +34,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             //command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText ="EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoModel + " @ModelName,@AutoManufacturerId";
             command.Parameters.Add(new SqlParameter("ModelName", autoModelViewModel.ModelName));
-            command.Parameters.Add(new SqlParameter("AutoManufacturerId", autoModelViewModel.SelectedManufacturer));
+            command.Parameters.Add(new SqlParameter("AutoManufacturerId", autoModelViewModel.SelectedAutoManufacturer));
             int rowAffected =  command.ExecuteNonQuery();
             return rowAffected > 0 ? autoModelViewModel : null;        }
 
@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
             c.Open();
             var command = c.CreateCommand();
-            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.SelectAutoModel + " @SearchTerm, @PageNo, @PageSize,@TotalCount OUT";
+            command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.SelectAutoModel + " @SearchTerm, @SelectedAutoManufacturer,@SelectedAutoManufacturerText, @PageNo, @PageSize,@TotalCount OUT";
             if (autoModelViewModel.SearchTerm == null)
             {
                 command.Parameters.Add(new SqlParameter("SearchTerm",DBNull.Value));
@@ -51,6 +51,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
             else
             {
                 command.Parameters.Add(new SqlParameter("SearchTerm",autoModelViewModel.SearchTerm));
+            }
+            if (autoModelViewModel.SelectedAutoManufacturer==0)
+            {
+                command.Parameters.Add(new SqlParameter("SelectedAutoManufacturer", DBNull.Value));
+                command.Parameters.Add(new SqlParameter("SelectedAutoManufacturerText", DBNull.Value));
+            }
+            else
+            {
+                command.Parameters.Add(new SqlParameter("SelectedAutoManufacturer", autoModelViewModel.SelectedAutoManufacturer));
+                command.Parameters.Add(new SqlParameter("SelectedAutoManufacturerText", autoModelViewModel.SelectedAutoManufacturerText));
             }
             
             command.Parameters.Add(new SqlParameter("@PageNo", autoModelViewModel.PageNo));

@@ -14,9 +14,12 @@ namespace CleanArchitecture.UI.Controllers
             this.autoModelService = autoModelService;
             this.autoSolutionLookupService = autoSolutionLookupService;
         }
-        public IActionResult Index()
+        public IActionResult Index(AutoModelViewModel autoModelViewModel)
         {
-            return View();
+            AutoSolutionPageSet<AutoModelViewModel> result = new AutoSolutionPageSet<AutoModelViewModel>();
+            result = autoModelService.GetAutoModel(autoModelViewModel);
+            result.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+            return View(result);
         }
 
 

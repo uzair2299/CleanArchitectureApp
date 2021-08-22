@@ -274,6 +274,32 @@ var AutoSolutionUtility = {
     },
 
 
+    onCangeValidation: function (selector) {
+        var isValid = true;
+        //$(selector).find('input[type=text],input[type=password],input[type=file],input[type=hidden]').each(function () {
+        //    var value = this.val();
+        //    if (value=="") {
+        //    }
+        //});
+        $(selector).find('select').not(":disabled").each(function (i, item) {
+            //console.log("#" + this.id);
+            //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
+            var selectorId = "#" + this.id;
+            var value = $(this).find('option:selected').val();
+            if (value == "") {
+                AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
+                $(this).siblings(".invalid-feedback").append("Required");
+                isValid = false;
+            }
+            else {
+                AutoSolutionUtility.removeCssClass(selectorId, "is-invalid");
+                $(this).siblings(".invalid-feedback").html("");
+                return isValid;
+            }
+        })
+        return isValid;
+    },
+
     //images and files
     image_select: function (e, element) {
         let images = []
