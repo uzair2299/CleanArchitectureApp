@@ -3,7 +3,7 @@
     //autoModel.loadGird();
 });
 
-
+//import autoManufacturer from '../js/site.js'
 
 /*
  * -------------------------------------------------------
@@ -190,6 +190,10 @@ var autoModel = {
         }
 
     },
+    loadAutoManufacturerPanel: function () {
+        console.log("hello");
+        autoManufacturer.loadAutoManufacturerPanel()
+    }
 }
 
 /*

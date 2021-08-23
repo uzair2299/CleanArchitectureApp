@@ -300,6 +300,8 @@ var autoManufacturer = {
     },
 }
 
+//export default autoManufacturer
+
 /*
  * -------------------------------------------------------
  *                    End Auto Manufacturer              *
