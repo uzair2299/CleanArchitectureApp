@@ -190,10 +190,12 @@ var autoModel = {
         }
 
     },
-    loadAutoManufacturerPanel: function () {
-        console.log("hello");
-        autoManufacturer.loadAutoManufacturerPanel()
-    }
+    //loadAutoManufacturerPanel:  function () {
+    //    console.log("hello");
+    //    autoManufacturer.loadAutoManufacturerPanel();
+
+    //   //location.reload(true);
+    //}
 }
 
 /*

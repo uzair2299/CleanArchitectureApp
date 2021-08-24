@@ -55,6 +55,10 @@
     display: none;
 }
 
+.tableHeaderIcon {
+    font-size: 35px;
+}
+
 .LabelPointer{
     cursor:pointer
 }
