@@ -176,7 +176,7 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
-                                                        <input type="number" name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                        <input   name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -205,55 +205,55 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorHeight">Exterior Height(mm):</label>
-                                                        <input type="number" name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight" value="">
+                                                        <input   name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorWidth">Exterior Width(mm):</label>
-                                                        <input type="number" name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth" value="">
+                                                        <input   name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorLength">Exterior Length(mm):</label>
-                                                        <input type="number" name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength" value="">
+                                                        <input   name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorHeight">Interior Height(mm):</label>
-                                                        <input type="number" name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight" value="">
+                                                        <input   name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight" >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorWidth">Interior Width(mm):</label>
-                                                        <input type="number" name="InteriorWidth" class="form-control" placeholder="" asp-for="InteriorWidth" value="">
+                                                        <input   name="InteriorWidth" class="form-control" placeholder="" asp-for="InteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorLength">Interior Length(mm):</label>
-                                                        <input type="number" name="InteriorLength" class="form-control" placeholder="" asp-for="InteriorLength" value="">
+                                                        <input   name="InteriorLength" class="form-control" placeholder="" asp-for="InteriorLength" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="TreadFront">Tread Front(mm):</label>
-                                                        <input type="number" name="TreadFront" class="form-control" placeholder="" asp-for="TreadFront" value="">
+                                                        <input   name="TreadFront" class="form-control" placeholder="" asp-for="TreadFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="TreadRear">Tread Rear(mm):</label>
-                                                        <input type="number" name="TreadRear" class="form-control" placeholder="" asp-for="TreadRear" value="">
+                                                        <input   name="TreadRear" class="form-control" placeholder="" asp-for="TreadRear" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="OverhangFront">Overhang Front(mm):</label>
-                                                        <input type="number" name="OverhangFront" class="form-control" placeholder="" asp-for="OverhangFront" value="">
+                                                        <input   name="OverhangFront" class="form-control" placeholder="" asp-for="OverhangFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="OverhangRear">Overhang Rear(mm):</label>
-                                                        <input type="number" name="OverhangRear" class="form-control" placeholder="" asp-for="OverhangRear" value="">
+                                                        <input   name="OverhangRear" class="form-control" placeholder="" asp-for="OverhangRear" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="Wheelbase">Wheelbase(mm):</label>
-                                                        <input type="number" name="Wheelbase" class="form-control" placeholder="" asp-for="Wheelbase" value="">
+                                                        <input   name="Wheelbase" class="form-control" placeholder="" asp-for="Wheelbase" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="GroundClearance">Ground Clearance(mm):</label>
-                                                        <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
+                                                        <input   name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
                                                     </div>
 
                                                 </div>
@@ -284,19 +284,19 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorHeight">Seating Capacity(Persons):</label>
-                                                        <input type="number" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="">
+                                                        <input step="any"  name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="" onkeypress="isNumberKey(event)">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorWidth">Fuel Tank Capacity(Liters):</label>
-                                                        <input type="number" name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
+                                                        <input   name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="ExteriorLength">Crub Weight(Kg):</label>
-                                                        <input type="number" name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
+                                                        <label class="form-control-label" for="CrubWeight">Crub Weight(Kg):</label>
+                                                        <input   name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
-                                                        <input type="number" name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
+                                                        <input   name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -505,3 +505,17 @@
     </div>
 </div>
 
+<script>
+    function isNumberKey(evt) {
+        console.log("which" + evt.which);
+        console.log("keycode" + evt.code);
+
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        console.log("code "+charCode)
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+</script>

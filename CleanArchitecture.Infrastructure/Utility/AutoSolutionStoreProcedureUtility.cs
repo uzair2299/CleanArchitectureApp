@@ -7,6 +7,7 @@ namespace CleanArchitecture.Infrastructure.Utility
     public static class AutoSolutionStoreProcedureUtility
     {
         public const string InsertAutoModel = "InsertAutoModel";
+        public const string InsertAutoVersion = "spInsertAutoVersion";
         public const string SelectAutoModel = "SelectAutoModel";
         public const string SelectAutoVersion = "SelectAutoVersion";
         public const string spGetAutoVersionLookUp = "spGetAutoVersionLookUp";

@@ -2,6 +2,7 @@
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace CleanArchitecture.UI.Controllers
             }
             else
             {
+                
                 AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
 //                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
                 autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
@@ -63,6 +65,10 @@ namespace CleanArchitecture.UI.Controllers
             }
             else
             {
+                if(autoVersionViewModel.IsQuickAdd)
+                {
+                    autoVersionViewModel.AutoSpecificationStr = strd(autoVersionViewModel.AutoSpecification);
+                }
                 var result = autoVersionService.AutoVersionSave(autoVersionViewModel);
                 return Json(new { status = result != null ? "save" : "exist", data = result });
             }
@@ -79,6 +85,13 @@ namespace CleanArchitecture.UI.Controllers
         {
             var result = autoSolutionLookupService.GetAutoModelLookup(Id);
             return Json(new { status = result != null ? true : false, data = result });
+        }
+
+        private string strd(List<SelectListItem> selectListItems)
+        {
+            string str = "";
+            str = string.Join(",", selectListItems.Where(x => x.Selected == true).Select(x => x.Value));
+            return str;
         }
     }
 }

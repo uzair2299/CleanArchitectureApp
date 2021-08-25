@@ -23,24 +23,24 @@ namespace CleanArchitecture.Core.ViewModels
         public decimal CurrentPrice { get; set; }
         public decimal PreviousPrice { get; set; }
         public int EngineCapacity { get; set; }
-        public int GroundClearance { get; set; }
-        public int RunningGroundClearance { get; set; }
+        public double GroundClearance { get; set; }
+        public double RunningGroundClearance { get; set; }
         public string SpareWheel { get; set; }
         public string WheelType { get; set; }
         public string TyreSize { get; set; }
         #region Dimension
-        public int ExteriorLength { get; set; }
-        public int ExteriorWidth { get; set; }
-        public int ExteriorHeight { get; set; }
-        public int InteriorLength { get; set; }
-        public int InteriorWidth { get; set; }
-        public int InteriorHeight { get; set; }
-        public int Wheelbase { get; set; }
-        public int MinimumGroundClearance { get; set; }
-        public int TreadFront { get; set; }
-        public int TreadRear { get; set; }
-        public int OverhangFront { get; set; }
-        public int OverhangRear { get; set; }
+        public double ExteriorLength { get; set; }
+        public double ExteriorWidth { get; set; }
+        public double ExteriorHeight { get; set; }
+        public double InteriorLength { get; set; }
+        public double InteriorWidth { get; set; }
+        public double InteriorHeight { get; set; }
+        public double Wheelbase { get; set; }
+        public double MinimumGroundClearance { get; set; }
+        public double TreadFront { get; set; }
+        public double TreadRear { get; set; }
+        public double OverhangFront { get; set; }
+        public double OverhangRear { get; set; }
         #endregion
 
         #region
@@ -55,7 +55,9 @@ namespace CleanArchitecture.Core.ViewModels
         public IFormFile DefaultImage { get; set; }
         public IFormFileCollection GallaryImages { get; set; }
         #endregion
-        public string SelectedAutoModel { get; set; }
+        public int SelectedAutoModel { get; set; }
+
+        public string SelectedAutoModelText { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         
         public string SelectedManufacturer { get; set; }
@@ -68,8 +70,10 @@ namespace CleanArchitecture.Core.ViewModels
         public List<SelectListItem> StabilityControlSystem { get; set; }
 
         public List<SelectListItem> AutoSpecification { get; set; }
+        public string AutoSpecificationStr { get; set; } 
 
         public List<SelectListItem> SeatBelt { get; set; }
+        public bool IsQuickAdd { get; set; } = true;
 
     }
 }
