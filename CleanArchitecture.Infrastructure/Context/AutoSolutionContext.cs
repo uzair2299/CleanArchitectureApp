@@ -22,7 +22,7 @@ namespace CleanArchitecture.Infrastructure.Context
         public DbSet<AutoSpecificationSub> AutoSpecificationSubs { get; set; }
         public DbSet<AutoVersionWeightCapacity> AutoVersionWeightCapacities { get; set; }
         public DbSet<AutoVersionDimension> AutoVersionDimensions { get; set; }
-
+        public DbSet<AutoVersionSpecification> AutoVersionSpecifications { get; set; }
 
         #endregion
 
@@ -46,6 +46,10 @@ namespace CleanArchitecture.Infrastructure.Context
                 .HasMany(x => x.SpecificationSubParameter)
                 .WithOne(x => x.ParentNode)
                 .HasForeignKey(x => x.ParentId);
+
+            modelBuilder.Entity<AutoVersionSpecification>().HasKey(avs => new { avs.AutoVersionId, avs.AutoSpecificationId });
+            modelBuilder.Entity<AutoVersionSpecification>().HasOne(avs => avs.AutoVersion).WithMany(avs => avs.AutoVersionSpecifications).HasForeignKey(avs => avs.AutoVersionId);
+            modelBuilder.Entity<AutoVersionSpecification>().HasOne(avs => avs.AutoSpecification).WithMany(avs => avs.AutoVersionSpecifications).HasForeignKey(avs => avs.AutoSpecificationId);
         }   
 
     }

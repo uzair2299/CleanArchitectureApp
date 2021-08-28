@@ -52,7 +52,7 @@ namespace CleanArchitecture.Domain.Entities
         public virtual AutoModel AutoModel { get; set; }
 
         [ForeignKey("AutoBodyType")]
-        public int AutoBodyTypeId { get; set; }
+        public int? AutoBodyTypeId { get; set; }
         public virtual AutoBodyType AutoBodyType { get; set; }
 
         [ForeignKey("AutoEngineType")]
@@ -62,6 +62,8 @@ namespace CleanArchitecture.Domain.Entities
 
         public virtual ICollection<AutoVersionDimension> AutoVersionDimensions { get; set; }
         public virtual ICollection<AutoVersionWeightCapacity> AutoVersionWeightCapacities { get; set; }
+
+        public virtual ICollection<AutoVersionSpecification> AutoVersionSpecifications { get; set; }
         #endregion
     }
 }

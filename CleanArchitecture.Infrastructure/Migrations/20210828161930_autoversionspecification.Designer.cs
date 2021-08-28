@@ -4,14 +4,16 @@ using CleanArchitecture.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(AutoSolutionContext))]
-    partial class AutoSolutionContextModelSnapshot : ModelSnapshot
+    [Migration("20210828161930_autoversionspecification")]
+    partial class autoversionspecification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +288,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("AutoBodyTypeId")
+                    b.Property<int>("AutoBodyTypeId")
                         .HasColumnType("int");
 
                     b.Property<int?>("AutoEngineTypeId")
@@ -500,33 +502,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("AutoVersionId");
 
                     b.ToTable("AutoVersionPrice");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersionSpecification", b =>
-                {
-                    b.Property<int>("AutoVersionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AutoSpecificationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("AutoVersionId", "AutoSpecificationId");
-
-                    b.HasIndex("AutoSpecificationId");
-
-                    b.ToTable("AutoVersionSpecifications");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersionWeightCapacity", b =>
@@ -837,7 +812,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoBodyType", "AutoBodyType")
                         .WithMany()
-                        .HasForeignKey("AutoBodyTypeId");
+                        .HasForeignKey("AutoBodyTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CleanArchitecture.Domain.Entities.AutoEngineType", "AutoEngineType")
                         .WithMany("AutoVersions")
@@ -874,25 +851,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("AutoVersionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AutoVersion");
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersionSpecification", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Entities.AutoSpecification", "AutoSpecification")
-                        .WithMany("AutoVersionSpecifications")
-                        .HasForeignKey("AutoSpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CleanArchitecture.Domain.Entities.AutoVersion", "AutoVersion")
-                        .WithMany("AutoVersionSpecifications")
-                        .HasForeignKey("AutoVersionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AutoSpecification");
 
                     b.Navigation("AutoVersion");
                 });
@@ -973,16 +931,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoSpecification", b =>
                 {
-                    b.Navigation("AutoVersionSpecifications");
-
                     b.Navigation("SpecificationSubParameter");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AutoVersion", b =>
                 {
                     b.Navigation("AutoVersionDimensions");
-
-                    b.Navigation("AutoVersionSpecifications");
 
                     b.Navigation("AutoVersionWeightCapacities");
                 });

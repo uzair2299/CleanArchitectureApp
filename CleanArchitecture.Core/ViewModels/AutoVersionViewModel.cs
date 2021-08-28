@@ -12,7 +12,8 @@ namespace CleanArchitecture.Core.ViewModels
     {
         public AutoVersionViewModel()
         {
-            //AutoSpecification = new List<AutoSpecificationSubDTO>();        
+            //AutoSpecification = new List<AutoSpecificationSubDTO>();
+            //AutoManufacturerLookup
         }
         public string AutoVersionName { get; set; }
         public string ModelName { get; set; }

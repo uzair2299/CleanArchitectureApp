@@ -49,6 +49,7 @@ namespace CleanArchitecture.UI.Controllers
                 
                 AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
 //                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+
                 autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
                 return View("AutoVersionSave", autoVersionViewModel);
 
