@@ -41,8 +41,12 @@ const htmlTemplate = {
 
 var AutoSolutionUtility = {
 
+    //clearHTML: function (containerId) {
+    //    $("#" + containerId).html("");
+    //},
+
     clearHTML: function (containerId) {
-        $("#" + containerId).html("");
+        $(containerId).html("");
     },
 
     appendHTML: function (containerId, response) {
@@ -266,6 +270,7 @@ var AutoSolutionUtility = {
             var value = $(this).find('option:selected').val();
             if (value == "") {
                 AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
+                $(this).siblings(".invalid-feedback").html("");
                 $(this).siblings(".invalid-feedback").append("Required");
                 isValid = false;
             }
@@ -274,30 +279,49 @@ var AutoSolutionUtility = {
     },
 
 
-    onCangeValidation: function (selector) {
+    onCangeValidation: function (element) {
         var isValid = true;
+        var value = $(element).find('option:selected').val();
+        if (value == "") {
+            AutoSolutionUtility.addCssClass("#" + element.id, "is-invalid");
+            $(element).siblings(".invalid-feedback").html("");
+            $(element).siblings(".invalid-feedback").append("Required");
+                isValid = false;
+            }
+            else {
+            AutoSolutionUtility.removeCssClass("#" + element.id, "is-invalid");
+            $(element).siblings(".invalid-feedback").html("");
+                return isValid;
+            }
+        
+        return isValid;
+
+
         //$(selector).find('input[type=text],input[type=password],input[type=file],input[type=hidden]').each(function () {
         //    var value = this.val();
         //    if (value=="") {
         //    }
         //});
-        $(selector).find('select').not(":disabled").each(function (i, item) {
-            //console.log("#" + this.id);
-            //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
-            var selectorId = "#" + this.id;
-            var value = $(this).find('option:selected').val();
-            if (value == "") {
-                AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
-                $(this).siblings(".invalid-feedback").append("Required");
-                isValid = false;
-            }
-            else {
-                AutoSolutionUtility.removeCssClass(selectorId, "is-invalid");
-                $(this).siblings(".invalid-feedback").html("");
-                return isValid;
-            }
-        })
-        return isValid;
+
+
+        //$(selector).find('select').not(":disabled").each(function (i, item) {
+        //    //console.log("#" + this.id);
+        //    //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
+        //    var selectorId = "#" + this.id;
+        //    var value = $(this).find('option:selected').val();
+        //    if (value == "") {
+        //        AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
+        //        $(this).siblings(".invalid-feedback").html("");
+        //        $(this).siblings(".invalid-feedback").append("Required");
+        //        isValid = false;
+        //    }
+        //    else {
+        //        AutoSolutionUtility.removeCssClass(selectorId, "is-invalid");
+        //        $(this).siblings(".invalid-feedback").html("");
+        //        return isValid;
+        //    }
+        //})
+        //return isValid;
     },
 
     //images and files

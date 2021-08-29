@@ -162,6 +162,7 @@
                                                         <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedManufacturer">
                                                             <option value="">Select Manufacturer</option>
                                                         </select>
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
@@ -169,6 +170,7 @@
                                                         <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled>
                                                             <option value="">Select Model</option>
                                                         </select>
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
 
 
@@ -178,9 +180,10 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span>Body Type:</label>
-                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedBodyType">
+                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%"  id="SelectedBodyType">
                                                             <option value="">Select Body Type</option>
                                                         </select>
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
 
                                                 </div>
