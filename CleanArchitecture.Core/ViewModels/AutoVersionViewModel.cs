@@ -61,15 +61,18 @@ namespace CleanArchitecture.Core.ViewModels
         public string SelectedAutoModelText { get; set; }
         public List<SelectListItem> AutoModelLookup { get; set; }
         
-        public string SelectedManufacturer { get; set; }
+        public int SelectedManufacturer { get; set; }
         public List<SelectListItem> AutoManufacturerLookup { get; set; }
+        public int SelectedBodyType { get; set; }
         public List<SelectListItem> AutoBodyTypeLookup { get; set; }
 
         public List<SelectListItem> AutoEngineTypeLookup { get; set; }
         public List<SelectListItem> AirBag { get; set; }
-        public string SelectedStabilityControlSystem { get; set; }
+        public int SelectedStabilityControlSystem { get; set; }
         public List<SelectListItem> StabilityControlSystem { get; set; }
+        public int SelectedTransmissionType { get; set; }
 
+        public List<SelectListItem> TransmissionType { get; set; }
         public List<SelectListItem> AutoSpecification { get; set; }
         public string AutoSpecificationStr { get; set; } 
 

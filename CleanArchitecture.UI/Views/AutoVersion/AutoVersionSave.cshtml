@@ -170,16 +170,25 @@
                                                             <option value="">Select Model</option>
                                                         </select>
                                                     </div>
+
+
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="AutoVersionName"><span class="text-danger">*</span> Version Name:</label>
                                                         <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
-                                                        <input   name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span>Body Type:</label>
+                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedBodyType">
+                                                            <option value="">Select Body Type</option>
+                                                        </select>
                                                     </div>
+
                                                 </div>
                                                 <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
+                                                        <input name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                    </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label"><span class="text-danger">*</span>Start Date</label>
                                                         <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
@@ -190,6 +199,38 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="kt-portlet kt-portlet--bordered">
+                                        <div class="kt-portlet__head bg-dark">
+                                            <div class="kt-portlet__head-label">
+                                                <h4 class="kt-portlet__head-title text-white">
+                                                    Mechanical/Performance
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+                                            <div class="kt-widget1 p-0">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-4">
+                                                        <label class="form-control-label" for="SelectedTransmissionType"><span class="text-danger">*</span> Transmission Type:</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectedTransmissionType" asp-items="Model.TransmissionType" class="form-control kt-select2" name="SelectedTransmissionType" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedTransmissionType">
+                                                            <option value="">Select TransmissionType</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="kt-portlet kt-portlet--bordered">
@@ -205,55 +246,55 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorHeight">Exterior Height(mm):</label>
-                                                        <input   name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight" value="">
+                                                        <input name="ExteriorHeight" class="form-control" placeholder="" asp-for="ExteriorHeight" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorWidth">Exterior Width(mm):</label>
-                                                        <input   name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth" value="">
+                                                        <input name="ExteriorWidth" class="form-control" placeholder="" asp-for="ExteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorLength">Exterior Length(mm):</label>
-                                                        <input   name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength">
+                                                        <input name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorHeight">Interior Height(mm):</label>
-                                                        <input   name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight" >
+                                                        <input name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorWidth">Interior Width(mm):</label>
-                                                        <input   name="InteriorWidth" class="form-control" placeholder="" asp-for="InteriorWidth" value="">
+                                                        <input name="InteriorWidth" class="form-control" placeholder="" asp-for="InteriorWidth" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorLength">Interior Length(mm):</label>
-                                                        <input   name="InteriorLength" class="form-control" placeholder="" asp-for="InteriorLength" value="">
+                                                        <input name="InteriorLength" class="form-control" placeholder="" asp-for="InteriorLength" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="TreadFront">Tread Front(mm):</label>
-                                                        <input   name="TreadFront" class="form-control" placeholder="" asp-for="TreadFront" value="">
+                                                        <input name="TreadFront" class="form-control" placeholder="" asp-for="TreadFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="TreadRear">Tread Rear(mm):</label>
-                                                        <input   name="TreadRear" class="form-control" placeholder="" asp-for="TreadRear" value="">
+                                                        <input name="TreadRear" class="form-control" placeholder="" asp-for="TreadRear" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="OverhangFront">Overhang Front(mm):</label>
-                                                        <input   name="OverhangFront" class="form-control" placeholder="" asp-for="OverhangFront" value="">
+                                                        <input name="OverhangFront" class="form-control" placeholder="" asp-for="OverhangFront" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="OverhangRear">Overhang Rear(mm):</label>
-                                                        <input   name="OverhangRear" class="form-control" placeholder="" asp-for="OverhangRear" value="">
+                                                        <input name="OverhangRear" class="form-control" placeholder="" asp-for="OverhangRear" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="Wheelbase">Wheelbase(mm):</label>
-                                                        <input   name="Wheelbase" class="form-control" placeholder="" asp-for="Wheelbase" value="">
+                                                        <input name="Wheelbase" class="form-control" placeholder="" asp-for="Wheelbase" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="GroundClearance">Ground Clearance(mm):</label>
-                                                        <input   name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
+                                                        <input name="GroundClearance" class="form-control" placeholder="" asp-for="GroundClearance" value="">
                                                     </div>
 
                                                 </div>
@@ -284,19 +325,19 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorHeight">Seating Capacity(Persons):</label>
-                                                        <input step="any"  name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="" onkeypress="isNumberKey(event)">
+                                                        <input step="any" name="SeatingCapacity" class="form-control" placeholder="" asp-for="SeatingCapacity" value="" onkeypress="isNumberKey(event)">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorWidth">Fuel Tank Capacity(Liters):</label>
-                                                        <input   name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
+                                                        <input name="FuelTankCapacity" class="form-control" placeholder="" asp-for="FuelTankCapacity" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="CrubWeight">Crub Weight(Kg):</label>
-                                                        <input   name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
+                                                        <input name="CrubWeight" class="form-control" placeholder="" asp-for="CrubWeight" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="GroundClearance">Gross Vehicle Weigth(Kg):</label>
-                                                        <input   name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
+                                                        <input name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -332,7 +373,7 @@
                                                         <div class="row">
                                                             @for (var item = 0; item < Model.AutoSpecification.Count(); item++)
                                                             {
-                                                                <div class="col-3">
+                                                                <div class="col-lg-3">
                                                                     <label class="kt-checkbox kt-checkbox--solid">
                                                                         <input asp-for="AutoSpecification[item].Selected">@Model.AutoSpecification[item].Text
                                                                         <input type="hidden" asp-for="@Model.AutoSpecification[item].Value" />
@@ -360,7 +401,7 @@
                                                         <div class="row">
                                                             @for (var item = 0; item < Model.AirBag.Count(); item++)
                                                             {
-                                                                <div class="col-3">
+                                                                <div class="col-lg-3">
                                                                     <label class="kt-checkbox kt-checkbox--solid">
                                                                         <input asp-for="AirBag[item].Selected">@Model.AirBag[item].Text
                                                                         <input type="hidden" asp-for="@Model.AirBag[item].Value" />
@@ -386,7 +427,7 @@
                                                         <div class="row">
                                                             @for (var item = 0; item < Model.SeatBelt.Count(); item++)
                                                             {
-                                                                <div class="col-6">
+                                                                <div class="col-lg-6">
                                                                     <label class="kt-checkbox kt-checkbox--solid">
                                                                         <input asp-for="SeatBelt[item].Selected">@Model.SeatBelt[item].Text
                                                                         <input type="hidden" asp-for="@Model.SeatBelt[item].Value" />
@@ -401,9 +442,8 @@
                                             </div>
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
-                                                    <div class="col-lg-6">
-                                                        <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> SelectedStability Control System:</label>
-                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                    <div class="col-lg-4">
+                                                        <label class="form-control-label" for="SelectedStabilityControlSystem"><span class="text-danger">*</span> SelectedStability Control System:</label>
                                                         <select asp-for="SelectedStabilityControlSystem" asp-items="Model.StabilityControlSystem" class="form-control kt-select2" name="SelectedStabilityControlSystem" style="width:100%" id="SelectedStabilityControlSystem">
                                                             <option value="">Select SelectedStability Control System</option>
                                                         </select>
@@ -430,8 +470,8 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-6">
                                                         @*<label class="form-control-label btn btn-dark" for="DefaultImage">
-                                                                <i class="fa fa-upload"></i>Default Image
-                                                            </label>*@
+                                        <i class="fa fa-upload"></i>Default Image
+                                    </label>*@
                                                         <label class="form-control-label btn btn-dark LabelPointer" onclick="getElementById('DefaultImage').click()">
                                                             <i class="fa fa-upload"></i>
                                                             Default Image
@@ -460,8 +500,8 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-6">
                                                         @*<label class="form-control-label btn btn-dark" for="DefaultImage">
-                                                                <i class="fa fa-upload"></i>Default Image
-                                                            </label>*@
+                                        <i class="fa fa-upload"></i>Default Image
+                                    </label>*@
                                                         <label class="form-control-label btn btn-dark LabelPointer" onclick="getElementById('GallaryImages').click()">
                                                             <i class="fa fa-upload"></i>
                                                             Gallary Images
@@ -506,6 +546,9 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        $('.kt-select2').select2();    });
+
     function isNumberKey(evt) {
         console.log("which" + evt.which);
         console.log("keycode" + evt.code);

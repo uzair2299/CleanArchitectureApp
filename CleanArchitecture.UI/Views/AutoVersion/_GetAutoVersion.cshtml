@@ -26,7 +26,7 @@
                                 <th class="pl-3">Model</th>
                                 <th class="pl-3">Manufacturer</th>
                                 <th class="pl-3">Engine Capacity</th>
-                                <th class="pl-3">Start&nbsp;Production</th>
+                                @*<th class="pl-3">Start&nbsp;Production</th>*@
                                 @*<th class="pl-3">End&nbsp;Production</th>*@
                                 <th class="pl-3">Current&nbsp;Price</th>
 
@@ -48,7 +48,7 @@
                                 <td class="pl-3">@item.ModelName</td>
                                 <td class="pl-3">@item.AutoManufacturerName</td>
                                 <td class="pl-3 text-center">@(item.EngineCapacity.ToString("#,##0.###") + " "+ "cc" )</td>
-                                <td class="pl-3 text-center">@item.StartProductionYear.Value.Year</td>
+                                @*<td class="pl-3 text-center">@item.StartProductionYear.Value.Year</td>*@
                                 @*<td class="pl-3 text-center">@item.EndProductionYear.Value.Year</td>*@
                                 <td class="pl-3 text-center">@item.CurrentPrice.ToString("#,##0.###")</td>
                                 <td class="fit text-center">

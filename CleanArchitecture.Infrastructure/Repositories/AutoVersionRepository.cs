@@ -110,7 +110,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
                                 ModelName = reader["ModelName"].ToString(),
                                 AutoManufacturerName = reader["AutoManufacturerName"].ToString(),
                                 AutoVersionName = reader["AutoVersionName"].ToString(),
-                                StartProductionYear = (DateTime)reader["StartProductionYear"],
+                                //StartProductionYear = (DateTime)reader["StartProductionYear"],
                                 //EndProductionYear = (DateTime)reader["EndProductionYear"],
                                 ImagePath = reader["ImagePath"].ToString(),
                                 EngineCapacity =Convert.ToInt32(reader["EngineCapacity"]),
