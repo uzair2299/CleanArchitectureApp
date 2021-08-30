@@ -167,7 +167,7 @@
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled>
+                                                        <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled onchange="AutoSolutionUtility.onCangeValidation(this)">
                                                             <option value="">Select Model</option>
                                                         </select>
                                                         <div class="invalid-feedback"></div>
@@ -551,10 +551,6 @@
 <script>
     $(document).ready(function () {
         $('.kt-select2').select2();
-
-        $('#SelectedAutoModel').on('change', 'body', function () {
-            AutoSolutionUtility.onCangeValidation(this)
-        });
     });
 
 

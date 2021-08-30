@@ -279,7 +279,8 @@ var autoVersion = {
                 });
                 SelectedModel.append(popularOptGroup);
                 SelectedModel.append(otherOptGroup);
-                $(document).on('change', autoVersion.selectedAutoModel, AutoSolutionUtility.onCangeValidation)
+                
+                //$(document).on('change', autoVersion.selectedAutoModel, AutoSolutionUtility.onCangeValidation)
                 $(autoVersion.selectedAutoModel).select2();
             } else {
                 $(SelectedModel).siblings('div').html("");
