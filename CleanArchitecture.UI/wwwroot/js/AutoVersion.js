@@ -250,14 +250,15 @@ var autoVersion = {
             //    });
             //}
 
-            var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
-            var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
             if (response.data.length > 1 && !jQuery.isEmptyObject(response.data)) {
+                var otherOptGroup = $("<optgroup label='Other Models' id='Other'>");
+                var popularOptGroup = $("<optgroup label='Popular Models' id='Popular'>");
+
                 AutoSolutionUtility.clearHTML(SelectedModel);
                 AutoSolutionUtility.appendDefaultSelectOption(autoVersion.selectedAutoModel, "", "Select Model");
                 AutoSolutionUtility.removeAttribute(SelectedModel, "disabled");
                 AutoSolutionUtility.removeCssClass(SelectedModel, "disabled");
-                
+
 
                 //$(SelectedModel).append($('<option/> ', {
                 //    value: "",
@@ -278,12 +279,15 @@ var autoVersion = {
                 });
                 SelectedModel.append(popularOptGroup);
                 SelectedModel.append(otherOptGroup);
-                $(autoVersion.selectedAutoModel).select2(); 
+                $(document).on('change', autoVersion.selectedAutoModel, AutoSolutionUtility.onCangeValidation)
+                $(autoVersion.selectedAutoModel).select2();
             } else {
-                AutoSolutionUtility.clearHTML(SelectedModel);
+                $(SelectedModel).siblings('div').html("");
                 AutoSolutionUtility.appendDefaultSelectOption(autoVersion.selectedAutoModel, "", "Select Model");
-                AutoSolutionUtility.addAttribute(SelectedModel, "disabled");
+                $(autoVersion.selectedAutoModel).select2();
+                AutoSolutionUtility.addAttribute(SelectedModel, "disabled", true);
                 AutoSolutionUtility.addCssClass(SelectedModel, "disabled");
+
             }
         })
     },

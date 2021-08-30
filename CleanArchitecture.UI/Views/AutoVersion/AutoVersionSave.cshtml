@@ -180,7 +180,7 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span>Body Type:</label>
-                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%"  id="SelectedBodyType">
+                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%"  id="SelectedBodyType" onchange="AutoSolutionUtility.onCangeValidation(this)">
                                                             <option value="">Select Body Type</option>
                                                         </select>
                                                         <div class="invalid-feedback"></div>
@@ -550,7 +550,14 @@
 
 <script>
     $(document).ready(function () {
-        $('.kt-select2').select2();    });
+        $('.kt-select2').select2();
+
+        $('#SelectedAutoModel').on('change', 'body', function () {
+            AutoSolutionUtility.onCangeValidation(this)
+        });
+    });
+
+
 
     function isNumberKey(evt) {
         console.log("which" + evt.which);
