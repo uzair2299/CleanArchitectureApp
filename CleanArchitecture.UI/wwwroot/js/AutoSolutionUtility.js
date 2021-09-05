@@ -41,9 +41,9 @@ const htmlTemplate = {
 
 var AutoSolutionUtility = {
 
-    //clearHTML: function (containerId) {
-    //    $("#" + containerId).html("");
-    //},
+    clearHTML_: function (containerId) {
+        $("#" + containerId).html("");
+    },
 
     clearHTML: function (containerId) {
         $(containerId).html("");
@@ -258,12 +258,17 @@ var AutoSolutionUtility = {
 
     defaultValidation: function (selector) {
         var isValid = true;
-        //$(selector).find('input[type=text],input[type=password],input[type=file],input[type=hidden]').each(function () {
-        //    var value = this.val();
-        //    if (value=="") {
-        //    }
-        //});
-        $(selector).find('select').not(":disabled").each(function (i, item) {
+        $(selector).find('input[type=text],input[type=password],input[type=file],input[type=hidden],input[type=month]').filter(".required").not(":disabled").each(function (i,item) {
+            var value = $(this).val();
+            var selectorId = "#" + this.id;
+            if (value == "") {
+                AutoSolutionUtility.addCssClass(selectorId, "is-invalid");
+                $(this).siblings(".invalid-feedback").html("");
+                $(this).siblings(".invalid-feedback").append("Required");
+                isValid = false;
+            }
+        });
+        $(selector).find('select').filter(".required").not(":disabled").each(function (i, item) {
             //console.log("#" + this.id);
             //console.log($(this).find('option:selected').val() + $(this).find('option:selected').text());
             var selectorId = "#" + this.id;
@@ -281,18 +286,37 @@ var AutoSolutionUtility = {
 
     onCangeValidation: function (element) {
         var isValid = true;
-        var value = $(element).find('option:selected').val();
-        if (value == "") {
-            AutoSolutionUtility.addCssClass("#" + element.id, "is-invalid");
-            $(element).siblings(".invalid-feedback").html("");
-            $(element).siblings(".invalid-feedback").append("Required");
+        if ($(element).is("select")) {
+            var value = $(element).find('option:selected').val();
+            if (value == "") {
+                AutoSolutionUtility.addCssClass("#" + element.id, "is-invalid");
+                $(element).siblings(".invalid-feedback").html("");
+                $(element).siblings(".invalid-feedback").append("Required");
                 isValid = false;
             }
             else {
-            AutoSolutionUtility.removeCssClass("#" + element.id, "is-invalid");
-            $(element).siblings(".invalid-feedback").html("");
+                AutoSolutionUtility.removeCssClass("#" + element.id, "is-invalid");
+                $(element).siblings(".invalid-feedback").html("");
                 return isValid;
             }
+        }
+
+        if ($(element).is("input")) {
+            var value = $(element).val();
+            if (value == "") {
+                AutoSolutionUtility.addCssClass("#" + element.id, "is-invalid");
+                $(element).siblings(".invalid-feedback").html("");
+                $(element).siblings(".invalid-feedback").append("Required");
+                isValid = false;
+            }
+            else {
+                AutoSolutionUtility.removeCssClass("#" + element.id, "is-invalid");
+                $(element).siblings(".invalid-feedback").html("");
+                return isValid;
+            }
+        }
+
+
         
         return isValid;
 

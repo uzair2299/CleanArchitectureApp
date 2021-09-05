@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.PageSet;
 using CleanArchitecture.Core.ViewModels;
+using CleanArchitecture.UI.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -14,10 +15,15 @@ namespace CleanArchitecture.UI.Controllers
     {
         private IAutoVersionService autoVersionService;
         private IAutoSolutionLookupService autoSolutionLookupService;
-        public AutoVersionController(IAutoVersionService autoVersionService, IAutoSolutionLookupService autoSolutionLookupService)
+        private IFileUploadUtility fileUploadUtility;
+
+        public AutoVersionController(IAutoVersionService autoVersionService,
+            IAutoSolutionLookupService autoSolutionLookupService,
+            IFileUploadUtility fileUploadUtility)
         {
             this.autoVersionService = autoVersionService;
             this.autoSolutionLookupService = autoSolutionLookupService;
+            this.fileUploadUtility = fileUploadUtility;
         }
         public IActionResult Index()
         {
@@ -46,9 +52,9 @@ namespace CleanArchitecture.UI.Controllers
             }
             else
             {
-                
+
                 AutoVersionViewModel autoVersionViewModel = new AutoVersionViewModel();
-//                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+                //                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
 
                 autoVersionViewModel = autoSolutionLookupService.GetAutoVersionLookUpData();
                 return View("AutoVersionSave", autoVersionViewModel);
@@ -66,12 +72,18 @@ namespace CleanArchitecture.UI.Controllers
             }
             else
             {
-                if(autoVersionViewModel.IsQuickAdd)
-                {
-                    autoVersionViewModel.AutoSpecificationStr = strd(autoVersionViewModel.AutoSpecification);
-                }
+
+                autoVersionViewModel.AutoSpecificationStr = strd(autoVersionViewModel.AutoSpecification);
+                string[] str = fileUploadUtility.UplaodFile(autoVersionViewModel.GallaryImages);
+
                 var result = autoVersionService.AutoVersionSave(autoVersionViewModel);
-                return Json(new { status = result != null ? "save" : "exist", data = result });
+
+
+                AutoVersionViewModel autoVersionViewModel_ = new AutoVersionViewModel();
+                //                autoVersionViewModel.AutoManufacturerLookup = autoSolutionLookupService.GetAutoManufacturerLookup();
+
+                autoVersionViewModel_ = autoSolutionLookupService.GetAutoVersionLookUpData();
+                return RedirectToAction("AutoVersionSave", false);
             }
         }
         [HttpGet]

@@ -28,5 +28,33 @@ namespace CleanArchitecture.UI.Utility
             }
             return fileName;
         }
+
+        public string[] UplaodFile(List<IFormFile> files)
+        {
+            if (files.Count>0 && !object.ReferenceEquals(files,null))
+            {
+                List<string> list = new List<string>();
+
+                foreach (IFormFile formFile in files)
+                {
+                    var path = Path.Combine(env.WebRootPath, uploadDirecotroy);
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    var fileName_ = Guid.NewGuid() + Path.GetExtension(formFile.FileName);
+                    list.Add(fileName_);
+                    var filePath = Path.Combine(path, fileName_);
+                    using (var stream = File.Create(filePath))
+                    {
+                        formFile.CopyTo(stream);
+                    }
+                }
+                return list.ToArray();
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 }

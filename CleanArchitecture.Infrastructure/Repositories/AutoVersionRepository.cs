@@ -30,42 +30,44 @@ namespace CleanArchitecture.Infrastructure.Repositories
         {
             try
             {
+                using (var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+                {
+                    c.Open();
+                    var command = c.CreateCommand();
+                    //command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoVersion + " @AutoVersionName,@CurrentPrice,@EngineCapacity,@CrubWeight,@ExteriorHeight," +
+                        "@ExteriorLength,@ExteriorWidth,@FuelTankCapacity,@GrossVehicleWeigth,@GroundClearance,@InteriorHeight,@InteriorLength,@InteriorWidth," +
+                        "@MinimumGroundClearance,@OverhangFront,@OverhangRear,@RunningGroundClearance,@SeatingCapacity,@TreadFront,@TreadRear,@Wheelbase,@AutoModelId,@IsQuickAdd";
+                    command.Parameters.Add(new SqlParameter("AutoVersionName", autoVersionViewModel.AutoVersionName));
+                    command.Parameters.Add(new SqlParameter("CurrentPrice", autoVersionViewModel.CurrentPrice));
+                    command.Parameters.Add(new SqlParameter("EngineCapacity", autoVersionViewModel.EngineCapacity));
+                    command.Parameters.Add(new SqlParameter("CrubWeight", autoVersionViewModel.CrubWeight));
+                    command.Parameters.Add(new SqlParameter("ExteriorHeight", autoVersionViewModel.ExteriorHeight));
+                    command.Parameters.Add(new SqlParameter("ExteriorLength", autoVersionViewModel.ExteriorLength));
+                    command.Parameters.Add(new SqlParameter("ExteriorWidth", autoVersionViewModel.ExteriorWidth));
+                    command.Parameters.Add(new SqlParameter("FuelTankCapacity", autoVersionViewModel.FuelTankCapacity));
+                    command.Parameters.Add(new SqlParameter("GrossVehicleWeigth", autoVersionViewModel.GrossVehicleWeigth));
+                    command.Parameters.Add(new SqlParameter("GroundClearance", autoVersionViewModel.GroundClearance));
+                    command.Parameters.Add(new SqlParameter("InteriorHeight", autoVersionViewModel.InteriorHeight));
+                    command.Parameters.Add(new SqlParameter("InteriorLength", autoVersionViewModel.InteriorLength));
+                    command.Parameters.Add(new SqlParameter("InteriorWidth", autoVersionViewModel.InteriorWidth));
+                    command.Parameters.Add(new SqlParameter("MinimumGroundClearance", autoVersionViewModel.MinimumGroundClearance));
+                    command.Parameters.Add(new SqlParameter("OverhangFront", autoVersionViewModel.OverhangFront));
+                    command.Parameters.Add(new SqlParameter("OverhangRear", autoVersionViewModel.OverhangRear));
 
-                var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
-                c.Open();
-                var command = c.CreateCommand();
-                //command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoVersion + " @AutoVersionName,@CurrentPrice,@EngineCapacity,@CrubWeight,@ExteriorHeight," +
-                    "@ExteriorLength,@ExteriorWidth,@FuelTankCapacity,@GrossVehicleWeigth,@GroundClearance,@InteriorHeight,@InteriorLength,@InteriorWidth," +
-                    "@MinimumGroundClearance,@OverhangFront,@OverhangRear,@RunningGroundClearance,@SeatingCapacity,@TreadFront,@TreadRear,@Wheelbase,@AutoModelId,@IsQuickAdd";
-                command.Parameters.Add(new SqlParameter("AutoVersionName", autoVersionViewModel.AutoVersionName));
-                command.Parameters.Add(new SqlParameter("CurrentPrice", autoVersionViewModel.CurrentPrice));
-                command.Parameters.Add(new SqlParameter("EngineCapacity", autoVersionViewModel.EngineCapacity));
-                command.Parameters.Add(new SqlParameter("CrubWeight", autoVersionViewModel.CrubWeight));
-                command.Parameters.Add(new SqlParameter("ExteriorHeight", autoVersionViewModel.ExteriorHeight));
-                command.Parameters.Add(new SqlParameter("ExteriorLength", autoVersionViewModel.ExteriorLength));
-                command.Parameters.Add(new SqlParameter("ExteriorWidth", autoVersionViewModel.ExteriorWidth));
-                command.Parameters.Add(new SqlParameter("FuelTankCapacity", autoVersionViewModel.FuelTankCapacity));
-                command.Parameters.Add(new SqlParameter("GrossVehicleWeigth", autoVersionViewModel.GrossVehicleWeigth));
-                command.Parameters.Add(new SqlParameter("GroundClearance", autoVersionViewModel.GroundClearance));
-                command.Parameters.Add(new SqlParameter("InteriorHeight", autoVersionViewModel.InteriorHeight));
-                command.Parameters.Add(new SqlParameter("InteriorLength", autoVersionViewModel.InteriorLength));
-                command.Parameters.Add(new SqlParameter("InteriorWidth", autoVersionViewModel.InteriorWidth));
-                command.Parameters.Add(new SqlParameter("MinimumGroundClearance", autoVersionViewModel.MinimumGroundClearance));
-                command.Parameters.Add(new SqlParameter("OverhangFront", autoVersionViewModel.OverhangFront));
-                command.Parameters.Add(new SqlParameter("OverhangRear", autoVersionViewModel.OverhangRear));
+                    command.Parameters.Add(new SqlParameter("RunningGroundClearance", autoVersionViewModel.RunningGroundClearance));
+                    command.Parameters.Add(new SqlParameter("SeatingCapacity", autoVersionViewModel.SeatingCapacity));
+                    command.Parameters.Add(new SqlParameter("TreadFront", autoVersionViewModel.TreadFront));
+                    command.Parameters.Add(new SqlParameter("TreadRear", autoVersionViewModel.TreadFront));
+                    command.Parameters.Add(new SqlParameter("Wheelbase", autoVersionViewModel.Wheelbase));
 
-                command.Parameters.Add(new SqlParameter("RunningGroundClearance", autoVersionViewModel.RunningGroundClearance));
-                command.Parameters.Add(new SqlParameter("SeatingCapacity", autoVersionViewModel.SeatingCapacity));
-                command.Parameters.Add(new SqlParameter("TreadFront", autoVersionViewModel.TreadFront));
-                command.Parameters.Add(new SqlParameter("TreadRear", autoVersionViewModel.TreadFront));
-                command.Parameters.Add(new SqlParameter("Wheelbase", autoVersionViewModel.Wheelbase));
+                    command.Parameters.Add(new SqlParameter("AutoModelId", autoVersionViewModel.SelectedAutoModel));
 
-                command.Parameters.Add(new SqlParameter("AutoModelId", autoVersionViewModel.SelectedAutoModel));
-
-                command.Parameters.Add(new SqlParameter("IsQuickAdd", autoVersionViewModel.IsQuickAdd));
-                int rowAffected = command.ExecuteNonQuery();
-                return rowAffected > 0 ? autoVersionViewModel : null;
+                    command.Parameters.Add(new SqlParameter("IsQuickAdd", autoVersionViewModel.IsQuickAdd));
+                    int rowAffected = command.ExecuteNonQuery();
+                    c.Close();
+                    return rowAffected > 0 ? autoVersionViewModel : null;
+                }
             }
             catch (Exception ex)
             {
@@ -73,6 +75,49 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 throw ex;
             }
         }
+
+               // var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection();
+            //    c.Open();
+            //    var command = c.CreateCommand();
+            //    //command.CommandType = System.Data.CommandType.StoredProcedure;
+            //    command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoVersion + " @AutoVersionName,@CurrentPrice,@EngineCapacity,@CrubWeight,@ExteriorHeight," +
+            //        "@ExteriorLength,@ExteriorWidth,@FuelTankCapacity,@GrossVehicleWeigth,@GroundClearance,@InteriorHeight,@InteriorLength,@InteriorWidth," +
+            //        "@MinimumGroundClearance,@OverhangFront,@OverhangRear,@RunningGroundClearance,@SeatingCapacity,@TreadFront,@TreadRear,@Wheelbase,@AutoModelId,@IsQuickAdd";
+            //    command.Parameters.Add(new SqlParameter("AutoVersionName", autoVersionViewModel.AutoVersionName));
+            //    command.Parameters.Add(new SqlParameter("CurrentPrice", autoVersionViewModel.CurrentPrice));
+            //    command.Parameters.Add(new SqlParameter("EngineCapacity", autoVersionViewModel.EngineCapacity));
+            //    command.Parameters.Add(new SqlParameter("CrubWeight", autoVersionViewModel.CrubWeight));
+            //    command.Parameters.Add(new SqlParameter("ExteriorHeight", autoVersionViewModel.ExteriorHeight));
+            //    command.Parameters.Add(new SqlParameter("ExteriorLength", autoVersionViewModel.ExteriorLength));
+            //    command.Parameters.Add(new SqlParameter("ExteriorWidth", autoVersionViewModel.ExteriorWidth));
+            //    command.Parameters.Add(new SqlParameter("FuelTankCapacity", autoVersionViewModel.FuelTankCapacity));
+            //    command.Parameters.Add(new SqlParameter("GrossVehicleWeigth", autoVersionViewModel.GrossVehicleWeigth));
+            //    command.Parameters.Add(new SqlParameter("GroundClearance", autoVersionViewModel.GroundClearance));
+            //    command.Parameters.Add(new SqlParameter("InteriorHeight", autoVersionViewModel.InteriorHeight));
+            //    command.Parameters.Add(new SqlParameter("InteriorLength", autoVersionViewModel.InteriorLength));
+            //    command.Parameters.Add(new SqlParameter("InteriorWidth", autoVersionViewModel.InteriorWidth));
+            //    command.Parameters.Add(new SqlParameter("MinimumGroundClearance", autoVersionViewModel.MinimumGroundClearance));
+            //    command.Parameters.Add(new SqlParameter("OverhangFront", autoVersionViewModel.OverhangFront));
+            //    command.Parameters.Add(new SqlParameter("OverhangRear", autoVersionViewModel.OverhangRear));
+
+            //    command.Parameters.Add(new SqlParameter("RunningGroundClearance", autoVersionViewModel.RunningGroundClearance));
+            //    command.Parameters.Add(new SqlParameter("SeatingCapacity", autoVersionViewModel.SeatingCapacity));
+            //    command.Parameters.Add(new SqlParameter("TreadFront", autoVersionViewModel.TreadFront));
+            //    command.Parameters.Add(new SqlParameter("TreadRear", autoVersionViewModel.TreadFront));
+            //    command.Parameters.Add(new SqlParameter("Wheelbase", autoVersionViewModel.Wheelbase));
+
+            //    command.Parameters.Add(new SqlParameter("AutoModelId", autoVersionViewModel.SelectedAutoModel));
+
+            //    command.Parameters.Add(new SqlParameter("IsQuickAdd", autoVersionViewModel.IsQuickAdd));
+            //    int rowAffected = command.ExecuteNonQuery();
+            //    return rowAffected > 0 ? autoVersionViewModel : null;
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw ex;
+            //}
+        //}
 
         public AutoSolutionPageSet<AutoVersionViewModel> GetAutoVersion(AutoVersionViewModel autoVersionViewModel)
         {

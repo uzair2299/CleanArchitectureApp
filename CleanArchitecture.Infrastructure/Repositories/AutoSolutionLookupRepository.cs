@@ -6,7 +6,9 @@ using CleanArchitecture.Infrastructure.Interfaces;
 using CleanArchitecture.Infrastructure.Utility;
 using Dapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,10 +22,12 @@ namespace CleanArchitecture.Infrastructure.Repositories
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper autoMapper;
-        public AutoSolutionLookupRepository(IMapper autoMapper, IUnitOfWork unitOfWork)
+        public IConfiguration Configuration { get; }
+        public AutoSolutionLookupRepository(IMapper autoMapper, IUnitOfWork unitOfWork, IConfiguration configuration)
         {
             this.autoMapper = autoMapper;
             this.unitOfWork = unitOfWork;
+            Configuration = configuration;
         }
         public List<SelectListItem> GetAutoManufacturerLookup()
         {
@@ -31,13 +35,13 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var PopularGroup = new SelectListGroup { Name = "Popular Manufacturer" };
             var OtherGroup = new SelectListGroup { Name = "Other Manufacturer" };
             IQueryable<AutoManufacturer> result = unitOfWork.GetAutoSolutionContext().AutoManufacturers.AsQueryable();
-            selectListItems =  result.Select(x => new SelectListItem()
+            selectListItems = result.Select(x => new SelectListItem()
             {
                 Text = x.AutoManufacturerName,
                 Value = x.Id.ToString(),
-                Group = x.IsPopular?PopularGroup:OtherGroup
-            }).OrderBy(x=>x.Text).ToList();
-            selectListItems =  selectListItems.OrderByDescending(x => x.Group.Name).ToList();
+                Group = x.IsPopular ? PopularGroup : OtherGroup
+            }).OrderBy(x => x.Text).ToList();
+            selectListItems = selectListItems.OrderByDescending(x => x.Group.Name).ToList();
 
             //using (var c = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             //{
@@ -93,11 +97,11 @@ namespace CleanArchitecture.Infrastructure.Repositories
             var PopularGroup = new SelectListGroup { Name = "Popular Models" };
             var OtherGroup = new SelectListGroup { Name = "Other Models" };
             List<SelectListItem> selectListItems = new List<SelectListItem>();
-            selectListItems = unitOfWork.GetAutoSolutionContext().AutoModels.Where(x => x.AutoManufacturerId == Id).OrderBy(x=>x.ModelName).Select(x => new SelectListItem()
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoModels.Where(x => x.AutoManufacturerId == Id).OrderBy(x => x.ModelName).Select(x => new SelectListItem()
             {
                 Text = x.ModelName,
                 Value = x.Id.ToString(),
-                Group = x.IsPopular?PopularGroup:OtherGroup
+                Group = x.IsPopular ? PopularGroup : OtherGroup
             }).ToList();
             selectListItems = selectListItems.OrderByDescending(x => x.Group.Name).ToList();
             if (selectListItems.Count > 1)
@@ -157,9 +161,9 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Text = x.ActionName,
                 Value = x.Id.ToString(),
             }).ToList();
-            foreach(var item in permissions)
+            foreach (var item in permissions)
             {
-                foreach(var innerItem in selectListItems)
+                foreach (var innerItem in selectListItems)
                 {
                     if (Convert.ToInt32(innerItem.Value) == item.PermissionId)
                     {
@@ -230,7 +234,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public PagePermissionViewModel GetPagesPermissionLookUp()
         {
-            using(var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
             {
                 db.Open();
                 var result = db.Query<string>(AutoSolutionStoreProcedureUtility.GetPagePermissions,
@@ -248,20 +252,29 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public AutoVersionViewModel GetAutoVersionLookUpData()
         {
-            using (var db = unitOfWork.GetAutoSolutionContext().Database.GetDbConnection())
+            try
             {
-                db.Open();
-                var result = db.Query<string>(AutoSolutionStoreProcedureUtility.spGetAutoVersionLookUp,
-                   new { }, commandType: CommandType.StoredProcedure);
-                StringBuilder stringBuilder = new StringBuilder();
-                foreach (var rec in result)
+                using (SqlConnection db = new SqlConnection(Configuration.GetConnectionString("AutoSolution")))
                 {
-                    stringBuilder.Append(rec);
+                    db.Open();
+                    var result = db.Query<string>(AutoSolutionStoreProcedureUtility.spGetAutoVersionLookUp,
+                       new { }, commandType: CommandType.StoredProcedure);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    foreach (var rec in result)
+                    {
+                        stringBuilder.Append(rec);
+                    }
+                    var response = JsonConvert.DeserializeObject<AutoVersionViewModel>(stringBuilder.ToString());
+                    db.Close();
+                    return response;
                 }
-                var response = JsonConvert.DeserializeObject<AutoVersionViewModel>(stringBuilder.ToString());
-                db.Close();
-                return response;
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public List<SelectListItem> GetAutoSpecficationType()
@@ -289,7 +302,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public List<SelectListItem> GetSpecficationParameterLookup(int Id)
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();
-            selectListItems = unitOfWork.GetAutoSolutionContext().AutoSpecifications.Where(x=>x.SpecificationTypeId==Id && x.ParentId==null).Select(x => new SelectListItem
+            selectListItems = unitOfWork.GetAutoSolutionContext().AutoSpecifications.Where(x => x.SpecificationTypeId == Id && x.ParentId == null).Select(x => new SelectListItem
             {
                 Text = x.SpecificationParameter,
                 Value = x.Id.ToString()

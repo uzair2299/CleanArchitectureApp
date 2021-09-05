@@ -95,7 +95,7 @@ var autoManufacturer = {
     loadAutoManufacturerPanel: function () {
         var params = autoSolutionService.ajaxParams('', autoManufacturer.autoManufacturerBaseURL + 'AutoManufacturerSave', 'get', true);
         autoSolutionService.defaultService(params).done(function (response) {
-            AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+            AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
             AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
             AutoSolutionUtility.showPanel(autoManufacturer.autoManufacturerPanel);
             AutoSolutionUtility.hideLoader();
@@ -106,7 +106,7 @@ var autoManufacturer = {
         data = { Id: id }
         var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'EditAutoManufacturer', 'get', true);
         autoSolutionService.defaultService(params).done(function (response) {
-            AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+            AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
             AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerPanelContainer, response);
             $("#" + autoManufacturer.autoManufacturerPanel + " .modal-title").text(autoManufacturer.autoManufacturerPanelUpdateTitle);
             $("#" + autoManufacturer.autoManufacturerPanel + " #btnAutoManufacturer").html(htmlTemplate.UPDATE_BTN);
@@ -123,13 +123,13 @@ var autoManufacturer = {
                     AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.UPDATE);
                     autoManufacturer.getAutoManufacturer();
                     AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
-                    AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                    AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
                     break;
                 case statusCode.SAVE:
                     AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
                     autoManufacturer.getAutoManufacturer();
                     AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
-                    AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                    AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
                     break;
                 case statusCode.ALREADY:
                     AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ALREADYEXIST);
@@ -145,7 +145,7 @@ var autoManufacturer = {
 
         var params = autoSolutionService.ajaxParams(data, autoManufacturer.autoManufacturerBaseURL + 'GetAutoManufacturer', 'get', true);
         autoSolutionService.defaultService(params).done(function (response) {
-            AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerGetPanel);
+            AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerGetPanel);
             AutoSolutionUtility.appendHTML(autoManufacturer.autoManufacturerGetPanel, response);
             if (data) {
                 $('#pageSize').val(data.PageSize);
@@ -281,13 +281,13 @@ var autoManufacturer = {
                     AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.UPDATE);
                     autoManufacturer.getAutoManufacturer();
                     AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
-                    AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                    AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
                     break;
                 case statusCode.SAVE:
                     AutoSolutionUtility.toastNotifiy(toastType.SUCCESS, toastMessage.SAVE);
                     autoManufacturer.getAutoManufacturer();
                     AutoSolutionUtility.hidePanel(autoManufacturer.autoManufacturerPanelContainer);
-                    AutoSolutionUtility.clearHTML(autoManufacturer.autoManufacturerPanelContainer);
+                    AutoSolutionUtility.clearHTML_(autoManufacturer.autoManufacturerPanelContainer);
                     break;
                 case statusCode.ALREADY:
                     AutoSolutionUtility.toastNotifiy(toastType.WARNING, toastMessage.ALREADYEXIST);

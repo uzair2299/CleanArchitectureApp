@@ -1,10 +1,8 @@
-﻿using CleanArchitecture.Core.DTO;
-using CleanArchitecture.Core.ViewModels.BaseViewModel;
+﻿using CleanArchitecture.Core.ViewModels.BaseViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitecture.Core.ViewModels
 {
@@ -12,6 +10,7 @@ namespace CleanArchitecture.Core.ViewModels
     {
         public AutoVersionViewModel()
         {
+            GallaryImages = new List<IFormFile>();
             //AutoSpecification = new List<AutoSpecificationSubDTO>();
             //AutoManufacturerLookup
         }
@@ -26,9 +25,14 @@ namespace CleanArchitecture.Core.ViewModels
         public int EngineCapacity { get; set; }
         public double GroundClearance { get; set; }
         public double RunningGroundClearance { get; set; }
+        public string InteriorSummary { get; set; }
+        public string ExteriorSummary { get; set; }
+
+        #region WheelTire
         public string SpareWheel { get; set; }
-        public string WheelType { get; set; }
-        public string TyreSize { get; set; }
+        public string TireSize { get; set; }
+        #endregion
+
         #region Dimension
         public double ExteriorLength { get; set; }
         public double ExteriorWidth { get; set; }
@@ -54,7 +58,7 @@ namespace CleanArchitecture.Core.ViewModels
 
         #region uploads
         public IFormFile DefaultImage { get; set; }
-        public IFormFileCollection GallaryImages { get; set; }
+        public List<IFormFile> GallaryImages { get; set; }
         #endregion
         public int SelectedAutoModel { get; set; }
 
@@ -63,19 +67,32 @@ namespace CleanArchitecture.Core.ViewModels
         
         public int SelectedManufacturer { get; set; }
         public List<SelectListItem> AutoManufacturerLookup { get; set; }
+
         public int SelectedBodyType { get; set; }
         public List<SelectListItem> AutoBodyTypeLookup { get; set; }
 
         public List<SelectListItem> AutoEngineTypeLookup { get; set; }
         public List<SelectListItem> AirBag { get; set; }
+        
         public int SelectedStabilityControlSystem { get; set; }
         public List<SelectListItem> StabilityControlSystem { get; set; }
+        
         public int SelectedTransmissionType { get; set; }
-
         public List<SelectListItem> TransmissionType { get; set; }
-        public List<SelectListItem> AutoSpecification { get; set; }
-        public string AutoSpecificationStr { get; set; } 
 
+        public int SelectedFrontBrakeSystem { get; set; }
+        public int SelectedRearBrakeSystem { get; set; }
+        public List<SelectListItem> BrakeSystem { get; set; }
+        
+        public int SelectedWheelType { get; set; }
+        public List<SelectListItem> WheelAndTire { get; set; }
+
+        public List<SelectListItem> AutoSpecification { get; set; }
+        public string AutoSpecificationStr { get; set; }
+
+        public int SelectSuspensionType { get; set; }
+        public List<SelectListItem> SuspensionType { get; set; }
+       
         public List<SelectListItem> SeatBelt { get; set; }
         public bool IsQuickAdd { get; set; } = true;
 

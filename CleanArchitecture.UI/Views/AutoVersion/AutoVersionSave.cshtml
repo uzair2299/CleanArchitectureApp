@@ -159,7 +159,7 @@
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Manufactuer:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedManufacturer">
+                                                        <select asp-for="SelectedManufacturer" asp-items="Model.AutoManufacturerLookup" class="form-control kt-select2 required" name="SelectedManufacturer" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedManufacturer">
                                                             <option value="">Select Manufacturer</option>
                                                         </select>
                                                         <div class="invalid-feedback"></div>
@@ -167,7 +167,7 @@
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span> Auto Model:</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled onchange="AutoSolutionUtility.onCangeValidation(this)">
+                                                        <select asp-for="SelectedAutoModel" class="form-control kt-select2 disabled required" name="SelectedAutoModel" style="width:100%" id="SelectedAutoModel" disabled onchange="AutoSolutionUtility.onCangeValidation(this)">
                                                             <option value="">Select Model</option>
                                                         </select>
                                                         <div class="invalid-feedback"></div>
@@ -176,11 +176,12 @@
 
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="AutoVersionName"><span class="text-danger">*</span> Version Name:</label>
-                                                        <input type="text" name="AutoVersionName" class="form-control" placeholder="" asp-for="AutoVersionName">
+                                                        <input type="text" name="AutoVersionName" class="form-control required" placeholder="" asp-for="AutoVersionName" onchange="AutoSolutionUtility.onCangeValidation(this)">
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="SelectedManufacturer"><span class="text-danger">*</span>Body Type:</label>
-                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2" name="SelectedBodyType" style="width:100%"  id="SelectedBodyType" onchange="AutoSolutionUtility.onCangeValidation(this)">
+                                                        <select asp-for="SelectedBodyType" asp-items="Model.AutoBodyTypeLookup" class="form-control kt-select2 required" name="SelectedBodyType" style="width:100%" id="SelectedBodyType" onchange="AutoSolutionUtility.onCangeValidation(this)">
                                                             <option value="">Select Body Type</option>
                                                         </select>
                                                         <div class="invalid-feedback"></div>
@@ -190,11 +191,13 @@
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="CurrentPrice"><span class="text-danger">*</span> Price:</label>
-                                                        <input name="CurrentPrice" class="form-control" placeholder="Enter Price" asp-for="CurrentPrice">
+                                                        <input name="CurrentPrice" class="form-control required" placeholder="Enter Price" asp-for="CurrentPrice" value="" onchange="AutoSolutionUtility.onCangeValidation(this)">
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <label class="form-control-label"><span class="text-danger">*</span>Start Date</label>
-                                                        <input type="month" class="form-control startMonth" placeholder="Select Date" value="" id="startMonth">
+                                                        <label class="form-control-label"><span class="text-danger">*</span>Start Date</label> 
+                                                        <input type="month" class="form-control startMonth required" placeholder="Select Date" value="" id="startMonth" onchange="AutoSolutionUtility.onCangeValidation(this)">
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -217,16 +220,37 @@
                                             <div class="kt-widget1 p-0">
                                                 <div class="form-group row">
                                                     <div class="col-lg-4">
-                                                        <label class="form-control-label" for="SelectedTransmissionType"><span class="text-danger">*</span> Transmission Type:</label>
+                                                        <label class="form-control-label" for="SelectedTransmissionType"> Transmission Type :</label>
                                                         @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
-                                                        <select asp-for="SelectedTransmissionType" asp-items="Model.TransmissionType" class="form-control kt-select2" name="SelectedTransmissionType" style="width:100%" onchange="autoVersion.getAutoModelLookup(this);" id="SelectedTransmissionType">
+                                                        <select asp-for="SelectedTransmissionType" asp-items="Model.TransmissionType" class="form-control kt-select2" name="SelectedTransmissionType" style="width:100%" id="SelectedTransmissionType">
                                                             <option value="">Select TransmissionType</option>
                                                         </select>
                                                     </div>
-                                                    
+                                                    <div class="col-lg-4">
+                                                        <label class="form-control-label" for="SelectedFrontBrakeSystem">Front Brake System :</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectedFrontBrakeSystem" asp-items="Model.BrakeSystem" class="form-control kt-select2" name="SelectedFrontBrakeSystem" style="width:100%" id="SelectedFrontBrakeSystem">
+                                                            <option value="">Select Front Brake System</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="form-control-label" for="SelectedRearBrakeSystem">Rear Brake System :</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectedRearBrakeSystem" asp-items="Model.BrakeSystem" class="form-control kt-select2" name="SelectedRearBrakeSystem" style="width:100%" id="SelectedRearBrakeSystem">
+                                                            <option value="">Select Rear Brake System</option>
+                                                        </select>
+                                                    </div>
+
+
                                                 </div>
                                                 <div class="form-group row">
-                                                    
+                                                    <div class="col-lg-4">
+                                                        <label class="form-control-label" for="SelectedRearBrakeSystem">Suspension Type :</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectSuspensionType" asp-items="Model.SuspensionType" class="form-control kt-select2" name="SelectSuspensionType" style="width:100%" id="SelectSuspensionType">
+                                                            <option value="">Select Suspension Type</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -257,11 +281,11 @@
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="ExteriorLength">Exterior Length(mm):</label>
-                                                        <input name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength">
+                                                        <input name="ExteriorLength" class="form-control" placeholder="" asp-for="ExteriorLength" value="">
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label class="form-control-label" for="InteriorHeight">Interior Height(mm):</label>
-                                                        <input name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight">
+                                                        <input name="InteriorHeight" class="form-control" placeholder="" asp-for="InteriorHeight" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -343,8 +367,36 @@
                                                         <input name="GroundClearance" class="form-control" placeholder="" asp-for="GrossVehicleWeigth" value="">
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="kt-portlet kt-portlet--bordered">
+                                        <div class="kt-portlet__head bg-dark">
+                                            <div class="kt-portlet__head-label">
+                                                <h4 class="kt-portlet__head-title text-white">
+                                                    Wheel and Tire
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+                                            <div class="kt-widget1 p-0">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="SelectedWheelType">Wheel Type:</label>
+                                                        @*@Html.DropDownListFor(x => Version.SelectedManufacturer,Version.AutoManufacturerLookup, htmlAttributes: new { @class = "form-control" })*@
+                                                        <select asp-for="SelectedWheelType" asp-items="Model.WheelAndTire" class="form-control kt-select2" name="SelectedWheelType" style="width:100%" id="SelectedWheelType">
+                                                            <option value="">Select Wheel Type</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-control-label" for="TireSize">Tire Size:</label>
+                                                        <input name="TireSize" class="form-control" placeholder="" asp-for="TireSize" value="">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -458,6 +510,35 @@
                                 </div>
                             </div>
 
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="kt-portlet kt-portlet--bordered">
+                                        <div class="kt-portlet__head bg-dark">
+                                            <div class="kt-portlet__head-label">
+                                                <h4 class="kt-portlet__head-title text-white">
+                                                    Interior & Exterior
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+                                            <div class="kt-widget1 p-0">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12">
+                                                        <label class="form-control-label" for="InteriorSummary">Interior Summary:</label>
+                                                        <textarea name="InteriorSummary" class="form-control" placeholder="" asp-for="InteriorSummary" rows="7"></textarea>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <label class="form-control-label" for="ExteriorSummary">Exterior Summary:</label>
+                                                        <textarea name="ExteriorSummary" class="form-control" placeholder="" asp-for="ExteriorSummary" value="" rows="7"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <div class="kt-portlet kt-portlet--bordered">
@@ -560,7 +641,7 @@
         console.log("keycode" + evt.code);
 
         var charCode = (evt.which) ? evt.which : evt.keyCode;
-        console.log("code "+charCode)
+        console.log("code " + charCode)
         if (charCode != 46 && charCode > 31
             && (charCode < 48 || charCode > 57))
             return false;
