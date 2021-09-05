@@ -21,6 +21,8 @@ namespace CleanArchitecture.Domain.Entities
         public int EngineCapacity { get; set; }
         public int GroundClearance { get; set; }
         public int RunningGroundClearance { get; set; }
+        public string InteriorSummary { get; set; }
+        public string ExteriorSummary { get; set; }
 
 
         #region Dimension

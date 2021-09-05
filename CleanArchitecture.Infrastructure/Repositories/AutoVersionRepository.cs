@@ -37,7 +37,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
                     //command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.CommandText = "EXEC " + AutoSolutionStoreProcedureUtility.InsertAutoVersion + " @AutoVersionName,@CurrentPrice,@EngineCapacity,@CrubWeight,@ExteriorHeight," +
                         "@ExteriorLength,@ExteriorWidth,@FuelTankCapacity,@GrossVehicleWeigth,@GroundClearance,@InteriorHeight,@InteriorLength,@InteriorWidth," +
-                        "@MinimumGroundClearance,@OverhangFront,@OverhangRear,@RunningGroundClearance,@SeatingCapacity,@TreadFront,@TreadRear,@Wheelbase,@AutoModelId,@IsQuickAdd";
+                        "@MinimumGroundClearance,@OverhangFront,@OverhangRear,@RunningGroundClearance,@SeatingCapacity,@TreadFront,@TreadRear,@Wheelbase,@AutoModelId,@InteriorSummary,@ExteriorSummary,@IsQuickAdd";
                     command.Parameters.Add(new SqlParameter("AutoVersionName", autoVersionViewModel.AutoVersionName));
                     command.Parameters.Add(new SqlParameter("CurrentPrice", autoVersionViewModel.CurrentPrice));
                     command.Parameters.Add(new SqlParameter("EngineCapacity", autoVersionViewModel.EngineCapacity));
@@ -62,6 +62,8 @@ namespace CleanArchitecture.Infrastructure.Repositories
                     command.Parameters.Add(new SqlParameter("Wheelbase", autoVersionViewModel.Wheelbase));
 
                     command.Parameters.Add(new SqlParameter("AutoModelId", autoVersionViewModel.SelectedAutoModel));
+                    command.Parameters.Add(new SqlParameter("InteriorSummary", autoVersionViewModel.InteriorSummary));
+                    command.Parameters.Add(new SqlParameter("ExteriorSummary", autoVersionViewModel.ExteriorSummary));
 
                     command.Parameters.Add(new SqlParameter("IsQuickAdd", autoVersionViewModel.IsQuickAdd));
                     int rowAffected = command.ExecuteNonQuery();
